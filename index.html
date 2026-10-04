@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>OctaviOS v17 | Pure Liquid Glass Architecture</title>
-  
-  <!-- Inline SVG Favicon using Official Octavi Emblem -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='45' fill='%23030508'/%3E%3Cg transform='translate(100,105) scale(0.72)' stroke='%2300F0FF' stroke-width='4.5' fill='none' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M-38,-65 L0,-88 L38,-65' stroke-width='5'/%3E%3Cpath d='M-72,-5 L-76,35 L-42,55' stroke-width='5'/%3E%3Cpath d='M72,-5 L76,35 L42,55' stroke-width='5'/%3E%3Cpolygon points='0,-16 14,-8 14,8 0,16 -14,8 -14,-8' stroke-width='4'/%3E%3Cpath d='M0,-16 L6,-4 M14,-8 L7,4 M14,8 L-1,8 M0,16 L-6,4 M-14,8 L-7,-4 M-14,-8 L1,-8' stroke-width='2.5'/%3E%3Cg id='arm'%3E%3Cpolygon points='-9,20 9,20 12,52 0,64 -12,52' stroke-width='4'/%3E%3Cpolyline points='-12,68 0,82 12,68' stroke-width='4'/%3E%3C/g%3E%3Cuse href='%23arm' transform='rotate(120)'/%3E%3Cuse href='%23arm' transform='rotate(240)'/%3E%3C/g%3E%3C/svg%3E">
+  <title>OctaviOS v17 — Expressive Fluidity</title>
+  <meta name="description" content="Official portal for OctaviOS v17 based on Android 16. Fast, responsive Material You architecture with zero rendering lag.">
 
-  <!-- Fonts: Inter & JetBrains Mono -->
+  <!-- Inter Display & JetBrains Mono Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <!-- Tailwind CSS CDN -->
@@ -24,32 +22,23 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            octavi: {
-              cyan: '#00F0FF',
-              violet: '#A855F7',
-              blue: '#3B82F6',
-              amber: '#F59E0B'
-            }
-          },
-          animation: {
-            'blob-float': 'blobFloat 22s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate',
-            'blob-float-reverse': 'blobFloatReverse 26s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate',
-            'spin-slow': 'spin 30s linear infinite',
-          },
-          keyframes: {
-            blobFloat: {
-              '0%': { transform: 'translate(0px, 0px) scale(1)' },
-              '50%': { transform: 'translate(70px, -90px) scale(1.15) rotate(12deg)' },
-              '100%': { transform: 'translate(-50px, 60px) scale(0.92) rotate(-8deg)' }
-            },
-            blobFloatReverse: {
-              '0%': { transform: 'translate(0px, 0px) scale(1)' },
-              '50%': { transform: 'translate(-80px, 80px) scale(1.12) rotate(-15deg)' },
-              '100%': { transform: 'translate(60px, -50px) scale(0.95) rotate(10deg)' }
+            m3: {
+              surfaceDark: '#0D1117',
+              containerDark: '#161B22',
+              containerHighDark: '#21262D',
+              borderDark: '#30363D',
+              surfaceLight: '#F6F8FA',
+              containerLight: '#FFFFFF',
+              containerHighLight: '#EAEEF2',
+              borderLight: '#D0D7DE',
+              primary: '#00D6B8',
+              primaryDark: '#005A4D',
+              primaryTextDark: '#021B17',
+              accent: '#388BFD',
             }
           }
         }
@@ -58,526 +47,382 @@
   </script>
 
   <style>
-    :root {
-      --glass-blur: 24px;
-      --glass-opacity: 0.72;
-      --glass-specular: 0.45;
-      --glass-border-opacity: 0.16;
-      --glass-saturate: 190%;
+    /* 100% Solid Lightweight Surfaces — Zero GPU/CPU Blur Lag */
+    body {
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
-    /* Optical Liquid Glass Formulation */
-    .liquid-glass {
-      position: relative;
-      background: rgba(255, 255, 255, calc(var(--glass-opacity) * 0.88));
-      backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-      border: 1px solid rgba(255, 255, 255, var(--glass-border-opacity));
-      box-shadow: 
-        0 20px 40px -15px rgba(0, 0, 0, 0.07),
-        0 1px 3px 0 rgba(0, 0, 0, 0.04),
-        inset 0 1.5px 0 0 rgba(255, 255, 255, var(--glass-specular));
-      transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                  border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                  box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    .m3-card {
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
     }
 
-    .dark .liquid-glass {
-      background: rgba(8, 12, 20, calc(var(--glass-opacity) * 0.75));
-      border: 1px solid rgba(255, 255, 255, calc(var(--glass-border-opacity) * 0.75));
-      box-shadow: 
-        0 25px 50px -12px rgba(0, 0, 0, 0.65),
-        0 1px 2px 0 rgba(0, 0, 0, 0.35),
-        inset 0 1.5px 0 0 rgba(255, 255, 255, calc(var(--glass-specular) * 0.6));
+    .m3-interactive:hover {
+      transform: translateY(-2px);
     }
 
-    .liquid-glass-nav {
-      background: rgba(255, 255, 255, calc(var(--glass-opacity) * 0.88));
-      backdrop-filter: blur(calc(var(--glass-blur) + 8px)) saturate(calc(var(--glass-saturate) + 20%));
-      -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 8px)) saturate(calc(var(--glass-saturate) + 20%));
-      border: 1px solid rgba(255, 255, 255, calc(var(--glass-border-opacity) * 1.3));
-      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.09), inset 0 1px 0 0 rgba(255, 255, 255, var(--glass-specular));
-    }
-
-    .dark .liquid-glass-nav {
-      background: rgba(6, 9, 15, calc(var(--glass-opacity) * 0.82));
-      border: 1px solid rgba(255, 255, 255, calc(var(--glass-border-opacity) * 0.8));
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.75), inset 0 1px 0 0 rgba(255, 255, 255, calc(var(--glass-specular) * 0.5));
-    }
-
-    /* Refractive Chromatic Edge Hover */
-    .liquid-glass-hover {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .liquid-glass-hover::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: radial-gradient(circle 350px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.14), transparent 70%);
-      opacity: 0;
-      transition: opacity 0.35s ease;
-    }
-
-    .liquid-glass-hover:hover::after {
-      opacity: 1;
-    }
-
-    /* Custom Sliders for Liquid Controller */
+    /* Minimal Native Slider */
     input[type=range] {
       -webkit-appearance: none;
-      background: transparent;
+      appearance: none;
+      height: 10px;
+      border-radius: 9999px;
+      outline: none;
     }
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      height: 18px;
-      width: 18px;
-      border-radius: 50%;
-      background: #00F0FF;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 9999px;
+      background: #00D6B8;
       cursor: pointer;
-      margin-top: -6px;
-      box-shadow: 0 0 14px rgba(0, 240, 255, 0.7), 0 2px 4px rgba(0,0,0,0.3);
-      border: 2px solid #ffffff;
-      transition: transform 0.15s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      border: 3px solid #161B22;
+      transition: transform 0.1s ease;
     }
     input[type=range]::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
+      transform: scale(1.1);
     }
-    input[type=range]::-webkit-slider-runnable-track {
-      width: 100%;
-      height: 6px;
-      cursor: pointer;
-      background: rgba(148, 163, 184, 0.25);
+    input[type=range]::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
       border-radius: 9999px;
+      background: #00D6B8;
+      cursor: pointer;
+      border: 3px solid #161B22;
     }
 
+    /* Clean Scrollbar */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 7px;
+      height: 7px;
     }
     ::-webkit-scrollbar-track {
       background: transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background: rgba(148, 163, 184, 0.35);
+      background: #30363D;
       border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: rgba(148, 163, 184, 0.55);
+      background: #484F58;
     }
   </style>
 </head>
+<body class="bg-m3-surfaceLight dark:bg-m3-surfaceDark text-slate-800 dark:text-slate-100 font-sans selection:bg-m3-primary selection:text-m3-primaryTextDark">
 
-<body class="bg-[#F8FAFC] dark:bg-[#030508] text-slate-800 dark:text-slate-100 font-sans antialiased transition-colors duration-500 overflow-x-hidden selection:bg-octavi-cyan selection:text-black">
-
-  <!-- Ambient Fluid Lighting Canvas -->
-  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
-    <div class="absolute -top-[25%] -left-[15%] w-[65vw] h-[65vw] rounded-full bg-gradient-to-tr from-cyan-400/20 via-blue-500/15 to-transparent blur-[120px] dark:from-cyan-500/14 dark:via-blue-600/10 dark:to-transparent animate-blob-float"></div>
-    <div class="absolute top-[30%] -right-[15%] w-[70vw] h-[70vw] rounded-full bg-gradient-to-bl from-purple-500/20 via-fuchsia-500/15 to-transparent blur-[140px] dark:from-purple-600/14 dark:via-indigo-600/10 dark:to-transparent animate-blob-float-reverse"></div>
-    <div class="absolute -bottom-[20%] left-[20%] w-[55vw] h-[55vw] rounded-full bg-gradient-to-t from-teal-400/15 via-sky-500/10 to-transparent blur-[130px] dark:from-teal-500/10 dark:via-sky-600/8 dark:to-transparent"></div>
-    <div class="absolute inset-0 opacity-[0.025] dark:opacity-[0.035] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
-  </div>
-
-  <!-- Reusable SVG Definition of the Official OctaviOS Tri-Blade Logo -->
-  <svg class="hidden" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="octaviLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#00F0FF" />
-        <stop offset="50%" stop-color="#38BDF8" />
-        <stop offset="100%" stop-color="#A855F7" />
-      </linearGradient>
-
-      <!-- Accurate Vector Master for the Official OctaviOS Emblem -->
-      <g id="official-octavios-emblem">
-        <!-- 3 Segmented Outer Boundary Brackets -->
-        <path d="M-38,-65 L0,-88 L38,-65" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M-72,-5 L-76,35 L-42,55" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M72,-5 L76,35 L42,55" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
-
-        <!-- Center Hexagonal Shutter / Aperture Core -->
-        <polygon points="0,-16 14,-8 14,8 0,16 -14,8 -14,-8" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" />
-        <path d="M0,-16 L6,-4 M14,-8 L7,4 M14,8 L-1,8 M0,16 L-6,4 M-14,8 L-7,-4 M-14,-8 L1,-8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
-
-        <!-- Radial Chevron-Headed Arrow Blade (Repeated at 0°, 120°, 240°) -->
-        <g id="octavi-radial-blade">
-          <polygon points="-9,20 9,20 12,52 0,64 -12,52" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" />
-          <polyline points="-12,68 0,82 12,68" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-        </g>
-        <use href="#octavi-radial-blade" transform="rotate(120)" />
-        <use href="#octavi-radial-blade" transform="rotate(240)" />
-      </g>
-    </defs>
-  </svg>
-
-  <!-- Navigation Capsule -->
-  <header class="fixed top-5 inset-x-0 z-40 max-w-5xl mx-auto px-4">
-    <nav class="liquid-glass-nav rounded-full px-5 py-3 flex items-center justify-between transition-all duration-300">
+  <!-- Solid Material Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-m3-surfaceLight/95 dark:bg-m3-surfaceDark/95 border-b border-m3-borderLight dark:border-m3-borderDark">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       
-      <!-- Brand & Official Logo -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="relative w-9 h-9 flex items-center justify-center p-1 rounded-xl bg-slate-900/5 dark:bg-white/5 border border-slate-900/10 dark:border-white/10 group-hover:border-octavi-cyan/40 transition-colors">
-          <svg viewBox="-95 -98 190 190" class="w-full h-full text-slate-900 dark:text-white group-hover:text-octavi-cyan transition-all duration-300 drop-shadow-[0_0_8px_rgba(0,240,255,0.4)]">
-            <use href="#official-octavios-emblem" />
-          </svg>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="font-extrabold tracking-tight text-lg text-slate-900 dark:text-white">Octavi<span class="text-transparent bg-clip-text bg-gradient-to-r from-octavi-cyan to-octavi-violet">OS</span></span>
-          <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-900/5 dark:bg-white/10 text-slate-600 dark:text-slate-300 border border-slate-900/10 dark:border-white/10">v17</span>
-        </div>
+      <!-- Typographic Brand (No Logo) -->
+      <a href="#" class="flex items-center gap-2.5">
+        <span class="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">
+          Octavi<span class="text-m3-primary">OS</span>
+        </span>
+        <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-m3-containerHighLight dark:bg-m3-containerHighDark text-slate-700 dark:text-m3-primary border border-m3-borderLight dark:border-m3-borderDark">
+          v17
+        </span>
       </a>
 
-      <!-- Navigation Links -->
-      <div class="hidden md:flex items-center gap-7 text-xs font-semibold tracking-wide text-slate-600 dark:text-slate-300">
-        <a href="#vision" class="hover:text-octavi-cyan transition-colors">Architecture</a>
-        <a href="#lab" class="hover:text-octavi-cyan transition-colors">Liquid Lab</a>
-        <a href="#firmware" class="hover:text-octavi-cyan transition-colors">Downloads</a>
-        <a href="#terminal" class="hover:text-octavi-cyan transition-colors">Installation</a>
-        <a href="https://github.com/OctaviOS-Plus" target="_blank" class="hover:text-octavi-cyan transition-colors flex items-center gap-1.5">
-          <span>GitHub</span>
-          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-        </a>
-      </div>
+      <!-- Desktop Links -->
+      <nav class="hidden md:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+        <a href="#lab" class="hover:text-m3-primary transition-colors">Octavi Lab</a>
+        <a href="#features" class="hover:text-m3-primary transition-colors">Features</a>
+        <a href="#devices" class="hover:text-m3-primary transition-colors">Downloads</a>
+        <a href="#wiki" class="hover:text-m3-primary transition-colors">Installation</a>
+      </nav>
 
-      <!-- Controls (Theme Toggle & CTA) -->
+      <!-- Actions (Theme Toggle & CTA) -->
       <div class="flex items-center gap-3">
-        <button id="themeToggleBtn" aria-label="Toggle Theme" class="p-2.5 rounded-full liquid-glass hover:text-octavi-cyan transition-all text-slate-700 dark:text-slate-200">
-          <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
-          <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+        <!-- Theme Toggle -->
+        <button id="themeToggleBtn" aria-label="Toggle Theme" class="p-2 rounded-xl bg-m3-containerLight dark:bg-m3-containerDark border border-m3-borderLight dark:border-m3-borderDark text-slate-600 dark:text-slate-300 hover:border-m3-primary transition-colors">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-amber-400"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-slate-700"></i>
         </button>
 
-        <a href="#firmware" class="relative group overflow-hidden px-4 py-2 rounded-full font-semibold text-xs text-black bg-gradient-to-r from-octavi-cyan to-sky-300 hover:opacity-95 shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all">
-          <span class="relative z-10 flex items-center gap-1.5">
-            <span>Get v17</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
-          </span>
+        <!-- GitHub -->
+        <a href="https://github.com/OctaviOS-Plus" target="_blank" class="p-2 rounded-xl bg-m3-containerLight dark:bg-m3-containerDark border border-m3-borderLight dark:border-m3-borderDark text-slate-600 dark:text-slate-300 hover:border-m3-primary transition-colors" aria-label="GitHub Org">
+          <i data-lucide="github" class="w-4 h-4"></i>
+        </a>
+
+        <!-- Download Action -->
+        <a href="#devices" class="px-4 py-2 rounded-xl bg-m3-primary text-m3-primaryTextDark font-bold text-xs uppercase tracking-wider hover:opacity-90 active:scale-95 transition flex items-center gap-1.5">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <span>Builds</span>
         </a>
       </div>
-    </nav>
+    </div>
   </header>
 
   <!-- Hero Section -->
-  <main class="relative z-10 pt-36 pb-24 px-4 max-w-6xl mx-auto">
-    
-    <!-- Hero Header with Watermark Official Logo -->
-    <div class="text-center max-w-3xl mx-auto mb-16 relative">
-      
-      <!-- Watermark Background Logo -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-96 h-96 pointer-events-none opacity-[0.06] dark:opacity-[0.08] text-slate-900 dark:text-octavi-cyan">
-        <svg viewBox="-95 -98 190 190" class="w-full h-full animate-spin-slow">
-          <use href="#official-octavios-emblem" />
-        </svg>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-24">
+
+    <section class="text-center max-w-3xl mx-auto mb-20">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-m3-containerLight dark:bg-m3-containerDark border border-m3-borderLight dark:border-m3-borderDark text-slate-700 dark:text-m3-primary text-xs font-mono font-semibold mb-6 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-m3-primary"></span>
+        <span>Android 16 Core &bull; OctaviOS v17 Release</span>
       </div>
 
-      <!-- Keynote Capsule Pill -->
-      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full liquid-glass mb-6">
-        <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-octavi-cyan opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-octavi-cyan"></span>
-        </span>
-        <span class="text-[11px] font-bold tracking-widest uppercase text-slate-700 dark:text-slate-300">
-          Android 17 • OctaviOS v17 Liquid Release
-        </span>
-      </div>
-
-      <!-- Main Headline -->
-      <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.08] mb-6">
-        Android redefined in <br class="hidden sm:inline" />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-octavi-cyan via-blue-400 to-octavi-violet">
-          Pure Liquid Glass.
-        </span>
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight mb-5">
+        Performance Android. <br>
+        <span class="text-m3-primary">Refined for every frame.</span>
       </h1>
 
-      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300/90 font-medium leading-relaxed mb-10 max-w-2xl mx-auto">
-        Zero neumorphic plastic shadows. Engineered with physical optical transmission, dynamic chromatic caustics, and microsecond kernel dispatch.
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 font-normal leading-relaxed mb-8 max-w-2xl mx-auto">
+        OctaviOS v17 delivers Material You Expressive surfaces, redesigned Quick Settings, zero stuttering or blur lag, and CTS compliance ready out of the box.
       </p>
 
-      <!-- CTA Buttons -->
-      <div class="flex flex-wrap items-center justify-center gap-4">
-        <a href="#firmware" class="px-7 py-3.5 rounded-full font-bold text-sm text-black bg-gradient-to-r from-octavi-cyan via-sky-300 to-teal-300 hover:shadow-[0_0_30px_rgba(0,240,255,0.45)] transition-all flex items-center gap-2.5">
-          <i data-lucide="download" class="w-4 h-4"></i>
-          <span>Download Firmware</span>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a href="#devices" class="px-6 py-3 rounded-xl bg-m3-primary text-m3-primaryTextDark font-bold text-xs uppercase tracking-wider hover:opacity-90 transition flex items-center gap-2">
+          <i data-lucide="smartphone" class="w-4 h-4"></i>
+          <span>Choose Device</span>
         </a>
-        <a href="#terminal" class="px-7 py-3.5 rounded-full font-semibold text-sm liquid-glass liquid-glass-hover text-slate-800 dark:text-white hover:border-slate-400/40 transition-all flex items-center gap-2">
-          <i data-lucide="terminal" class="w-4 h-4 text-octavi-cyan"></i>
-          <span>Flash Handbook</span>
+        <a href="#wiki" class="px-6 py-3 rounded-xl bg-m3-containerLight dark:bg-m3-containerDark text-slate-800 dark:text-white font-semibold text-xs border border-m3-borderLight dark:border-m3-borderDark hover:border-m3-primary transition flex items-center gap-2">
+          <i data-lucide="terminal" class="w-4 h-4 text-m3-primary"></i>
+          <span>Fastboot &amp; ADB Wiki</span>
         </a>
-      </div>
-    </div>
-
-    <!-- Interactive Hardware Frame Mockup -->
-    <div class="relative max-w-md mx-auto mb-28">
-      <div class="absolute -inset-4 bg-gradient-to-r from-octavi-cyan/25 to-octavi-violet/25 rounded-[3.5rem] blur-2xl opacity-75"></div>
-
-      <div class="relative rounded-[3.2rem] p-3.5 bg-slate-200/80 dark:bg-slate-900/90 border border-slate-300/80 dark:border-white/15 shadow-2xl backdrop-blur-3xl">
-        <div class="relative rounded-[2.6rem] overflow-hidden bg-slate-950 aspect-[9/19.5] text-white flex flex-col justify-between p-6 select-none shadow-inner border border-white/5">
-          
-          <!-- Liquid Island (Clickable) -->
-          <div id="dynamicIsland" class="mx-auto bg-black/90 border border-white/10 px-4 py-2 rounded-full cursor-pointer hover:border-octavi-cyan/50 transition-all duration-300 flex items-center gap-3 shadow-lg z-20">
-            <div class="w-2.5 h-2.5 rounded-full bg-octavi-cyan animate-pulse"></div>
-            <div id="islandText" class="text-[11px] font-mono tracking-tight text-slate-200 flex items-center gap-2">
-              <span>Octavi Audio Core</span>
-              <span class="text-octavi-cyan">• 96kHz Spatial</span>
-            </div>
-            <i data-lucide="waveform" class="w-3.5 h-3.5 text-octavi-cyan"></i>
-          </div>
-
-          <!-- Dynamic Display Center -->
-          <div id="screenGlance" class="my-auto space-y-5 text-center transition-all duration-300">
-            <div class="space-y-1">
-              <span class="text-xs uppercase font-bold tracking-widest text-slate-400">Monday, October 5</span>
-              <h2 class="text-6xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400">1:15</h2>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-[11px] text-octavi-cyan font-medium">
-                <i data-lucide="shield-check" class="w-3 h-3"></i>
-                <span>SELinux Enforcing • CTS Pass</span>
-              </div>
-            </div>
-
-            <!-- Glass Notification -->
-            <div class="liquid-glass rounded-2xl p-3 text-left max-w-xs mx-auto border border-white/15">
-              <div class="flex items-center gap-2.5 mb-1.5">
-                <div class="w-5 h-5 rounded-md bg-octavi-cyan/20 flex items-center justify-center text-octavi-cyan">
-                  <i data-lucide="sparkles" class="w-3 h-3"></i>
-                </div>
-                <span class="text-[11px] font-bold text-slate-200">Octavi Lab Aero</span>
-                <span class="text-[9px] text-slate-400 ml-auto">Now</span>
-              </div>
-              <p class="text-[11px] text-slate-300 leading-snug">System-wide liquid refraction enabled with 0 frame drops.</p>
-            </div>
-          </div>
-
-          <!-- View Switchers inside mockup -->
-          <div class="pt-4 border-t border-white/10 flex items-center justify-around text-[10px] font-bold tracking-wider uppercase text-slate-400">
-            <button onclick="setMockupView('lock')" class="mock-btn active text-octavi-cyan hover:text-white transition-colors" data-view="lock">Lockscreen</button>
-            <button onclick="setMockupView('lab')" class="mock-btn hover:text-white transition-colors" data-view="lab">Quick Tiles</button>
-            <button onclick="setMockupView('kernel')" class="mock-btn hover:text-white transition-colors" data-view="kernel">Kernel Telemetry</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Architecture & Bento Grid -->
-    <section id="vision" class="mb-28">
-      <div class="text-center max-w-xl mx-auto mb-14">
-        <h2 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white mb-3">Engineered for Optical Fluidity</h2>
-        <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Built from AOSP 17 sources with custom low-overhead hardware renderers.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Bento 1 -->
-        <div class="liquid-glass liquid-glass-hover rounded-3xl p-7 md:col-span-2 flex flex-col justify-between">
-          <div class="flex items-start justify-between mb-8">
-            <div class="p-3.5 rounded-2xl bg-octavi-cyan/15 text-octavi-cyan border border-octavi-cyan/20">
-              <i data-lucide="layers" class="w-6 h-6"></i>
-            </div>
-            <span class="text-[11px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold px-3 py-1 rounded-full border border-slate-400/20">Graphics Core</span>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Dynamic Light Refraction Pipeline</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-md">
-              Unlike outdated skeuomorphic or plastic neumorphic layouts that rely on harsh inner drop-shadows, OctaviOS v17 models true physical glass with specular highlights and GPU chromatic dispersion.
-            </p>
-          </div>
-        </div>
-
-        <!-- Bento 2 -->
-        <div class="liquid-glass liquid-glass-hover rounded-3xl p-7 flex flex-col justify-between">
-          <div class="flex items-start justify-between mb-8">
-            <div class="p-3.5 rounded-2xl bg-octavi-violet/15 text-octavi-violet border border-octavi-violet/20">
-              <i data-lucide="gauge" class="w-6 h-6"></i>
-            </div>
-            <span id="hzBadge" class="text-xs font-mono font-bold text-octavi-cyan">120 Hz</span>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">ProMotion Engine</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              Micro-adaptive refresh rates down to 1Hz on LTPO panels, scaling to 144Hz instantaneously.
-            </p>
-            <input type="range" id="hzSlider" min="60" max="144" value="120" step="12" class="w-full">
-          </div>
-        </div>
-
-        <!-- Bento 3 -->
-        <div class="liquid-glass liquid-glass-hover rounded-3xl p-7 flex flex-col justify-between">
-          <div class="p-3.5 rounded-2xl bg-blue-500/15 text-blue-400 border border-blue-500/20 w-fit mb-8">
-            <i data-lucide="cpu" class="w-6 h-6"></i>
-          </div>
-          <div>
-            <div class="flex items-baseline justify-between mb-1">
-              <h3 class="text-lg font-bold text-slate-900 dark:text-white">Render Thread Jitter</h3>
-              <span class="font-mono text-xs text-emerald-400 font-bold">&lt; 0.12ms</span>
-            </div>
-            <p class="text-xs text-slate-600 dark:text-slate-400 leading-normal">
-              Direct upstream Linux kernel patches prioritizing SurfaceFlinger composite calls over background telemetry.
-            </p>
-          </div>
-        </div>
-
-        <!-- Bento 4 -->
-        <div class="liquid-glass liquid-glass-hover rounded-3xl p-7 md:col-span-2 flex flex-col justify-between">
-          <div class="flex items-start justify-between mb-8">
-            <div class="p-3.5 rounded-2xl bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">
-              <i data-lucide="shield" class="w-6 h-6"></i>
-            </div>
-            <span class="text-[11px] font-mono text-emerald-400 font-bold px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20">MEETS_STRONG_INTEGRITY</span>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Play Integrity Pass Out-of-the-Box</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-lg">
-              Full Play Integrity API compliance passes without needing third-party Magisk or KernelSU modules. Bank apps, Google Pay, and streaming DRM work seamlessly.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- Official Firmware Matrix Section -->
-    <section id="firmware" class="mb-28">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+    <!-- Interactive Lab / Quick Settings Dashboard -->
+    <section id="lab" class="mb-20">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
         <div>
-          <div class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-octavi-cyan mb-2">
-            <i data-lucide="server" class="w-3.5 h-3.5"></i>
-            <span>Production Releases</span>
+          <span class="text-xs font-mono uppercase tracking-widest text-m3-primary font-bold">Octavi Lab</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Expressive Quick Settings</h2>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400 max-w-sm">Tap on the live Material tiles and slider to test real-time Android-inspired system responses.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Tiles Dashboard -->
+        <div class="lg:col-span-2 m3-card rounded-2xl p-6 sm:p-7 bg-m3-containerLight dark:bg-m3-containerDark border border-m3-borderLight dark:border-m3-borderDark shadow-sm">
+          <div class="flex items-center justify-between pb-5 mb-5 border-b border-m3-borderLight dark:border-m3-borderDark">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-m3-containerHighLight dark:bg-m3-containerHighDark text-m3-primary flex items-center justify-center">
+                <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">System Tile Controller</h3>
+                <span class="text-[11px] text-slate-500 dark:text-slate-400">OctaviOS v17 Controller Module</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-1.5 text-xs font-mono text-emerald-600 dark:text-emerald-400 bg-m3-containerHighLight dark:bg-m3-containerHighDark px-3 py-1 rounded-lg border border-m3-borderLight dark:border-m3-borderDark">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+              <span>SELinux: Enforcing</span>
+            </div>
           </div>
-          <h2 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Supported Device Matrix</h2>
+
+          <!-- Quick Settings Tiles Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6" id="qsTilesContainer">
+            
+            <!-- Wi-Fi Tile -->
+            <button onclick="toggleQsTile(this)" class="qs-tile active flex items-center justify-between p-4 rounded-xl bg-m3-primary text-m3-primaryTextDark font-bold text-xs transition duration-150">
+              <div class="flex items-center gap-3">
+                <i data-lucide="wifi" class="w-5 h-5"></i>
+                <div class="text-left">
+                  <span class="block text-xs font-bold leading-tight">Internet</span>
+                  <span class="text-[11px] opacity-80 font-normal">Wi-Fi 7 &bull; 6 GHz</span>
+                </div>
+              </div>
+              <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-black/15 font-bold">On</span>
+            </button>
+
+            <!-- Bluetooth Tile -->
+            <button onclick="toggleQsTile(this)" class="qs-tile active flex items-center justify-between p-4 rounded-xl bg-m3-primary text-m3-primaryTextDark font-bold text-xs transition duration-150">
+              <div class="flex items-center gap-3">
+                <i data-lucide="bluetooth" class="w-5 h-5"></i>
+                <div class="text-left">
+                  <span class="block text-xs font-bold leading-tight">Bluetooth</span>
+                  <span class="text-[11px] opacity-80 font-normal">LDAC High-Res</span>
+                </div>
+              </div>
+              <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-black/15 font-bold">On</span>
+            </button>
+
+            <!-- Performance Governor Tile -->
+            <button onclick="toggleQsTile(this)" class="qs-tile flex items-center justify-between p-4 rounded-xl bg-m3-containerHighLight dark:bg-m3-containerHighDark text-slate-700 dark:text-slate-200 font-bold text-xs border border-m3-borderLight dark:border-m3-borderDark transition duration-150">
+              <div class="flex items-center gap-3">
+                <i data-lucide="zap" class="w-5 h-5 text-m3-primary"></i>
+                <div class="text-left">
+                  <span class="block text-xs font-bold leading-tight">Performance Mode</span>
+                  <span class="text-[11px] text-slate-500 dark:text-slate-400 font-normal">walt-sched Dynamic</span>
+                </div>
+              </div>
+              <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-slate-300 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Idle</span>
+            </button>
+
+            <!-- Dolby Audio Tile -->
+            <button onclick="toggleQsTile(this)" class="qs-tile active flex items-center justify-between p-4 rounded-xl bg-m3-primary text-m3-primaryTextDark font-bold text-xs transition duration-150">
+              <div class="flex items-center gap-3">
+                <i data-lucide="volume-2" class="w-5 h-5"></i>
+                <div class="text-left">
+                  <span class="block text-xs font-bold leading-tight">Dolby Spatial Audio</span>
+                  <span class="text-[11px] opacity-80 font-normal">Stereo Expander Active</span>
+                </div>
+              </div>
+              <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-black/15 font-bold">On</span>
+            </button>
+          </div>
+
+          <!-- Dynamic Display Refresh Rate Stepper -->
+          <div class="p-4 rounded-xl bg-m3-containerHighLight dark:bg-m3-containerHighDark border border-m3-borderLight dark:border-m3-borderDark space-y-2.5">
+            <div class="flex justify-between items-center text-xs">
+              <div class="flex items-center gap-2">
+                <i data-lucide="gauge" class="w-4 h-4 text-m3-primary"></i>
+                <span class="font-bold text-slate-900 dark:text-white">ProMotion Display Stepper</span>
+              </div>
+              <span id="rateValueDisplay" class="font-mono font-bold text-m3-primary text-sm">120 Hz</span>
+            </div>
+            <input type="range" id="rateSlider" min="60" max="144" step="30" value="120" class="w-full bg-slate-300 dark:bg-slate-700">
+            <div class="flex justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400 pt-0.5">
+              <span>60Hz</span>
+              <span>90Hz</span>
+              <span>120Hz</span>
+              <span>144Hz</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Filter & Search -->
-        <div class="flex flex-wrap items-center gap-3">
-          <div class="relative min-w-[240px]">
-            <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-            <input type="text" id="deviceSearch" placeholder="Search codename or device..." class="w-full pl-10 pr-4 py-2 rounded-full liquid-glass text-xs font-medium focus:outline-none focus:border-octavi-cyan text-slate-900 dark:text-white placeholder:text-slate-400">
+        <!-- Telemetry & Integrity Card -->
+        <div class="m3-card rounded-2xl p-6 sm:p-7 bg-m3-containerLight dark:bg-m3-containerDark border border-m3-borderLight dark:border-m3-borderDark flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-m3-primary font-bold">Security Engine</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Play Integrity Pass</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
+              Full Google Play Integrity and SafetyNet compliance without requiring Magisk modules or KernelSU tweaks.
+            </p>
           </div>
-          <div class="flex items-center gap-1.5 p-1 rounded-full liquid-glass text-xs font-bold" id="oemFilters">
-            <button class="oem-btn px-3 py-1 rounded-full bg-slate-900 text-white dark:bg-white dark:text-black transition-all" data-oem="all">All</button>
-            <button class="oem-btn px-3 py-1 rounded-full text-slate-600 dark:text-slate-300 hover:text-octavi-cyan transition-all" data-oem="Xiaomi">Xiaomi</button>
-            <button class="oem-btn px-3 py-1 rounded-full text-slate-600 dark:text-slate-300 hover:text-octavi-cyan transition-all" data-oem="OnePlus">OnePlus</button>
-            <button class="oem-btn px-3 py-1 rounded-full text-slate-600 dark:text-slate-300 hover:text-octavi-cyan transition-all" data-oem="Google">Pixel</button>
+
+          <div class="space-y-2.5 font-mono text-xs">
+            <div class="p-2.5 rounded-lg bg-m3-containerHighLight dark:bg-m3-containerHighDark border border-m3-borderLight dark:border-m3-borderDark flex items-center justify-between">
+              <span class="text-slate-500 dark:text-slate-400">STRONG_INTEGRITY</span>
+              <span class="text-emerald-600 dark:text-emerald-400 font-bold">PASSED</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-m3-containerHighLight dark:bg-m3-containerHighDark border border-m3-borderLight dark:border-m3-borderDark flex items-center justify-between">
+              <span class="text-slate-500 dark:text-slate-400">Google Pay &amp; Banking</span>
+              <span class="text-emerald-600 dark:text-emerald-400 font-bold">ACTIVE</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-m3-containerHighLight dark:bg-m3-containerHighDark border border-m3-borderLight dark:border-m3-borderDark flex items-center justify-between">
+              <span class="text-slate-500 dark:text-slate-400">Widevine DRM</span>
+              <span class="text-m3-primary font-bold">L1 (4K)</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-m3-containerHighLight dark:bg-m3-containerHighDark border border-m3-borderLight dark:border-m3-borderDark flex items-center justify-between">
+              <span class="text-slate-500 dark:text-slate-400">SurfaceFlinger Jitter</span>
+              <span class="text-emerald-600 dark:text-emerald-400 font-bold">&lt; 0.08ms</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Device Downloads Matrix -->
+    <section id="devices" class="mb-20">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 pb-5 border-b border-m3-borderLight dark:border-m3-borderDark">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-m3-primary font-bold">Firmware Matrix</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Official v17 Builds</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Monthly security updates, A/B partition OTA support, and GApps/Vanilla builds.</p>
+        </div>
+
+        <!-- Filter & Search Controls -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+          <div class="relative min-w-[230px]">
+            <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            <input 
+              type="text" 
+              id="deviceSearchInput" 
+              placeholder="Search codename or model..." 
+              class="w-full pl-9 pr-3 py-2 rounded-xl bg-m3-containerLight dark:bg-m3-containerDark border border-m3-borderLight dark:border-m3-borderDark text-slate-800 dark:text-white text-xs placeholder:text-slate-400 focus:outline-none focus:border-m3-primary"
+            >
+          </div>
+
+          <!-- OEM Filter Chips -->
+          <div class="flex items-center gap-1 p-1 rounded-xl bg-m3-containerLight dark:bg-m3-containerDark border border-m3-borderLight dark:border-m3-borderDark text-xs font-semibold overflow-x-auto" id="oemChips">
+            <button class="oem-chip active px-3 py-1 rounded-lg bg-m3-primary text-m3-primaryTextDark font-bold" data-oem="all">All</button>
+            <button class="oem-chip px-3 py-1 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" data-oem="Xiaomi">Xiaomi</button>
+            <button class="oem-chip px-3 py-1 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" data-oem="OnePlus">OnePlus</button>
+            <button class="oem-chip px-3 py-1 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" data-oem="Google">Pixel</button>
+            <button class="oem-chip px-3 py-1 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" data-oem="GSI">GSI</button>
           </div>
         </div>
       </div>
 
       <!-- Device Cards Grid -->
-      <div id="deviceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-        <!-- POCO F3 -->
-        <div class="device-card liquid-glass liquid-glass-hover rounded-3xl p-6 flex flex-col justify-between" data-oem="Xiaomi" data-name="Poco F3 Mi 11X Redmi K40 alioth">
-          <div>
-            <div class="flex items-start justify-between mb-4">
-              <span class="px-2.5 py-1 rounded-full font-mono text-[10px] font-bold uppercase bg-slate-400/10 text-slate-600 dark:text-slate-300 border border-slate-400/20">alioth / aliothin</span>
-              <span class="flex items-center gap-1 text-[11px] font-bold text-emerald-400">
-                <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Official
-              </span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white">POCO F3 / Redmi K40</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Maintainer: @OctaviDevTeam</p>
-          </div>
-          <div class="pt-4 border-t border-slate-300/30 dark:border-white/10 flex items-center justify-between">
-            <span class="text-xs font-mono text-slate-500 dark:text-slate-400">v17.0 • 2.1 GB</span>
-            <button onclick="openDownloadModal('POCO F3 (alioth)', 'v17.0-OFFICIAL-2026-GAPPS', 'e4d9f1092a01f28b7c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b')" class="px-3.5 py-1.5 rounded-full text-xs font-bold text-black bg-gradient-to-r from-octavi-cyan to-sky-300 hover:opacity-90 transition-all flex items-center gap-1.5">
-              <i data-lucide="download" class="w-3.5 h-3.5"></i>
-              <span>Get Build</span>
-            </button>
-          </div>
-        </div>
+      <div id="deviceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-6">
+        <!-- Injected via JavaScript -->
+      </div>
 
-        <!-- OnePlus 9 Pro -->
-        <div class="device-card liquid-glass liquid-glass-hover rounded-3xl p-6 flex flex-col justify-between" data-oem="OnePlus" data-name="OnePlus 9 Pro lemonadep">
-          <div>
-            <div class="flex items-start justify-between mb-4">
-              <span class="px-2.5 py-1 rounded-full font-mono text-[10px] font-bold uppercase bg-slate-400/10 text-slate-600 dark:text-slate-300 border border-slate-400/20">lemonadep</span>
-              <span class="flex items-center gap-1 text-[11px] font-bold text-emerald-400">
-                <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Official
-              </span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white">OnePlus 9 Pro</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Maintainer: @NeoSoul</p>
-          </div>
-          <div class="pt-4 border-t border-slate-300/30 dark:border-white/10 flex items-center justify-between">
-            <span class="text-xs font-mono text-slate-500 dark:text-slate-400">v17.0 • 2.3 GB</span>
-            <button onclick="openDownloadModal('OnePlus 9 Pro (lemonadep)', 'v17.0-OFFICIAL-2026-GAPPS', '7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b')" class="px-3.5 py-1.5 rounded-full text-xs font-bold text-black bg-gradient-to-r from-octavi-cyan to-sky-300 hover:opacity-90 transition-all flex items-center gap-1.5">
-              <i data-lucide="download" class="w-3.5 h-3.5"></i>
-              <span>Get Build</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Pixel 7 Pro -->
-        <div class="device-card liquid-glass liquid-glass-hover rounded-3xl p-6 flex flex-col justify-between" data-oem="Google" data-name="Google Pixel 7 Pro cheetah">
-          <div>
-            <div class="flex items-start justify-between mb-4">
-              <span class="px-2.5 py-1 rounded-full font-mono text-[10px] font-bold uppercase bg-slate-400/10 text-slate-600 dark:text-slate-300 border border-slate-400/20">cheetah</span>
-              <span class="flex items-center gap-1 text-[11px] font-bold text-octavi-cyan">
-                <span class="w-2 h-2 rounded-full bg-octavi-cyan"></span> Community
-              </span>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Google Pixel 7 Pro</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Maintainer: @MatrixBuilds</p>
-          </div>
-          <div class="pt-4 border-t border-slate-300/30 dark:border-white/10 flex items-center justify-between">
-            <span class="text-xs font-mono text-slate-500 dark:text-slate-400">v17.0 • 1.9 GB</span>
-            <button onclick="openDownloadModal('Pixel 7 Pro (cheetah)', 'v17.0-COMMUNITY-2026-VANILLA', '1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c')" class="px-3.5 py-1.5 rounded-full text-xs font-bold text-black bg-gradient-to-r from-octavi-cyan to-sky-300 hover:opacity-90 transition-all flex items-center gap-1.5">
-              <i data-lucide="download" class="w-3.5 h-3.5"></i>
-              <span>Get Build</span>
-            </button>
-          </div>
-        </div>
+      <!-- Empty State -->
+      <div id="noDeviceState" class="hidden text-center py-16 m3-card rounded-2xl bg-m3-containerLight dark:bg-m3-containerDark border border-m3-borderLight dark:border-m3-borderDark mt-4">
+        <i data-lucide="cpu" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
+        <h4 class="text-sm font-bold text-slate-900 dark:text-white">No device tree found</h4>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Check spelling or flash the Universal GSI package for Project Treble hardware.</p>
       </div>
     </section>
 
-    <!-- macOS Terminal Flashing Wiki -->
-    <section id="terminal" class="mb-24">
-      <div class="text-center max-w-xl mx-auto mb-10">
-        <h2 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white mb-2">Flashing Handbook</h2>
-        <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Standard clean install instructions using platform-tools.</p>
+    <!-- Terminal Flashing Wiki -->
+    <section id="wiki" class="mb-20">
+      <div class="max-w-xl mb-6">
+        <span class="text-xs font-mono uppercase tracking-widest text-m3-primary font-bold">Standard Sideload Protocol</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Installation Handbook</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Verified step-by-step commands for unlocked devices using standard platform-tools.</p>
       </div>
 
-      <div class="max-w-3xl mx-auto liquid-glass rounded-2xl overflow-hidden shadow-2xl border border-slate-400/20 dark:border-white/15">
-        <div class="px-4 py-3 bg-slate-200/50 dark:bg-slate-900/60 border-b border-slate-300/30 dark:border-white/10 flex items-center justify-between">
+      <div class="m3-card rounded-2xl overflow-hidden bg-m3-containerLight dark:bg-m3-containerDark border border-m3-borderLight dark:border-m3-borderDark shadow-sm">
+        <div class="px-5 py-3.5 bg-m3-containerHighLight dark:bg-m3-containerHighDark border-b border-m3-borderLight dark:border-m3-borderDark flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
-            <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
-            <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <span class="text-xs font-mono text-slate-500 dark:text-slate-400 ml-2">octavi-installer &bull; adb sideload</span>
           </div>
-          <div class="text-xs font-mono text-slate-500 dark:text-slate-400 font-semibold flex items-center gap-1.5">
-            <i data-lucide="terminal" class="w-3.5 h-3.5 text-octavi-cyan"></i>
-            <span>zsh — octavios-sideload — 80x24</span>
-          </div>
-          <div class="w-12"></div>
+          <button onclick="copyAllTerminalCommands()" class="text-xs font-mono text-m3-primary hover:underline flex items-center gap-1.5 font-bold">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Copy All</span>
+          </button>
         </div>
 
-        <div class="p-6 font-mono text-xs space-y-4 text-slate-700 dark:text-slate-200 bg-white/40 dark:bg-black/50">
+        <div class="p-6 font-mono text-xs space-y-4 overflow-x-auto text-slate-700 dark:text-slate-300">
           <div>
-            <span class="text-slate-400 dark:text-slate-500"># 1. Unlock bootloader and reboot into recovery</span>
-            <div class="flex items-center justify-between mt-1 text-slate-900 dark:text-white bg-slate-300/30 dark:bg-white/5 px-3 py-2 rounded-lg">
-              <code>adb reboot recovery</code>
-              <button onclick="copyCmd('adb reboot recovery', this)" class="text-slate-400 hover:text-octavi-cyan transition-colors">
+            <span class="text-slate-500 dark:text-slate-400"># 1. Boot to bootloader and launch Octavi Recovery</span>
+            <div class="mt-1 text-slate-900 dark:text-white bg-m3-containerHighLight dark:bg-m3-containerHighDark p-3 rounded-lg border border-m3-borderLight dark:border-m3-borderDark flex items-center justify-between">
+              <code>fastboot reboot recovery</code>
+              <button onclick="copyCmd('fastboot reboot recovery', this)" class="text-slate-400 hover:text-m3-primary">
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
               </button>
             </div>
           </div>
 
           <div>
-            <span class="text-slate-400 dark:text-slate-500"># 2. In recovery, select "Factory reset" -> "Format data"</span>
-            <div class="text-amber-500 text-[11px] mt-0.5">Warning: All user data will be wiped.</div>
+            <span class="text-slate-500 dark:text-slate-400"># 2. In recovery, select 'Factory Reset' -&gt; 'Format Data' (Required for clean install)</span>
+            <div class="text-amber-500 dark:text-amber-400 text-[11px] mt-0.5">Note: Back up your personal files prior to formatting.</div>
           </div>
 
           <div>
-            <span class="text-slate-400 dark:text-slate-500"># 3. Enter sideload mode and transmit OctaviOS v17 package</span>
-            <div class="flex items-center justify-between mt-1 text-slate-900 dark:text-white bg-slate-300/30 dark:bg-white/5 px-3 py-2 rounded-lg">
-              <code>adb sideload OctaviOS-v17.0-OFFICIAL-2026.zip</code>
-              <button onclick="copyCmd('adb sideload OctaviOS-v17.0-OFFICIAL-2026.zip', this)" class="text-slate-400 hover:text-octavi-cyan transition-colors">
+            <span class="text-slate-500 dark:text-slate-400"># 3. Select 'Apply update' -&gt; 'Apply from ADB' and sideload</span>
+            <div class="mt-1 text-slate-900 dark:text-white bg-m3-containerHighLight dark:bg-m3-containerHighDark p-3 rounded-lg border border-m3-borderLight dark:border-m3-borderDark flex items-center justify-between">
+              <code>adb sideload OctaviOS-v17.0-OFFICIAL.zip</code>
+              <button onclick="copyCmd('adb sideload OctaviOS-v17.0-OFFICIAL.zip', this)" class="text-slate-400 hover:text-m3-primary">
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
               </button>
             </div>
           </div>
 
           <div>
-            <span class="text-slate-400 dark:text-slate-500"># 4. Reboot system after verification completion</span>
-            <div class="flex items-center justify-between mt-1 text-slate-900 dark:text-white bg-slate-300/30 dark:bg-white/5 px-3 py-2 rounded-lg">
-              <code>fastboot reboot</code>
-              <button onclick="copyCmd('fastboot reboot', this)" class="text-slate-400 hover:text-octavi-cyan transition-colors">
+            <span class="text-slate-500 dark:text-slate-400"># 4. Reboot system once installation completes</span>
+            <div class="mt-1 text-slate-900 dark:text-white bg-m3-containerHighLight dark:bg-m3-containerHighDark p-3 rounded-lg border border-m3-borderLight dark:border-m3-borderDark flex items-center justify-between">
+              <code>adb reboot</code>
+              <button onclick="copyCmd('adb reboot', this)" class="text-slate-400 hover:text-m3-primary">
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
               </button>
             </div>
@@ -585,354 +430,399 @@
         </div>
       </div>
     </section>
-
-    <!-- Footer with Logo -->
-    <footer class="pt-12 border-t border-slate-300/40 dark:border-white/10 text-center text-xs text-slate-500 dark:text-slate-400 space-y-4">
-      <div class="flex items-center justify-center gap-2 text-slate-900 dark:text-white font-bold mb-2">
-        <svg viewBox="-95 -98 190 190" class="w-5 h-5 text-octavi-cyan">
-          <use href="#official-octavios-emblem" />
-        </svg>
-        <span>OctaviOS Project</span>
-      </div>
-      <div class="flex items-center justify-center gap-6 font-semibold">
-        <a href="https://github.com/OctaviOS-Plus" target="_blank" class="hover:text-octavi-cyan transition-colors">GitHub Org</a>
-        <a href="#" class="hover:text-octavi-cyan transition-colors">Telegram Channel</a>
-        <a href="#" class="hover:text-octavi-cyan transition-colors">Kernel Source</a>
-        <a href="#" class="hover:text-octavi-cyan transition-colors">Gerrit</a>
-      </div>
-      <p>Android is a trademark of Google LLC. OctaviOS is an open-source community distribution.</p>
-    </footer>
 
   </main>
 
-  <!-- FLOATING LIQUID REFRACTION CONTROLLER HUD (Bottom-Right) -->
-  <aside class="fixed bottom-6 right-6 z-50">
-    <div id="liquidHudPanel" class="liquid-glass rounded-3xl p-5 shadow-2xl border border-slate-300/50 dark:border-white/20 w-72 backdrop-blur-2xl transition-all duration-300 scale-95 opacity-0 pointer-events-none translate-y-4 origin-bottom-right">
-      
-      <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-300/30 dark:border-white/10">
-        <div class="flex items-center gap-2">
-          <i data-lucide="sliders" class="w-4 h-4 text-octavi-cyan"></i>
-          <span class="text-xs font-bold text-slate-900 dark:text-white">Liquid Optics Tuner</span>
+  <!-- Modal Verification Popup -->
+  <div id="deviceModal" class="fixed inset-0 z-50 bg-black/70 hidden items-center justify-center p-4">
+    <div class="m3-card rounded-2xl max-w-lg w-full p-6 bg-m3-containerLight dark:bg-m3-containerDark border border-m3-borderLight dark:border-m3-borderDark space-y-5 text-left shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-m3-borderLight dark:border-m3-borderDark">
+        <div>
+          <span class="text-[10px] font-mono uppercase tracking-wider text-m3-primary font-bold">Verified Package</span>
+          <h3 id="modalDeviceTitle" class="text-base font-bold text-slate-900 dark:text-white">Device Name</h3>
         </div>
-        <button id="closeHudBtn" class="text-slate-400 hover:text-slate-600 dark:hover:text-white">
+        <button onclick="closeDeviceModal()" class="p-1.5 rounded-lg bg-m3-containerHighLight dark:bg-m3-containerHighDark text-slate-500 hover:text-slate-900 dark:hover:text-white">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
 
-      <div class="space-y-3">
-        <div>
-          <div class="flex items-center justify-between text-[11px] font-bold mb-1.5">
-            <span class="text-slate-600 dark:text-slate-300">Refraction Blur</span>
-            <span id="blurValueLabel" class="font-mono text-octavi-cyan">24px</span>
-          </div>
-          <input type="range" id="blurSlider" min="4" max="48" value="24" class="w-full">
-        </div>
-
-        <div>
-          <div class="flex items-center justify-between text-[11px] font-bold mb-1.5">
-            <span class="text-slate-600 dark:text-slate-300">Glass Specular Highlight</span>
-            <span id="specularValueLabel" class="font-mono text-octavi-cyan">45%</span>
-          </div>
-          <input type="range" id="specularSlider" min="10" max="90" value="45" class="w-full">
-        </div>
-
-        <div class="pt-2 flex items-center gap-1.5">
-          <button onclick="setLiquidPreset('clear')" class="flex-1 py-1.5 text-[10px] font-bold uppercase rounded-lg liquid-glass hover:text-octavi-cyan transition-colors">Clear</button>
-          <button onclick="setLiquidPreset('frost')" class="flex-1 py-1.5 text-[10px] font-bold uppercase rounded-lg liquid-glass text-octavi-cyan border-octavi-cyan/40">Frost</button>
-          <button onclick="setLiquidPreset('deep')" class="flex-1 py-1.5 text-[10px] font-bold uppercase rounded-lg liquid-glass hover:text-octavi-cyan transition-colors">Deep</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- HUD Toggle Button -->
-    <button id="openHudBtn" class="liquid-glass-nav hover:scale-105 active:scale-95 px-4 py-3 rounded-full flex items-center gap-2.5 shadow-2xl transition-all text-xs font-bold text-slate-800 dark:text-white ml-auto mt-3">
-      <i data-lucide="sparkles" class="w-4 h-4 text-octavi-cyan"></i>
-      <span>Adjust Liquid Glass</span>
-    </button>
-  </aside>
-
-  <!-- Download Verification Modal -->
-  <div id="downloadModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="liquid-glass rounded-3xl p-7 max-w-md w-full shadow-2xl border border-white/20 text-left relative">
-      <button onclick="closeDownloadModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-
-      <span class="text-[10px] font-mono uppercase tracking-widest text-octavi-cyan font-bold">Verified Package</span>
-      <h3 id="modalDeviceTitle" class="text-xl font-black text-slate-900 dark:text-white mt-1 mb-4">Device Name</h3>
-
-      <div class="space-y-3 font-mono text-xs mb-6">
-        <div class="p-3 rounded-xl bg-slate-200/50 dark:bg-white/5 border border-slate-300/30 dark:border-white/10">
-          <span class="text-slate-400 block text-[10px] uppercase font-bold">File Package</span>
-          <span id="modalPackageName" class="text-slate-800 dark:text-slate-200 break-all">OctaviOS.zip</span>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-200/50 dark:bg-white/5 border border-slate-300/30 dark:border-white/10">
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-slate-400 text-[10px] uppercase font-bold">SHA-256 Checksum</span>
-            <button onclick="copySha()" class="text-octavi-cyan hover:underline text-[10px]">Copy</button>
-          </div>
-          <span id="modalSha" class="text-slate-800 dark:text-slate-300 text-[11px] break-all block">...</span>
-        </div>
+      <!-- Variant Selector -->
+      <div class="flex items-center gap-1.5 p-1 rounded-xl bg-m3-containerHighLight dark:bg-m3-containerHighDark border border-m3-borderLight dark:border-m3-borderDark text-xs font-mono">
+        <button onclick="setModalVariant('gapps')" id="btnModalGapps" class="flex-1 py-1.5 rounded-lg bg-m3-primary text-m3-primaryTextDark font-bold">GApps Edition</button>
+        <button onclick="setModalVariant('vanilla')" id="btnModalVanilla" class="flex-1 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-white">Vanilla (MicroG)</button>
       </div>
 
-      <a id="modalDownloadBtn" href="#" class="w-full py-3.5 rounded-full font-bold text-center text-sm text-black bg-gradient-to-r from-octavi-cyan to-sky-300 hover:opacity-95 shadow-[0_0_25px_rgba(0,240,255,0.4)] transition-all block">
-        Download Primary Mirror (.zip)
-      </a>
+      <!-- Checksum Container -->
+      <div class="p-3 rounded-xl bg-m3-containerHighLight dark:bg-m3-containerHighDark border border-m3-borderLight dark:border-m3-borderDark space-y-1.5 font-mono text-xs">
+        <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+          <span>SHA-256 CHECKSUM</span>
+          <button id="copyHashBtn" class="text-m3-primary hover:underline font-bold flex items-center gap-1">
+            <i data-lucide="copy" class="w-3 h-3"></i> Copy
+          </button>
+        </div>
+        <div id="modalShaText" class="text-slate-800 dark:text-slate-200 text-[11px] break-all select-all font-mono"></div>
+      </div>
+
+      <!-- Changelog Preview -->
+      <div>
+        <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold block mb-1.5">Build Changes</span>
+        <ul id="modalChangelogList" class="text-xs text-slate-600 dark:text-slate-300 space-y-1 list-disc list-inside"></ul>
+      </div>
+
+      <!-- Actions -->
+      <div class="pt-3 border-t border-m3-borderLight dark:border-m3-borderDark flex items-center justify-between gap-3">
+        <span id="modalSizeText" class="text-xs font-mono text-slate-500 dark:text-slate-400">Size: 1.8 GB</span>
+        <a id="modalDownloadBtn" href="#" target="_blank" class="px-5 py-2.5 rounded-xl bg-m3-primary text-m3-primaryTextDark font-bold text-xs hover:opacity-95 transition flex items-center gap-1.5">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <span>Download Mirror</span>
+        </a>
+      </div>
     </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 translate-y-20 opacity-0 transition-all duration-200 bg-slate-900 dark:bg-m3-containerHighDark border border-m3-borderLight dark:border-m3-borderDark text-white px-4 py-2.5 rounded-xl text-xs font-mono shadow-lg flex items-center gap-2">
+    <i data-lucide="check-circle" class="w-4 h-4 text-m3-primary"></i>
+    <span id="toastMessage">Copied</span>
+  </div>
+
+  <!-- Footer (No Logo, Pure Typography) -->
+  <footer class="border-t border-m3-borderLight dark:border-m3-borderDark py-10 text-slate-500 dark:text-slate-400 text-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-5">
+      <div>
+        <span class="font-extrabold text-sm text-slate-900 dark:text-white block">
+          Octavi<span class="text-m3-primary">OS</span> v17
+        </span>
+        <span class="text-[11px]">Material You Architecture &bull; Android 16 Base</span>
+      </div>
+
+      <div class="flex flex-wrap gap-5 font-semibold">
+        <a href="https://github.com/OctaviOS-Plus" target="_blank" class="hover:text-m3-primary transition-colors">GitHub</a>
+        <a href="https://t.me/OctaviOS" target="_blank" class="hover:text-m3-primary transition-colors">Telegram</a>
+        <a href="https://sourceforge.net/projects/octavios/" target="_blank" class="hover:text-m3-primary transition-colors">SourceForge</a>
+        <a href="https://xdaforums.com" target="_blank" class="hover:text-m3-primary transition-colors">XDA Forums</a>
+      </div>
+    </div>
+  </footer>
+
   <script>
     lucide.createIcons();
 
-    // Mouse Tracking for Liquid Reflections
-    document.querySelectorAll('.liquid-glass-hover').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-      });
-    });
-
-    // Light / Dark Theme Logic
+    // 1. Theme Engine (Light / Dark)
     const themeToggleBtn = document.getElementById('themeToggleBtn');
-    const html = document.documentElement;
+    const htmlElement = document.documentElement;
 
     function initTheme() {
-      const savedTheme = localStorage.getItem('octavi_theme') || 'dark';
+      const savedTheme = localStorage.getItem('octavios_theme') || 'dark';
       if (savedTheme === 'light') {
-        html.classList.remove('dark');
+        htmlElement.classList.remove('dark');
       } else {
-        html.classList.add('dark');
+        htmlElement.classList.add('dark');
       }
     }
     initTheme();
 
     themeToggleBtn.addEventListener('click', () => {
-      if (html.classList.contains('dark')) {
-        html.classList.remove('dark');
-        localStorage.setItem('octavi_theme', 'light');
+      if (htmlElement.classList.contains('dark')) {
+        htmlElement.classList.remove('dark');
+        localStorage.setItem('octavios_theme', 'light');
       } else {
-        html.classList.add('dark');
-        localStorage.setItem('octavi_theme', 'dark');
+        htmlElement.classList.add('dark');
+        localStorage.setItem('octavios_theme', 'dark');
       }
       lucide.createIcons();
     });
 
-    // Liquid Glass HUD Controller Logic
-    const openHudBtn = document.getElementById('openHudBtn');
-    const closeHudBtn = document.getElementById('closeHudBtn');
-    const hudPanel = document.getElementById('liquidHudPanel');
-    const blurSlider = document.getElementById('blurSlider');
-    const blurLabel = document.getElementById('blurValueLabel');
-    const specularSlider = document.getElementById('specularSlider');
-    const specularLabel = document.getElementById('specularValueLabel');
-
-    let hudOpen = false;
-
-    function toggleHud() {
-      hudOpen = !hudOpen;
-      if (hudOpen) {
-        hudPanel.classList.remove('opacity-0', 'pointer-events-none', 'scale-95', 'translate-y-4');
-        hudPanel.classList.add('opacity-100', 'pointer-events-auto', 'scale-100', 'translate-y-0');
-      } else {
-        hudPanel.classList.add('opacity-0', 'pointer-events-none', 'scale-95', 'translate-y-4');
-        hudPanel.classList.remove('opacity-100', 'pointer-events-auto', 'scale-100', 'translate-y-0');
+    // 2. Device Matrix Database
+    const devices = [
+      {
+        name: "POCO F3 / Mi 11X / Redmi K40",
+        codename: "alioth",
+        oem: "Xiaomi",
+        maintainer: "Pranav",
+        version: "v17.0-Official",
+        size: "1.82 GB",
+        date: "2026-10-04",
+        sha256: "3f94a817bca890124e98f712ac98b15e4782bf6109dcba8912ef57b1029c9a62",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/alioth/",
+        changelog: [
+          "Upstream Android 16 Core QPR merge",
+          "Fixed 120Hz LTPO flicker during AOD wake",
+          "Leica Camera v5.2 integration",
+          "Dolby Atmos spatial audio profile tuning"
+        ]
+      },
+      {
+        name: "OnePlus 9 Pro",
+        codename: "lemonadep",
+        oem: "OnePlus",
+        maintainer: "Gaurav",
+        version: "v17.0-Official",
+        size: "1.74 GB",
+        date: "2026-10-03",
+        sha256: "8e4129bcfe510928374a0198bc721498bfe19283746a510928374a0198bc7214",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/lemonadep/",
+        changelog: [
+          "Hardware Tri-State Alert Slider synchronization",
+          "Linux LTS 5.4.280 kernel merge",
+          "Hasselblad Color Science calibration"
+        ]
+      },
+      {
+        name: "Google Pixel 7 Pro",
+        codename: "cheetah",
+        oem: "Google",
+        maintainer: "MatrixBuilds",
+        version: "v17.0-Official",
+        size: "1.91 GB",
+        date: "2026-10-04",
+        sha256: "99aabbccddeeff00112233445566778899aabbccddeeff001122334455667788",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/cheetah/",
+        changelog: [
+          "Google Tensor G2 scheduler frequency curves updated",
+          "Octavi Lab Quick Settings theming support",
+          "High Brightness Mode auto-trigger"
+        ]
+      },
+      {
+        name: "POCO X3 Pro",
+        codename: "vayu",
+        oem: "Xiaomi",
+        maintainer: "Akash",
+        version: "v17.0-Official",
+        size: "1.68 GB",
+        date: "2026-09-30",
+        sha256: "510928374a0198bc721498bfe19283746a510928374a0198bc721498bfe19283",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/vayu/",
+        changelog: [
+          "Snapdragon 860 thermal dissipation governor overhaul",
+          "Goodix fingerprint response time under 85ms",
+          "Vulkan frame pacing active"
+        ]
+      },
+      {
+        name: "Redmi Note 10 Pro / Max",
+        codename: "sweet",
+        oem: "Xiaomi",
+        maintainer: "Madhav",
+        version: "v17.0-Official",
+        size: "1.71 GB",
+        date: "2026-10-02",
+        sha256: "7b10928374a0198bc721498bfe19283746a510928374a0198bc721498bfe1928",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/sweet/",
+        changelog: [
+          "108MP camera ISP pipeline stabilization",
+          "Ultrasonic proximity sensor sleep calibration",
+          "Strict SELinux Enforcing pass"
+        ]
+      },
+      {
+        name: "Universal Treble GSI",
+        codename: "arm64-ab",
+        oem: "GSI",
+        maintainer: "Redline",
+        version: "v17.0-Universal",
+        size: "1.24 GB",
+        date: "2026-10-05",
+        sha256: "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/GSI/",
+        changelog: [
+          "Universal Treble runtime validation for Android 16",
+          "Phh Treble settings integrated inside Octavi Lab",
+          "Adaptive brightness curve normalization"
+        ]
       }
-    }
+    ];
 
-    openHudBtn.addEventListener('click', toggleHud);
-    closeHudBtn.addEventListener('click', toggleHud);
+    // 3. Rendering Device Matrix
+    const deviceGrid = document.getElementById('deviceGrid');
+    const deviceSearchInput = document.getElementById('deviceSearchInput');
+    const noDeviceState = document.getElementById('noDeviceState');
+    const oemChips = document.querySelectorAll('.oem-chip');
 
-    blurSlider.addEventListener('input', (e) => {
-      const val = e.target.value;
-      blurLabel.textContent = `${val}px`;
-      document.documentElement.style.setProperty('--glass-blur', `${val}px`);
-    });
-
-    specularSlider.addEventListener('input', (e) => {
-      const val = e.target.value;
-      specularLabel.textContent = `${val}%`;
-      document.documentElement.style.setProperty('--glass-specular', (val / 100).toFixed(2));
-    });
-
-    function setLiquidPreset(type) {
-      if (type === 'clear') {
-        blurSlider.value = 8;
-        specularSlider.value = 20;
-        document.documentElement.style.setProperty('--glass-blur', '8px');
-        document.documentElement.style.setProperty('--glass-opacity', '0.4');
-        document.documentElement.style.setProperty('--glass-specular', '0.2');
-      } else if (type === 'frost') {
-        blurSlider.value = 24;
-        specularSlider.value = 45;
-        document.documentElement.style.setProperty('--glass-blur', '24px');
-        document.documentElement.style.setProperty('--glass-opacity', '0.72');
-        document.documentElement.style.setProperty('--glass-specular', '0.45');
-      } else if (type === 'deep') {
-        blurSlider.value = 42;
-        specularSlider.value = 80;
-        document.documentElement.style.setProperty('--glass-blur', '42px');
-        document.documentElement.style.setProperty('--glass-opacity', '0.88');
-        document.documentElement.style.setProperty('--glass-specular', '0.8');
-      }
-      blurLabel.textContent = `${blurSlider.value}px`;
-      specularLabel.textContent = `${specularSlider.value}%`;
-    }
-
-    // Phone Mockup Dynamic Island & Views
-    const screenGlance = document.getElementById('screenGlance');
-    const dynamicIsland = document.getElementById('dynamicIsland');
-    const islandText = document.getElementById('islandText');
-
-    let islandExpanded = false;
-    dynamicIsland.addEventListener('click', () => {
-      islandExpanded = !islandExpanded;
-      if (islandExpanded) {
-        islandText.innerHTML = `<span>Streaming: Octavi Flac DAC</span> <span class="text-octavi-violet">• 192kHz Bit-Perfect</span>`;
-        dynamicIsland.classList.add('px-6', 'py-3', 'border-octavi-cyan');
-      } else {
-        islandText.innerHTML = `<span>Octavi Audio Core</span> <span class="text-octavi-cyan">• 96kHz Spatial</span>`;
-        dynamicIsland.classList.remove('px-6', 'py-3', 'border-octavi-cyan');
-      }
-    });
-
-    function setMockupView(view) {
-      document.querySelectorAll('.mock-btn').forEach(b => b.classList.remove('text-octavi-cyan'));
-      const activeBtn = document.querySelector(`.mock-btn[data-view="${view}"]`);
-      if (activeBtn) activeBtn.classList.add('text-octavi-cyan');
-
-      if (view === 'lock') {
-        screenGlance.innerHTML = `
-          <div class="space-y-1">
-            <span class="text-xs uppercase font-bold tracking-widest text-slate-400">Monday, October 5</span>
-            <h2 class="text-6xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400">1:15</h2>
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-[11px] text-octavi-cyan font-medium">
-              <i data-lucide="shield-check" class="w-3 h-3"></i>
-              <span>SELinux Enforcing • CTS Pass</span>
-            </div>
-          </div>
-          <div class="liquid-glass rounded-2xl p-3 text-left max-w-xs mx-auto border border-white/15">
-            <div class="flex items-center gap-2.5 mb-1.5">
-              <div class="w-5 h-5 rounded-md bg-octavi-cyan/20 flex items-center justify-center text-octavi-cyan">
-                <i data-lucide="sparkles" class="w-3 h-3"></i>
-              </div>
-              <span class="text-[11px] font-bold text-slate-200">Octavi Lab Aero</span>
-              <span class="text-[9px] text-slate-400 ml-auto">Now</span>
-            </div>
-            <p class="text-[11px] text-slate-300 leading-snug">System-wide liquid refraction enabled with 0 frame drops.</p>
-          </div>
-        `;
-      } else if (view === 'lab') {
-        screenGlance.innerHTML = `
-          <div class="space-y-3 max-w-xs mx-auto">
-            <span class="text-xs uppercase font-mono tracking-widest text-octavi-cyan font-bold">Liquid Lab Quick Tiles</span>
-            <div class="grid grid-cols-2 gap-2 text-left text-xs font-semibold">
-              <div class="p-3 rounded-xl bg-octavi-cyan text-black flex flex-col justify-between h-20">
-                <i data-lucide="wifi" class="w-4 h-4"></i>
-                <span>Wi-Fi 7 Max</span>
-              </div>
-              <div class="p-3 rounded-xl liquid-glass border border-white/20 text-white flex flex-col justify-between h-20">
-                <i data-lucide="cpu" class="w-4 h-4 text-octavi-violet"></i>
-                <span>Governor: Schedutil</span>
-              </div>
-            </div>
-          </div>
-        `;
-      } else if (view === 'kernel') {
-        screenGlance.innerHTML = `
-          <div class="space-y-2 max-w-xs mx-auto text-left font-mono text-[11px]">
-            <span class="text-octavi-cyan font-bold block mb-1">Telemetry Monitor</span>
-            <div class="p-2 rounded-lg bg-black/60 border border-white/10 text-slate-300 space-y-1">
-              <div>CPU0-3: 1420MHz [PowerSave]</div>
-              <div>CPU4-7: 3190MHz [Performance]</div>
-              <div class="text-emerald-400">FPS: 120.0 (Jitter: 0.08ms)</div>
-              <div>Thermal: 34.2°C Nom</div>
-            </div>
-          </div>
-        `;
-      }
-      lucide.createIcons();
-    }
-
-    // ProMotion Refresh Rate Slider
-    const hzSlider = document.getElementById('hzSlider');
-    const hzBadge = document.getElementById('hzBadge');
-    hzSlider.addEventListener('input', (e) => {
-      hzBadge.textContent = `${e.target.value} Hz`;
-    });
-
-    // Device Filter Matrix
-    const deviceSearch = document.getElementById('deviceSearch');
-    const deviceCards = document.querySelectorAll('.device-card');
-    const oemBtns = document.querySelectorAll('.oem-btn');
     let currentOem = 'all';
+    let currentSearch = '';
 
-    function filterDevices() {
-      const query = deviceSearch.value.toLowerCase().trim();
-      deviceCards.forEach(card => {
-        const oem = card.getAttribute('data-oem');
-        const name = card.getAttribute('data-name').toLowerCase();
-        const matchesOem = (currentOem === 'all' || oem === currentOem);
-        const matchesQuery = (!query || name.includes(query));
-
-        if (matchesOem && matchesQuery) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
+    function renderDeviceMatrix() {
+      deviceGrid.innerHTML = '';
+      const filtered = devices.filter(d => {
+        const matchesOem = (currentOem === 'all' || d.oem.toLowerCase() === currentOem.toLowerCase());
+        const query = currentSearch.toLowerCase();
+        const matchesQuery = d.name.toLowerCase().includes(query) ||
+                             d.codename.toLowerCase().includes(query) ||
+                             d.maintainer.toLowerCase().includes(query);
+        return matchesOem && matchesQuery;
       });
+
+      if (filtered.length === 0) {
+        noDeviceState.classList.remove('hidden');
+      } else {
+        noDeviceState.classList.add('hidden');
+        filtered.forEach(d => {
+          const card = document.createElement('div');
+          card.className = "m3-card m3-interactive rounded-2xl p-6 bg-m3-containerLight dark:bg-m3-containerDark border border-m3-borderLight dark:border-m3-borderDark flex flex-col justify-between shadow-sm";
+          card.innerHTML = `
+            <div>
+              <div class="flex items-start justify-between mb-3">
+                <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">${d.oem}</span>
+                <span class="text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-m3-containerHighLight dark:bg-m3-containerHighDark text-m3-primary border border-m3-borderLight dark:border-m3-borderDark">${d.codename}</span>
+              </div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">${d.name}</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mb-5">Maintainer: <span class="text-slate-700 dark:text-slate-200 font-medium">${d.maintainer}</span></p>
+              
+              <div class="grid grid-cols-2 gap-2 py-3 mb-5 border-y border-m3-borderLight dark:border-m3-borderDark font-mono text-[11px]">
+                <div>
+                  <span class="text-slate-400 block text-[10px] uppercase">Edition</span>
+                  <span class="text-slate-700 dark:text-slate-200">${d.version}</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 block text-[10px] uppercase">Date</span>
+                  <span class="text-slate-700 dark:text-slate-200">${d.date}</span>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="openDeviceModal('${d.codename}')" class="w-full py-2.5 rounded-xl bg-m3-containerHighLight dark:bg-m3-containerHighDark hover:bg-m3-primary hover:text-m3-primaryTextDark font-bold text-xs border border-m3-borderLight dark:border-m3-borderDark transition duration-150 flex items-center justify-center gap-1.5">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i>
+              <span>Download &amp; Checksum</span>
+            </button>
+          `;
+          deviceGrid.appendChild(card);
+        });
+      }
+      lucide.createIcons();
     }
 
-    deviceSearch.addEventListener('input', filterDevices);
+    deviceSearchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value.trim();
+      renderDeviceMatrix();
+    });
 
-    oemBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        oemBtns.forEach(b => {
-          b.className = 'oem-btn px-3 py-1 rounded-full text-slate-600 dark:text-slate-300 hover:text-octavi-cyan transition-all';
+    oemChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        oemChips.forEach(c => {
+          c.classList.remove('bg-m3-primary', 'text-m3-primaryTextDark', 'font-bold');
+          c.classList.add('text-slate-600', 'dark:text-slate-400');
         });
-        btn.className = 'oem-btn px-3 py-1 rounded-full bg-slate-900 text-white dark:bg-white dark:text-black transition-all';
-        currentOem = btn.getAttribute('data-oem');
-        filterDevices();
+        chip.classList.add('bg-m3-primary', 'text-m3-primaryTextDark', 'font-bold');
+        chip.classList.remove('text-slate-600', 'dark:text-slate-400');
+        currentOem = chip.getAttribute('data-oem');
+        renderDeviceMatrix();
       });
     });
 
-    // Modal Operations
-    const downloadModal = document.getElementById('downloadModal');
+    // 4. Quick Settings Interactive Toggle
+    window.toggleQsTile = function(btn) {
+      const isCurrentlyActive = btn.classList.contains('active');
+      const statusBadge = btn.querySelector('span:last-child');
+      
+      if (isCurrentlyActive) {
+        btn.classList.remove('active', 'bg-m3-primary', 'text-m3-primaryTextDark');
+        btn.classList.add('bg-m3-containerHighLight', 'dark:bg-m3-containerHighDark', 'text-slate-700', 'dark:text-slate-200', 'border', 'border-m3-borderLight', 'dark:border-m3-borderDark');
+        if (statusBadge) {
+          statusBadge.textContent = "Off";
+          statusBadge.className = "text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-slate-300 dark:bg-slate-700 text-slate-600 dark:text-slate-300";
+        }
+      } else {
+        btn.classList.add('active', 'bg-m3-primary', 'text-m3-primaryTextDark');
+        btn.classList.remove('bg-m3-containerHighLight', 'dark:bg-m3-containerHighDark', 'text-slate-700', 'dark:text-slate-200', 'border', 'border-m3-borderLight', 'dark:border-m3-borderDark');
+        if (statusBadge) {
+          statusBadge.textContent = "On";
+          statusBadge.className = "text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-black/15 font-bold";
+        }
+      }
+    };
+
+    // 5. Rate Slider
+    const rateSlider = document.getElementById('rateSlider');
+    const rateValueDisplay = document.getElementById('rateValueDisplay');
+    rateSlider.addEventListener('input', (e) => {
+      rateValueDisplay.textContent = `${e.target.value} Hz`;
+    });
+
+    // 6. Modal Operations
+    const deviceModal = document.getElementById('deviceModal');
     const modalDeviceTitle = document.getElementById('modalDeviceTitle');
-    const modalPackageName = document.getElementById('modalPackageName');
-    const modalSha = document.getElementById('modalSha');
+    const modalShaText = document.getElementById('modalShaText');
+    const modalChangelogList = document.getElementById('modalChangelogList');
+    const modalSizeText = document.getElementById('modalSizeText');
     const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+    const copyHashBtn = document.getElementById('copyHashBtn');
 
-    function openDownloadModal(device, pkg, sha) {
-      modalDeviceTitle.textContent = device;
-      modalPackageName.textContent = `${pkg}.zip`;
-      modalSha.textContent = sha;
-      modalDownloadBtn.href = `https://sourceforge.net/projects/octavios/files/${encodeURIComponent(pkg)}.zip/download`;
-      downloadModal.classList.remove('hidden');
-      downloadModal.classList.add('flex');
-    }
+    window.openDeviceModal = function(codename) {
+      const dev = devices.find(d => d.codename === codename);
+      if (!dev) return;
 
-    function closeDownloadModal() {
-      downloadModal.classList.add('hidden');
-      downloadModal.classList.remove('flex');
-    }
+      modalDeviceTitle.textContent = `${dev.name} (${dev.codename})`;
+      modalShaText.textContent = dev.sha256;
+      modalSizeText.textContent = `Size: ${dev.size} • Build: ${dev.date}`;
+      modalDownloadBtn.href = dev.downloadUrl;
+      modalChangelogList.innerHTML = dev.changelog.map(item => `<li>${item}</li>`).join('');
 
-    function copySha() {
-      navigator.clipboard.writeText(modalSha.textContent);
-      alert('SHA-256 Checksum copied to clipboard!');
-    }
+      deviceModal.classList.remove('hidden');
+      deviceModal.classList.add('flex');
+    };
 
-    function copyCmd(cmd, btn) {
-      navigator.clipboard.writeText(cmd);
-      const original = btn.innerHTML;
-      btn.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>`;
-      lucide.createIcons();
+    window.closeDeviceModal = function() {
+      deviceModal.classList.add('hidden');
+      deviceModal.classList.remove('flex');
+    };
+
+    deviceModal.addEventListener('click', (e) => {
+      if (e.target === deviceModal) closeDeviceModal();
+    });
+
+    window.setModalVariant = function(variant) {
+      const btnGapps = document.getElementById('btnModalGapps');
+      const btnVanilla = document.getElementById('btnModalVanilla');
+      if (variant === 'gapps') {
+        btnGapps.className = "flex-1 py-1.5 rounded-lg bg-m3-primary text-m3-primaryTextDark font-bold";
+        btnVanilla.className = "flex-1 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-white";
+        modalSizeText.textContent = "Size: 1.82 GB (Google Apps & Services)";
+      } else {
+        btnVanilla.className = "flex-1 py-1.5 rounded-lg bg-m3-primary text-m3-primaryTextDark font-bold";
+        btnGapps.className = "flex-1 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-white";
+        modalSizeText.textContent = "Size: 1.24 GB (Vanilla & MicroG Compatible)";
+      }
+    };
+
+    // 7. Toast & Clipboard
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMessage').textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
       setTimeout(() => {
-        btn.innerHTML = original;
-        lucide.createIcons();
-      }, 1500);
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2000);
     }
+
+    function copyToClipboard(text) {
+      const el = document.createElement('textarea');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    }
+
+    copyHashBtn.addEventListener('click', () => {
+      copyToClipboard(modalShaText.textContent.trim());
+      showToast("SHA-256 Checksum copied");
+    });
+
+    window.copyCmd = function(cmd, btn) {
+      copyToClipboard(cmd);
+      showToast("Command copied");
+    };
+
+    window.copyAllTerminalCommands = function() {
+      const allCmds = `fastboot reboot recovery\nadb sideload OctaviOS-v17.0-OFFICIAL.zip\nadb reboot`;
+      copyToClipboard(allCmds);
+      showToast("All commands copied");
+    };
+
+    // Initial render
+    renderDeviceMatrix();
   </script>
 </body>
 </html>
