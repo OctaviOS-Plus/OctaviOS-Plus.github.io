@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OctaviOS — Pure Performance. Liquid Beauty.</title>
-  <meta name="description" content="Experience OctaviOS with iOS 26 Liquid Glass ergonomics, ultra-fluid frame pacing, and custom AOSP engineering.">
+  <title>OctaviOS 17 — Redefined Fluidity</title>
+  <meta name="description" content="Experience OctaviOS v17 with liquid crystal aesthetics, zero-jitter frame pacing, and custom CLO architecture.">
 
-  <!-- Inter & SF Typography -->
+  <!-- Inter & JetBrains Mono Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -22,17 +22,17 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
             mono: ['"JetBrains Mono"', '"SF Mono"', 'monospace'],
           },
           colors: {
-            liquid: {
-              cyan: '#00f2fe',
-              blue: '#2997ff',
-              purple: '#b845ed',
-              pink: '#ff375f',
-              emerald: '#30d158',
-              amber: '#ffd60a'
+            brand: {
+              cyan: '#00F0FF',
+              blue: '#0A84FF',
+              indigo: '#5E5CE6',
+              purple: '#BF5AF2',
+              emerald: '#30D158',
+              amber: '#FFD60A',
             }
           }
         }
@@ -41,572 +41,549 @@
   </script>
 
   <style>
-    /* Light & Dark Apple Keynote Liquid Glass Design Tokens */
+    /* Strict Light & Dark Liquid Glass Engine - No Neumorphic Shadows */
     :root {
-      --bg-canvas: #f8fafc;
-      --bg-ambient: #f1f5f9;
-      --text-primary: #0f172a;
-      --text-secondary: #64748b;
-      --glass-surface: rgba(255, 255, 255, 0.65);
-      --glass-surface-hover: rgba(255, 255, 255, 0.82);
-      --glass-border: rgba(255, 255, 255, 0.85);
-      --glass-specular: rgba(255, 255, 255, 0.95);
-      --glass-shadow: 0 20px 45px -12px rgba(148, 163, 184, 0.35);
-      --capsule-surface: rgba(255, 255, 255, 0.72);
-      --capsule-border: rgba(255, 255, 255, 0.9);
-      --orb-opacity: 0.55;
-      --phone-rim: #e2e8f0;
-      --phone-bezel: #0f172a;
+      --bg-body: #f8fafc;
+      --bg-ambient-grid: radial-gradient(circle at 50% 0%, rgba(10, 132, 255, 0.08) 0%, transparent 60%);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      
+      /* Crystal Glass Cards (Light) */
+      --glass-bg: rgba(255, 255, 255, 0.72);
+      --glass-bg-hover: rgba(255, 255, 255, 0.88);
+      --glass-border: rgba(255, 255, 255, 0.95);
+      --glass-top-sheen: inset 0 1px 0 0 rgba(255, 255, 255, 1);
+      --glass-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+
+      --capsule-bg: rgba(255, 255, 255, 0.85);
+      --capsule-border: rgba(226, 232, 240, 0.8);
+
+      --device-rim: #e2e8f0;
+      --device-screen-bg: #090d16;
+      --orb-opacity: 0.45;
     }
 
     html.dark {
-      --bg-canvas: #030712;
-      --bg-ambient: #080d1a;
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --glass-surface: rgba(15, 23, 42, 0.55);
-      --glass-surface-hover: rgba(30, 41, 59, 0.65);
-      --glass-border: rgba(255, 255, 255, 0.12);
-      --glass-specular: rgba(255, 255, 255, 0.35);
-      --glass-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
-      --capsule-surface: rgba(15, 23, 42, 0.68);
-      --capsule-border: rgba(255, 255, 255, 0.18);
-      --orb-opacity: 0.32;
-      --phone-rim: #1e293b;
-      --phone-bezel: #000000;
+      --bg-body: #05070c;
+      --bg-ambient-grid: radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.12) 0%, transparent 65%);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+
+      /* Obsidian Liquid Glass (Dark) - Clean, razor sharp, zero dirty shadows */
+      --glass-bg: rgba(14, 18, 28, 0.65);
+      --glass-bg-hover: rgba(22, 28, 42, 0.78);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-top-sheen: inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
+      --glass-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.7);
+
+      --capsule-bg: rgba(12, 16, 26, 0.78);
+      --capsule-border: rgba(255, 255, 255, 0.12);
+
+      --device-rim: #1e2638;
+      --device-screen-bg: #030509;
+      --orb-opacity: 0.28;
     }
 
     body {
-      background-color: var(--bg-canvas);
-      color: var(--text-primary);
-      transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      background-image: var(--bg-ambient-grid);
+      background-attachment: fixed;
+      transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.35s ease;
       overflow-x: hidden;
     }
 
-    /* Authentic Apple Liquid Crystal Glass (Zero Neumorphism) */
-    .liquid-glass {
-      background: var(--glass-surface);
-      backdrop-filter: blur(28px) saturate(210%);
-      -webkit-backdrop-filter: blur(28px) saturate(210%);
+    /* Refined Liquid Crystal Class */
+    .crystal-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
       border: 1px solid var(--glass-border);
-      box-shadow: 
-        var(--glass-shadow),
-        inset 0 1px 0 0 var(--glass-specular);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-                  background-color 0.3s ease, 
-                  border-color 0.3s ease, 
-                  box-shadow 0.3s ease;
+      box-shadow: var(--glass-shadow), var(--glass-top-sheen);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                  background-color 0.25s ease, 
+                  border-color 0.25s ease,
+                  box-shadow 0.25s ease;
     }
 
-    .liquid-glass:hover {
-      background: var(--glass-surface-hover);
-      border-color: rgba(255, 255, 255, 0.35);
-      box-shadow: 
-        var(--glass-shadow),
-        0 0 35px -5px rgba(41, 151, 255, 0.22),
-        inset 0 1px 0 0 var(--glass-specular);
+    .crystal-card:hover {
+      background: var(--glass-bg-hover);
+      border-color: rgba(10, 132, 255, 0.3);
+      box-shadow: var(--glass-shadow), 0 0 28px -4px rgba(10, 132, 255, 0.18), var(--glass-top-sheen);
     }
 
-    /* Floating Capsule (Navigation & Chips) */
-    .liquid-capsule {
-      background: var(--capsule-surface);
-      backdrop-filter: blur(32px) saturate(220%);
-      -webkit-backdrop-filter: blur(32px) saturate(220%);
+    .capsule-pill {
+      background: var(--capsule-bg);
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
       border: 1px solid var(--capsule-border);
-      box-shadow: 
-        0 15px 35px -8px rgba(0, 0, 0, 0.22),
-        inset 0 1px 0 0 var(--glass-specular);
+      box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.1), var(--glass-top-sheen);
     }
 
-    /* Interactive Caustic Specular Tracker */
-    .glass-caustic {
+    /* Interactive Light Caustic Follower */
+    .caustic-glow {
       position: relative;
       overflow: hidden;
     }
-    .glass-caustic::before {
+    .caustic-glow::after {
       content: '';
       position: absolute;
-      top: var(--mouse-y, -250px);
-      left: var(--mouse-x, -250px);
-      width: 320px;
-      height: 320px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, rgba(41, 151, 255, 0.12) 40%, transparent 70%);
+      top: var(--cursor-y, -300px);
+      left: var(--cursor-x, -300px);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.12) 0%, rgba(94, 92, 230, 0.08) 45%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
       transform: translate(-50%, -50%);
-      opacity: var(--caustic-opacity, 0);
+      opacity: var(--caustic-active, 0);
       transition: opacity 0.3s ease;
-      mix-blend-mode: overlay;
     }
 
-    /* Ambient Liquid Plasma Blobs */
-    @keyframes liquidFloat {
-      0%, 100% { transform: translate(0px, 0px) scale(1); }
-      33% { transform: translate(30px, -40px) scale(1.08); }
-      66% { transform: translate(-25px, 20px) scale(0.95); }
+    /* Ambient Plasma Beams */
+    @keyframes orbMotion {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(24px, -30px, 0) scale(1.05); }
     }
-    .liquid-orb {
+    .fluid-plasma {
       position: absolute;
       border-radius: 50%;
-      filter: blur(80px);
+      filter: blur(95px);
       pointer-events: none;
       opacity: var(--orb-opacity);
-      animation: liquidFloat 16s ease-in-out infinite;
-      mix-blend-mode: normal;
+      animation: orbMotion 14s ease-in-out infinite;
     }
 
-    /* iPhone Frame Styling */
-    .phone-housing {
-      border: 6px solid var(--phone-rim);
-      background-color: var(--phone-bezel);
-      box-shadow: 
-        0 30px 80px -15px rgba(0, 0, 0, 0.45),
-        inset 0 0 10px rgba(0, 0, 0, 0.8);
+    .device-border-glow {
+      border: 5px solid var(--device-rim);
+      background-color: var(--device-screen-bg);
+      box-shadow: 0 28px 70px -15px rgba(0, 0, 0, 0.5);
     }
 
-    /* Smooth custom scrollbars */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
+    /* Scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb {
-      background: rgba(148, 163, 184, 0.4);
+      background: rgba(148, 163, 184, 0.35);
       border-radius: 9999px;
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #2997ff;
-    }
+    ::-webkit-scrollbar-thumb:hover { background: #0A84FF; }
   </style>
 </head>
-<body class="selection:bg-liquid-blue selection:text-white relative font-sans">
+<body class="selection:bg-brand-blue selection:text-white relative">
 
   <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-    <div class="liquid-orb w-[600px] h-[600px] -top-40 left-1/2 -translate-x-1/2 bg-gradient-to-tr from-cyan-400/40 via-blue-500/40 to-liquid-purple/40"></div>
-    <div class="liquid-orb w-[500px] h-[500px] top-[30%] -right-20 bg-gradient-to-br from-liquid-purple/35 via-pink-500/30 to-blue-600/30" style="animation-delay: -5s;"></div>
-    <div class="liquid-orb w-[550px] h-[550px] bottom-10 -left-20 bg-gradient-to-tr from-blue-500/35 via-emerald-400/25 to-cyan-400/30" style="animation-delay: -9s;"></div>
+    <div class="fluid-plasma w-[640px] h-[640px] -top-36 left-1/2 -translate-x-1/2 bg-gradient-to-tr from-brand-cyan/40 via-brand-blue/30 to-brand-purple/35"></div>
+    <div class="fluid-plasma w-[480px] h-[480px] top-1/3 -right-20 bg-gradient-to-br from-brand-purple/30 via-pink-500/25 to-brand-blue/20" style="animation-delay: -6s;"></div>
+    <div class="fluid-plasma w-[520px] h-[520px] bottom-10 -left-20 bg-gradient-to-tr from-brand-blue/30 via-brand-cyan/25 to-brand-emerald/20" style="animation-delay: -10s;"></div>
   </div>
 
-  <header class="fixed top-5 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
-    <nav class="liquid-capsule rounded-full px-5 py-2.5 flex items-center justify-between gap-4 pointer-events-auto max-w-4xl w-full">
-      <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-2.5 group">
-        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-liquid-cyan via-liquid-blue to-liquid-purple p-[1.5px] transition-transform duration-300 group-hover:scale-105">
-          <div class="w-full h-full bg-slate-950 dark:bg-black rounded-full flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <circle cx="12" cy="12" r="10"></circle>
-              <circle cx="12" cy="12" r="4"></circle>
-              <line x1="12" y1="2" x2="12" y2="4"></line>
-              <line x1="12" y1="20" x2="12" y2="22"></line>
-              <line x1="2" y1="12" x2="4" y2="12"></line>
-              <line x1="20" y1="12" x2="22" y2="12"></line>
-            </svg>
-          </div>
-        </div>
-        <div class="flex items-center gap-1.5">
-          <span class="font-bold text-sm tracking-tight text-slate-900 dark:text-white">Octavi<span class="text-liquid-blue font-light">OS</span></span>
-          <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-medium bg-liquid-blue/10 text-liquid-blue dark:bg-white/10 dark:text-white/80 border border-liquid-blue/20 dark:border-white/10">15.0</span>
+  <header class="fixed top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+    <nav class="capsule-pill rounded-full px-5 py-2.5 flex items-center justify-between gap-5 pointer-events-auto max-w-4xl w-full">
+      
+      <!-- Official OctaviOS Vector Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <svg class="w-8 h-8 shrink-0 transition-transform duration-300 group-hover:scale-105" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="octaviGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00F0FF" />
+              <stop offset="50%" stop-color="#0A84FF" />
+              <stop offset="100%" stop-color="#BF5AF2" />
+            </linearGradient>
+            <linearGradient id="innerGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#00F0FF" />
+              <stop offset="100%" stop-color="#5E5CE6" />
+            </linearGradient>
+          </defs>
+          <!-- Outer Dual-Cut Octagonal Halo Ring -->
+          <path d="M 30,8 L 70,8 L 92,30 L 92,70 L 70,92 L 30,92 L 8,70 L 8,30 Z" stroke="url(#octaviGrad)" stroke-width="7" stroke-linejoin="round" />
+          <!-- Inner Core Aperture Emblem -->
+          <circle cx="50" cy="50" r="22" stroke="url(#innerGrad)" stroke-width="6" stroke-dasharray="14 8" stroke-linecap="round" />
+          <circle cx="50" cy="50" r="8" fill="url(#octaviGrad)" />
+        </svg>
+
+        <div class="flex items-baseline gap-2">
+          <span class="font-extrabold text-sm sm:text-base tracking-tight text-slate-900 dark:text-white">OCTAVI<span class="font-light text-brand-blue ml-0.5">OS</span></span>
+          <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-brand-cyan/15 text-brand-cyan dark:bg-brand-cyan/20 dark:text-brand-cyan border border-brand-cyan/30">v17</span>
         </div>
       </a>
 
-      <!-- Desktop Links -->
-      <div class="hidden md:flex items-center gap-6 text-[13px] font-medium text-slate-600 dark:text-slate-300">
-        <a href="#overview" class="hover:text-liquid-blue dark:hover:text-white transition">Experience</a>
-        <a href="#architecture" class="hover:text-liquid-blue dark:hover:text-white transition">Liquid Lab</a>
-        <a href="#devices" class="hover:text-liquid-blue dark:hover:text-white transition">Devices</a>
-        <a href="#terminal" class="hover:text-liquid-blue dark:hover:text-white transition">Flashing Wiki</a>
+      <!-- Desktop Nav Items -->
+      <div class="hidden md:flex items-center gap-7 text-[13px] font-medium text-slate-600 dark:text-slate-300">
+        <a href="#experience" class="hover:text-brand-blue dark:hover:text-white transition">Experience</a>
+        <a href="#lab" class="hover:text-brand-blue dark:hover:text-white transition">Octavi Lab</a>
+        <a href="#devices" class="hover:text-brand-blue dark:hover:text-white transition">Official Builds</a>
+        <a href="#installation" class="hover:text-brand-blue dark:hover:text-white transition">Flash Console</a>
       </div>
 
-      <!-- Right Controls: Light/Dark Switch & CTA -->
-      <div class="flex items-center gap-2.5">
-        <!-- Theme Toggle Switch -->
-        <button id="themeToggleBtn" aria-label="Toggle Theme" class="p-2 rounded-full liquid-capsule text-slate-700 dark:text-slate-200 hover:text-liquid-blue transition duration-200">
+      <!-- Action Items: Theme Toggle & Download CTA -->
+      <div class="flex items-center gap-3">
+        <!-- Crisp Dark/Light Toggle -->
+        <button id="themeToggleBtn" aria-label="Toggle Color Theme" class="p-2 rounded-full capsule-pill text-slate-700 dark:text-slate-200 hover:text-brand-blue dark:hover:text-brand-cyan transition duration-200">
           <i data-lucide="sun" id="sunIcon" class="w-4 h-4 hidden dark:block text-amber-400"></i>
-          <i data-lucide="moon" id="moonIcon" class="w-4 h-4 block dark:hidden text-indigo-600"></i>
+          <i data-lucide="moon" id="moonIcon" class="w-4 h-4 block dark:hidden text-brand-indigo"></i>
         </button>
 
-        <!-- CTA -->
-        <a href="#devices" class="px-4 py-1.5 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-950 font-semibold text-xs tracking-tight hover:scale-[1.03] active:scale-[0.98] transition duration-200 flex items-center gap-1.5 shadow-sm">
-          <span>Get Build</span>
+        <a href="#devices" class="px-4 py-1.5 rounded-full bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-semibold text-xs tracking-tight hover:scale-[1.03] active:scale-[0.98] transition flex items-center gap-1.5 shadow-sm">
+          <span>Get v17</span>
           <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
         </a>
       </div>
     </nav>
   </header>
 
-  <section id="overview" class="relative pt-36 pb-20 z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      
-      <!-- Eyebrow Pill -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-capsule text-xs font-mono tracking-wider uppercase mb-7 text-liquid-blue dark:text-liquid-cyan">
-        <span class="w-2 h-2 rounded-full bg-liquid-cyan animate-pulse"></span>
-        OctaviOS 15 &bull; Liquid Architecture 2026
-      </div>
+  <main>
+    <section id="experience" class="relative pt-36 pb-20 z-10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+        
+        <!-- v17 Release Tag -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full capsule-pill text-xs font-mono tracking-wider uppercase mb-7 text-brand-blue dark:text-brand-cyan">
+          <span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse"></span>
+          <span>OctaviOS 17.0 &bull; Liquid Crystal Release</span>
+        </div>
 
-      <!-- Main Headline -->
-      <h1 class="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight max-w-4xl mx-auto leading-[1.05] text-slate-900 dark:text-white">
-        Pure performance. <br>
-        <span class="bg-gradient-to-r from-liquid-cyan via-liquid-blue to-liquid-purple bg-clip-text text-transparent">Liquid beauty.</span>
-      </h1>
+        <!-- Hero Headline -->
+        <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight max-w-4xl leading-[1.04] text-slate-900 dark:text-white">
+          Precision of CLO. <br>
+          <span class="bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-purple bg-clip-text text-transparent">Liquid by design.</span>
+        </h1>
 
-      <p class="mt-6 text-base sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
-        The precision of pure AOSP infused with Cupertino liquid glass aesthetics. Zero trackers, low-latency display scheduling, and boundless customization.
-      </p>
+        <!-- Subheading -->
+        <p class="mt-6 text-base sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl font-normal leading-relaxed">
+          Engineered on Android 17. Featuring ultra-fluid walt-sched thread pacing, full hardware Keystore virtualization, and Cupertino liquid glass aesthetics.
+        </p>
 
-      <!-- CTA Row -->
-      <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
-        <a href="#devices" class="px-7 py-3 rounded-full bg-liquid-blue text-white hover:bg-blue-600 font-semibold text-sm transition shadow-lg shadow-liquid-blue/25 flex items-center gap-2">
-          <i data-lucide="download" class="w-4 h-4"></i>
-          <span>Download Firmware</span>
-        </a>
-        <a href="#terminal" class="px-6 py-3 rounded-full liquid-capsule text-slate-700 dark:text-white hover:bg-white/40 dark:hover:bg-white/10 font-medium text-sm transition flex items-center gap-2">
-          <i data-lucide="terminal" class="w-4 h-4 text-liquid-cyan"></i>
-          <span>Sideload Instructions</span>
-        </a>
-      </div>
+        <!-- CTA Row -->
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <a href="#devices" class="px-7 py-3 rounded-full bg-brand-blue hover:bg-blue-600 text-white font-semibold text-sm transition shadow-lg shadow-brand-blue/25 flex items-center gap-2">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>Browse v17 Downloads</span>
+          </a>
+          <a href="#installation" class="px-6 py-3 rounded-full capsule-pill text-slate-700 dark:text-white hover:text-brand-blue font-medium text-sm transition flex items-center gap-2">
+            <i data-lucide="terminal" class="w-4 h-4 text-brand-cyan"></i>
+            <span>Fastboot &amp; ADB Wiki</span>
+          </a>
+        </div>
 
-      <!-- Interactive Phone Chassis Mockup -->
-      <div class="mt-16 max-w-sm sm:max-w-md mx-auto relative">
-        <div class="relative w-[320px] sm:w-[370px] mx-auto h-[690px] rounded-[52px] phone-housing p-3 flex flex-col justify-between overflow-hidden text-left bg-gradient-to-b from-slate-900 via-slate-950 to-black text-white">
-          
-          <!-- Expandable Dynamic Island -->
-          <div class="relative z-30 pt-1 flex flex-col items-center">
-            <div id="dynamicIsland" class="cursor-pointer transition-all duration-300 rounded-[24px] bg-black/90 border border-white/15 px-3 py-1.5 flex items-center justify-between text-xs font-mono text-white w-44 hover:w-60 shadow-xl">
-              <div class="flex items-center gap-2">
-                <i data-lucide="disc-3" class="w-3.5 h-3.5 text-liquid-cyan animate-spin"></i>
-                <div class="flex flex-col">
-                  <span class="text-[10px] font-semibold text-white truncate max-w-[85px]">Octavi Acoustic</span>
-                  <span id="islandSubtext" class="text-[8px] text-slate-400">Dolby Spatial • 120Hz</span>
+        <div class="mt-16 w-full max-w-sm sm:max-w-md mx-auto">
+          <div class="relative w-[320px] sm:w-[360px] mx-auto h-[680px] rounded-[50px] device-border-glow p-3.5 flex flex-col justify-between overflow-hidden text-left bg-gradient-to-b from-slate-950 via-black to-slate-950 text-white">
+            
+            <!-- Dynamic Island Capsule -->
+            <div class="relative z-30 pt-1 flex flex-col items-center">
+              <div id="dynamicIsland" class="cursor-pointer transition-all duration-300 rounded-[26px] bg-slate-950/90 border border-white/15 px-3 py-1.5 flex items-center justify-between text-xs font-mono text-white w-48 hover:w-60 shadow-lg">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="disc-3" class="w-3.5 h-3.5 text-brand-cyan animate-spin"></i>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-bold text-white truncate max-w-[90px]">Octavi Acoustic</span>
+                    <span id="islandSubtext" class="text-[8px] text-slate-400">Dolby Atmos &bull; 120Hz</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse"></span>
+                  <span class="text-[10px] text-brand-emerald font-bold">ACTIVE</span>
                 </div>
               </div>
-              <div class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span class="text-[10px] text-emerald-400 font-bold">PRO</span>
-              </div>
             </div>
+
+            <!-- Screen Area -->
+            <div class="relative z-10 flex-1 mt-4 flex flex-col justify-between px-2 pb-2">
+              
+              <!-- Screen Header (Clock) -->
+              <div class="text-center pt-2">
+                <div class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Octavi v17 System</div>
+                <div id="phoneClock" class="text-5xl font-extralight tracking-tighter text-white mt-1">09:41</div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[10px] text-white/90 mt-2">
+                  <i data-lucide="shield-check" class="w-3 h-3 text-brand-emerald"></i>
+                  <span>Android 17 &bull; Strong Integrity</span>
+                </div>
+              </div>
+
+              <!-- Interactive Switcher -->
+              <div class="space-y-2 mt-4">
+                <div class="grid grid-cols-3 gap-1 p-1 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/10 text-[10px] font-medium text-center">
+                  <button onclick="switchScreen('lock')" id="btn-scr-lock" class="py-1.5 rounded-xl bg-white text-black font-semibold transition">Lock</button>
+                  <button onclick="switchScreen('lab')" id="btn-scr-lab" class="py-1.5 rounded-xl text-white/70 hover:text-white transition">Lab QS</button>
+                  <button onclick="switchScreen('kernel')" id="btn-scr-kernel" class="py-1.5 rounded-xl text-white/70 hover:text-white transition">Telemetry</button>
+                </div>
+
+                <!-- Screen Body Container -->
+                <div id="phoneScreenBody" class="h-60 p-4 rounded-3xl bg-slate-900/80 border border-white/15 backdrop-blur-2xl flex flex-col justify-between text-xs">
+                  <!-- Populated by JS -->
+                </div>
+              </div>
+
+              <!-- Home Bar -->
+              <div class="w-32 h-1 rounded-full bg-white/40 mx-auto mt-2"></div>
+            </div>
+
           </div>
-
-          <!-- Active Display Simulator Screen -->
-          <div class="relative z-10 flex-1 mt-4 flex flex-col justify-between px-3 pb-3">
-            
-            <!-- Lock Screen Time Header -->
-            <div class="text-center pt-2">
-              <div class="text-[11px] font-mono text-slate-300 uppercase tracking-widest">Monday, Oct 5</div>
-              <div id="phoneClock" class="text-6xl font-extralight tracking-tighter text-white mt-1">09:41</div>
-              <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[10px] text-white/90 mt-2">
-                <i data-lucide="shield-check" class="w-3 h-3 text-emerald-400"></i>
-                <span>SELinux Enforcing &bull; 0.24%/h Standby</span>
-              </div>
-            </div>
-
-            <!-- View Toggles (Lock, Liquid Lab, Kernel Telemetry) -->
-            <div class="space-y-2 mt-4">
-              <div class="grid grid-cols-3 gap-1 p-1 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/10 text-[10px] font-medium text-center">
-                <button onclick="switchScreen('lock')" id="btn-scr-lock" class="py-1.5 rounded-xl bg-white text-black font-semibold transition">Lock</button>
-                <button onclick="switchScreen('lab')" id="btn-scr-lab" class="py-1.5 rounded-xl text-white/70 hover:text-white transition">Control QS</button>
-                <button onclick="switchScreen('kernel')" id="btn-scr-kernel" class="py-1.5 rounded-xl text-white/70 hover:text-white transition">Kernel</button>
-              </div>
-
-              <!-- Interactive Display Card Body -->
-              <div id="phoneScreenBody" class="h-60 p-4 rounded-3xl bg-slate-900/80 border border-white/15 backdrop-blur-2xl flex flex-col justify-between text-xs">
-                <!-- Dynamically rendered -->
-              </div>
-            </div>
-
-            <!-- Home Gesture Indicator -->
-            <div class="w-32 h-1 rounded-full bg-white/40 mx-auto mt-2"></div>
-          </div>
-
+          <p class="text-xs font-mono text-slate-500 dark:text-slate-400 mt-4 text-center">Interactive OctaviOS 17 Hardware Canvas</p>
         </div>
-        <p class="text-xs font-mono text-slate-500 dark:text-slate-400 mt-4 text-center">Interactive Liquid Glass Device Canvas</p>
+
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <section id="architecture" class="py-24 relative z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Section Header -->
-      <div class="max-w-2xl mb-14">
-        <span class="text-xs font-mono text-liquid-blue dark:text-liquid-cyan uppercase tracking-widest">Liquid Intelligence</span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mt-1 tracking-tight">Crafted for extremes. <br>Refined for touch.</h2>
-        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-3">
-          Every component in OctaviOS is engineered with GPU-rasterized liquid shaders, custom thread priority managers, and genuine privacy enclaves.
-        </p>
-      </div>
-
-      <!-- Bento Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
-
-        <!-- Bento 1: Interactive Liquid Lab (Span 7) -->
-        <div class="lg:col-span-7 liquid-glass glass-caustic rounded-3xl p-8 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-mono bg-liquid-blue/15 text-liquid-blue dark:text-liquid-cyan border border-liquid-blue/30">Octavi Lab Customizer</span>
-              <i data-lucide="sliders" class="w-5 h-5 text-liquid-blue"></i>
-            </div>
-            <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Real-Time Liquid Glass Tuning</h3>
-            <p class="text-slate-600 dark:text-slate-400 text-sm mt-2 leading-relaxed">
-              Adjust frosted refraction radius, saturation curves, and variable ProMotion refresh limits in real-time.
-            </p>
-          </div>
-
-          <!-- Interactive Controls Widget -->
-          <div class="mt-8 p-5 rounded-2xl bg-white/40 dark:bg-black/40 border border-white/40 dark:border-white/10 space-y-5">
-            <div>
-              <div class="flex justify-between text-xs font-mono mb-2">
-                <span class="text-slate-600 dark:text-slate-400">ProMotion Variable Rate</span>
-                <span id="rateLabel" class="font-bold text-liquid-blue dark:text-liquid-cyan">120 Hz</span>
-              </div>
-              <input type="range" id="rateSlider" min="60" max="144" step="30" value="120" class="w-full accent-liquid-blue cursor-pointer">
-              <div class="flex justify-between text-[10px] font-mono text-slate-400 mt-1">
-                <span>60Hz Saver</span>
-                <span>90Hz Balanced</span>
-                <span>120Hz Pro</span>
-                <span>144Hz Ultra</span>
-              </div>
-            </div>
-
-            <!-- Dynamic Color Accent Selector -->
-            <div>
-              <span class="text-xs font-mono text-slate-600 dark:text-slate-400 block mb-2">Liquid Accent Hue</span>
-              <div class="flex items-center gap-3" id="accentPills">
-                <button onclick="setAccent('#2997ff', 'Cyan Blue')" class="w-7 h-7 rounded-full bg-blue-500 ring-2 ring-blue-400 ring-offset-2 ring-offset-white dark:ring-offset-slate-900 transition"></button>
-                <button onclick="setAccent('#b845ed', 'Amethyst')" class="w-7 h-7 rounded-full bg-purple-500 hover:scale-110 transition"></button>
-                <button onclick="setAccent('#30d158', 'Emerald')" class="w-7 h-7 rounded-full bg-emerald-500 hover:scale-110 transition"></button>
-                <button onclick="setAccent('#ff375f', 'Ruby Red')" class="w-7 h-7 rounded-full bg-rose-500 hover:scale-110 transition"></button>
-                <button onclick="setAccent('#ffd60a', 'Solar Amber')" class="w-7 h-7 rounded-full bg-amber-400 hover:scale-110 transition"></button>
-                <span id="accentName" class="text-xs font-mono text-slate-500 dark:text-slate-300 ml-2">Cyan Blue</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bento 2: Core Sched & Jitter Telemetry (Span 5) -->
-        <div class="lg:col-span-5 liquid-glass glass-caustic rounded-3xl p-8 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">walt-sched &bull; 0.1ms jitter</span>
-              <i data-lucide="activity" class="w-5 h-5 text-emerald-500"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Core Frame Pacing</h3>
-            <p class="text-slate-600 dark:text-slate-400 text-xs mt-2">
-              Continuous 120 FPS frame lock with preemptive CPU core thread scheduler.
-            </p>
-          </div>
-
-          <!-- Live Animated Canvas -->
-          <div class="mt-6 p-4 rounded-2xl bg-white/40 dark:bg-black/50 border border-white/40 dark:border-white/10">
-            <div class="flex justify-between items-center text-xs font-mono mb-2">
-              <span class="text-slate-500 dark:text-slate-400">Frame Time History</span>
-              <span class="text-emerald-500 font-bold">8.33 ms (Flat)</span>
-            </div>
-            <canvas id="jitterCanvas" height="85" class="w-full"></canvas>
-          </div>
-        </div>
-
-        <!-- Bento 3: Aero Quick Settings (Span 6) -->
-        <div class="lg:col-span-6 liquid-glass glass-caustic rounded-3xl p-8">
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-3 py-1 rounded-full text-xs font-mono bg-purple-500/15 text-purple-600 dark:text-liquid-purple border border-purple-500/30">Haptic Aero Tiles</span>
-            <i data-lucide="layers" class="w-5 h-5 text-liquid-purple"></i>
-          </div>
-          <h4 class="text-xl font-bold text-slate-900 dark:text-white">Fluid Quick Settings</h4>
-          <p class="text-slate-600 dark:text-slate-400 text-xs mt-1 mb-6">
-            Tap tiles to experience liquid refraction state animations with instant toggle feedback.
+    <section id="lab" class="py-24 relative z-10 border-t border-slate-200/60 dark:border-white/10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-2xl mb-12">
+          <span class="text-xs font-mono text-brand-blue dark:text-brand-cyan uppercase tracking-widest font-semibold">Engineered in Octavi Lab</span>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mt-2 tracking-tight">System architecture tuned to the nanosecond.</h2>
+          <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-3">
+            OctaviOS v17 discards bloated overlays in favor of native compiled C++ liquid shaders and low-overhead thread scheduling.
           </p>
-
-          <div class="grid grid-cols-2 gap-3" id="qsGrid">
-            <button onclick="toggleQs(this)" class="qs-tile active p-3.5 rounded-2xl bg-liquid-blue text-white flex items-center justify-between transition-all duration-200">
-              <div class="flex items-center gap-2.5">
-                <i data-lucide="wifi" class="w-4 h-4"></i>
-                <span class="text-xs font-semibold">Wi-Fi 7</span>
-              </div>
-              <span class="text-[10px] font-mono opacity-80">Connected</span>
-            </button>
-
-            <button onclick="toggleQs(this)" class="qs-tile active p-3.5 rounded-2xl bg-liquid-blue text-white flex items-center justify-between transition-all duration-200">
-              <div class="flex items-center gap-2.5">
-                <i data-lucide="bluetooth" class="w-4 h-4"></i>
-                <span class="text-xs font-semibold">LDAC Hi-Fi</span>
-              </div>
-              <span class="text-[10px] font-mono opacity-80">Octavi Buds</span>
-            </button>
-
-            <button onclick="toggleQs(this)" class="qs-tile p-3.5 rounded-2xl bg-white/40 dark:bg-white/10 text-slate-800 dark:text-white flex items-center justify-between transition-all duration-200">
-              <div class="flex items-center gap-2.5">
-                <i data-lucide="zap" class="w-4 h-4"></i>
-                <span class="text-xs font-semibold">CPU Turbo</span>
-              </div>
-              <span class="text-[10px] font-mono text-slate-500 dark:text-slate-400">Normal</span>
-            </button>
-
-            <button onclick="toggleQs(this)" class="qs-tile p-3.5 rounded-2xl bg-white/40 dark:bg-white/10 text-slate-800 dark:text-white flex items-center justify-between transition-all duration-200">
-              <div class="flex items-center gap-2.5">
-                <i data-lucide="moon" class="w-4 h-4"></i>
-                <span class="text-xs font-semibold">Dark Caustic</span>
-              </div>
-              <span class="text-[10px] font-mono text-slate-500 dark:text-slate-400">Scheduled</span>
-            </button>
-          </div>
         </div>
 
-        <!-- Bento 4: Privacy & Play Integrity (Span 6) -->
-        <div class="lg:col-span-6 liquid-glass glass-caustic rounded-3xl p-8 flex flex-col justify-between">
-          <div>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+          <!-- Bento Card 1: Interactive Display Tuner -->
+          <div class="md:col-span-7 crystal-card caustic-glow rounded-3xl p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-3 py-1 rounded-full text-xs font-mono bg-brand-blue/15 text-brand-blue dark:text-brand-cyan border border-brand-blue/30">Display Pacing 2.0</span>
+                <i data-lucide="sparkles" class="w-5 h-5 text-brand-cyan"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-slate-900 dark:text-white">ProMotion Dynamic Frequency</h3>
+              <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2">
+                Simulate OctaviOS v17's variable touch-sync frequency algorithm. Adaptive stepping keeps frame jitter under 0.1ms.
+              </p>
+            </div>
+
+            <!-- Slider Control -->
+            <div class="mt-8 p-5 rounded-2xl bg-slate-100/70 dark:bg-black/40 border border-slate-200/80 dark:border-white/10 space-y-4">
+              <div class="flex justify-between items-center text-xs font-mono">
+                <span class="text-slate-500 dark:text-slate-400">Target Refresh Rate</span>
+                <span id="rateLabel" class="text-sm font-bold text-brand-blue dark:text-brand-cyan">120 Hz</span>
+              </div>
+              <input type="range" id="rateSlider" min="60" max="144" step="30" value="120" class="w-full accent-brand-blue cursor-pointer">
+              <div class="flex justify-between text-[10px] font-mono text-slate-400">
+                <span>60Hz (Battery)</span>
+                <span>90Hz (Smooth)</span>
+                <span>120Hz (Pro)</span>
+                <span>144Hz (Ultra)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento Card 2: Live Frame Jitter Telemetry -->
+          <div class="md:col-span-5 crystal-card caustic-glow rounded-3xl p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-3 py-1 rounded-full text-xs font-mono bg-brand-emerald/15 text-brand-emerald border border-brand-emerald/30">LTS 6.6 Kernel</span>
+                <i data-lucide="activity" class="w-5 h-5 text-brand-emerald"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Zero-Jitter Lock</h3>
+              <p class="text-slate-600 dark:text-slate-400 text-xs mt-2">
+                Real-time GPU frame-buffer pacing canvas demonstrating continuous 120 FPS timeline consistency.
+              </p>
+            </div>
+
+            <!-- Canvas -->
+            <div class="mt-6 p-4 rounded-2xl bg-slate-100/70 dark:bg-black/50 border border-slate-200/80 dark:border-white/10">
+              <div class="flex justify-between items-center text-xs font-mono mb-2">
+                <span class="text-slate-500 dark:text-slate-400">Buffer Timing</span>
+                <span class="text-brand-emerald font-bold">8.33 ms (Locked)</span>
+              </div>
+              <canvas id="jitterCanvas" height="90" class="w-full"></canvas>
+            </div>
+          </div>
+
+          <!-- Bento Card 3: Aero Quick Settings -->
+          <div class="md:col-span-6 crystal-card caustic-glow rounded-3xl p-8">
             <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">MEETS_STRONG_INTEGRITY</span>
-              <i data-lucide="shield" class="w-5 h-5 text-emerald-500"></i>
+              <span class="px-3 py-1 rounded-full text-xs font-mono bg-brand-purple/15 text-brand-purple border border-brand-purple/30">Haptic QS Engine</span>
+              <i data-lucide="layers" class="w-5 h-5 text-brand-purple"></i>
             </div>
-            <h4 class="text-xl font-bold text-slate-900 dark:text-white">Zero Telemetry &bull; Banking Ready</h4>
-            <p class="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-relaxed">
-              Native signature spoofing, MicroG support, and hardware keystore virtualization guarantee banking apps, Google Pay, and streaming DRM operate effortlessly.
+            <h4 class="text-xl font-bold text-slate-900 dark:text-white">Liquid Quick Settings</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-xs mt-1 mb-5">
+              Click tiles to test live state shifts and dynamic liquid specular illumination.
             </p>
-          </div>
 
-          <div class="grid grid-cols-3 gap-3 mt-6 pt-5 border-t border-slate-200 dark:border-white/10 text-center font-mono text-xs">
-            <div class="p-2.5 rounded-xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10">
-              <span class="block text-emerald-500 font-bold">PASSED</span>
-              <span class="text-[10px] text-slate-500 dark:text-slate-400">Play Integrity</span>
+            <div class="grid grid-cols-2 gap-3" id="qsGrid">
+              <button onclick="toggleTile(this)" class="qs-btn active p-3 rounded-2xl bg-brand-blue text-white flex items-center justify-between transition-all duration-200">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="wifi" class="w-4 h-4"></i>
+                  <span class="text-xs font-semibold">Wi-Fi 7</span>
+                </div>
+                <span class="text-[9px] font-mono opacity-80">Online</span>
+              </button>
+
+              <button onclick="toggleTile(this)" class="qs-btn active p-3 rounded-2xl bg-brand-blue text-white flex items-center justify-between transition-all duration-200">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="bluetooth" class="w-4 h-4"></i>
+                  <span class="text-xs font-semibold">Bluetooth</span>
+                </div>
+                <span class="text-[9px] font-mono opacity-80">LDAC</span>
+              </button>
+
+              <button onclick="toggleTile(this)" class="qs-btn p-3 rounded-2xl bg-slate-200/60 dark:bg-white/10 text-slate-800 dark:text-white flex items-center justify-between transition-all duration-200">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="zap" class="w-4 h-4"></i>
+                  <span class="text-xs font-semibold">Performance</span>
+                </div>
+                <span class="text-[9px] font-mono text-slate-500 dark:text-slate-400">Normal</span>
+              </button>
+
+              <button onclick="toggleTile(this)" class="qs-btn p-3 rounded-2xl bg-slate-200/60 dark:bg-white/10 text-slate-800 dark:text-white flex items-center justify-between transition-all duration-200">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="shield" class="w-4 h-4"></i>
+                  <span class="text-xs font-semibold">Tor Enclave</span>
+                </div>
+                <span class="text-[9px] font-mono text-slate-500 dark:text-slate-400">Standby</span>
+              </button>
             </div>
-            <div class="p-2.5 rounded-xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10">
-              <span class="block text-emerald-500 font-bold">ENFORCING</span>
-              <span class="text-[10px] text-slate-500 dark:text-slate-400">SELinux Policy</span>
+          </div>
+
+          <!-- Bento Card 4: Play Integrity & MicroG -->
+          <div class="md:col-span-6 crystal-card caustic-glow rounded-3xl p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-3 py-1 rounded-full text-xs font-mono bg-brand-emerald/15 text-brand-emerald border border-brand-emerald/30">MEETS_STRONG_INTEGRITY</span>
+                <i data-lucide="shield-check" class="w-5 h-5 text-brand-emerald"></i>
+              </div>
+              <h4 class="text-xl font-bold text-slate-900 dark:text-white">Banking &amp; DRM Certified</h4>
+              <p class="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-relaxed">
+                Out-of-the-box hardware certificate keybox emulation passes CTS, Play Integrity, and Netflix Widevine L1 without root hacks.
+              </p>
             </div>
-            <div class="p-2.5 rounded-xl bg-white/40 dark:bg-white/5 border border-white/40 dark:border-white/10">
-              <span class="block text-liquid-blue font-bold">SANDBOXED</span>
-              <span class="text-[10px] text-slate-500 dark:text-slate-400">MicroG Service</span>
+
+            <div class="grid grid-cols-3 gap-3 mt-6 pt-5 border-t border-slate-200 dark:border-white/10 text-center font-mono text-xs">
+              <div class="p-2.5 rounded-xl bg-slate-100/60 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                <span class="block text-brand-emerald font-bold">PASSED</span>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400">CTS Profile</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-100/60 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                <span class="block text-brand-emerald font-bold">ENFORCING</span>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400">SELinux</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-100/60 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                <span class="block text-brand-blue dark:text-brand-cyan font-bold">L1 DRM</span>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400">Widevine</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="devices" class="py-24 relative z-10 border-t border-slate-200/60 dark:border-white/10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header & Search Input -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-slate-200/80 dark:border-white/10">
+          <div>
+            <span class="text-xs font-mono text-brand-blue dark:text-brand-cyan uppercase tracking-widest font-semibold">Official Hardware Roster</span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mt-1 tracking-tight">OctaviOS v17 Builds</h2>
+            <p class="text-slate-600 dark:text-slate-400 text-sm mt-2">Maintained packages with incremental OTA update pipelines.</p>
+          </div>
+
+          <div class="w-full md:w-80">
+            <div class="relative">
+              <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+              <input 
+                type="text" 
+                id="deviceSearchInput" 
+                placeholder="Search 'alioth', 'lemonade', 'Poco'..." 
+                class="w-full pl-11 pr-4 py-3 rounded-full bg-white/70 dark:bg-white/10 border border-slate-300 dark:border-white/15 text-slate-900 dark:text-white text-xs placeholder-slate-400 focus:outline-none focus:border-brand-blue backdrop-blur-xl transition"
+              >
             </div>
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <section id="devices" class="py-24 relative z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Section Title & Search -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-slate-200 dark:border-white/10">
-        <div>
-          <span class="text-xs font-mono text-liquid-blue dark:text-liquid-cyan uppercase tracking-widest">Hardware Fleet</span>
-          <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mt-1 tracking-tight">Official Builds</h2>
-          <p class="text-slate-600 dark:text-slate-400 text-sm mt-2">Certified builds with full OTA maintainer pipelines.</p>
+        <!-- OEM Filter Pills -->
+        <div class="flex items-center gap-2 overflow-x-auto py-6" id="oemChips">
+          <button class="oem-btn active px-4 py-2 rounded-full text-xs font-semibold bg-slate-950 text-white dark:bg-white dark:text-slate-950 transition" data-oem="all">All Devices</button>
+          <button class="oem-btn px-4 py-2 rounded-full text-xs font-semibold capsule-pill text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition" data-oem="Xiaomi">Xiaomi &amp; POCO</button>
+          <button class="oem-btn px-4 py-2 rounded-full text-xs font-semibold capsule-pill text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition" data-oem="OnePlus">OnePlus</button>
+          <button class="oem-btn px-4 py-2 rounded-full text-xs font-semibold capsule-pill text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition" data-oem="Google">Google Pixel</button>
+          <button class="oem-btn px-4 py-2 rounded-full text-xs font-semibold capsule-pill text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition" data-oem="Nothing">Nothing Phone</button>
+          <button class="oem-btn px-4 py-2 rounded-full text-xs font-semibold capsule-pill text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition" data-oem="GSI">Universal GSI</button>
         </div>
 
-        <!-- Search Bar with Liquid Glass Sheen -->
-        <div class="w-full md:w-80">
-          <div class="relative">
-            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
-            <input 
-              type="text" 
-              id="deviceSearchInput" 
-              placeholder="Search codename 'alioth', 'lemonadep'..." 
-              class="w-full pl-11 pr-4 py-3 rounded-full bg-white/60 dark:bg-white/10 border border-slate-300 dark:border-white/15 text-slate-900 dark:text-white text-xs placeholder-slate-400 focus:outline-none focus:border-liquid-blue backdrop-blur-xl transition"
-            >
-          </div>
+        <!-- Devices Container -->
+        <div id="deviceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+          <!-- Dynamically Injected -->
         </div>
+
+        <!-- Empty Match State -->
+        <div id="noMatchContainer" class="hidden text-center py-16 crystal-card rounded-3xl mt-4">
+          <i data-lucide="cpu" class="w-10 h-10 text-slate-400 mx-auto mb-3"></i>
+          <h4 class="text-base font-bold text-slate-900 dark:text-white">Device tree not located</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Check the codename spelling or flash the Universal GSI build.</p>
+        </div>
+
       </div>
+    </section>
 
-      <!-- OEM Filter Chips -->
-      <div class="flex items-center gap-2 overflow-x-auto py-6" id="oemChips">
-        <button class="oem-chip active px-4 py-2 rounded-full text-xs font-semibold bg-slate-900 text-white dark:bg-white dark:text-slate-950 transition" data-oem="all">All Devices</button>
-        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-capsule text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition" data-oem="Xiaomi">Xiaomi &amp; POCO</button>
-        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-capsule text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition" data-oem="OnePlus">OnePlus</button>
-        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-capsule text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition" data-oem="Google">Google Pixel</button>
-        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-capsule text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition" data-oem="Nothing">Nothing Phone</button>
-        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-capsule text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition" data-oem="GSI">Universal GSI</button>
-      </div>
+    <section id="installation" class="py-24 relative z-10 border-t border-slate-200/60 dark:border-white/10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-2xl mb-10">
+          <span class="text-xs font-mono text-brand-blue dark:text-brand-cyan uppercase tracking-widest font-semibold">Deployment Wiki</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1 tracking-tight">Flashing Protocol</h2>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-2">Verified ADB sideload and Fastboot procedures for bootloader-unlocked hardware.</p>
+        </div>
 
-      <!-- Device Cards Grid -->
-      <div id="deviceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
-        <!-- Rendered via JavaScript -->
-      </div>
+        <div class="crystal-card rounded-3xl overflow-hidden shadow-2xl">
+          <!-- Console Title Bar -->
+          <div class="px-5 py-3.5 bg-slate-200/50 dark:bg-black/60 border-b border-slate-300/40 dark:border-white/10 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f]"></span>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 ml-3">octavi-installer — zsh — 80×24</span>
+            </div>
 
-      <!-- Zero Match Fallback -->
-      <div id="noMatchContainer" class="hidden text-center py-16 liquid-glass rounded-3xl mt-4">
-        <i data-lucide="cpu" class="w-10 h-10 text-slate-400 mx-auto mb-3"></i>
-        <h4 class="text-base font-bold text-slate-900 dark:text-white">No hardware tree found</h4>
-        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Try another search or flash our Universal Treble GSI.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="terminal" class="py-24 relative z-10 border-t border-slate-200 dark:border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="max-w-2xl mb-10">
-        <span class="text-xs font-mono text-liquid-blue dark:text-liquid-cyan uppercase tracking-widest">Developer Console</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1 tracking-tight">Installation Guide</h2>
-        <p class="text-slate-600 dark:text-slate-400 text-sm mt-2">Standard platform-tools procedure for bootloader-unlocked hardware.</p>
-      </div>
-
-      <!-- Terminal Window -->
-      <div class="liquid-glass rounded-3xl overflow-hidden shadow-2xl">
-        <!-- Window Controls -->
-        <div class="px-5 py-3.5 bg-slate-200/50 dark:bg-black/60 border-b border-slate-300/40 dark:border-white/10 flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
-            <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
-            <span class="w-3 h-3 rounded-full bg-[#27c93f]"></span>
-            <span class="text-xs font-mono text-slate-500 dark:text-slate-400 ml-3">octavi-installer — zsh — 80×24</span>
+            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-slate-200/70 dark:bg-white/10 text-xs font-mono">
+              <button onclick="switchTerminal('recovery')" id="tab-recovery" class="px-3 py-1 rounded-lg bg-brand-blue text-white font-semibold transition">Recovery</button>
+              <button onclick="switchTerminal('fastboot')" id="tab-fastboot" class="px-3 py-1 rounded-lg text-slate-600 dark:text-slate-300 hover:text-white transition">FastbootD</button>
+              <button onclick="switchTerminal('ota')" id="tab-ota" class="px-3 py-1 rounded-lg text-slate-600 dark:text-slate-300 hover:text-white transition">Dirty OTA</button>
+            </div>
           </div>
 
-          <!-- Method Tabs -->
-          <div class="flex items-center gap-1.5 p-1 rounded-xl bg-white/50 dark:bg-white/10 text-xs font-mono">
-            <button onclick="switchTerminalTab('recovery')" id="tab-recovery" class="px-3 py-1 rounded-lg bg-liquid-blue text-white font-semibold transition">Recovery</button>
-            <button onclick="switchTerminalTab('fastboot')" id="tab-fastboot" class="px-3 py-1 rounded-lg text-slate-600 dark:text-slate-300 hover:text-white transition">FastbootD</button>
-            <button onclick="switchTerminalTab('dirty')" id="tab-dirty" class="px-3 py-1 rounded-lg text-slate-600 dark:text-slate-300 hover:text-white transition">Dirty Flash</button>
+          <!-- Code Box -->
+          <div class="p-6 font-mono text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed overflow-x-auto space-y-3 bg-white/40 dark:bg-black/50" id="terminalCommands">
+            <!-- Dynamically Loaded -->
+          </div>
+
+          <div class="px-6 py-3 bg-slate-100/60 dark:bg-black/40 border-t border-slate-200/80 dark:border-white/10 flex justify-end">
+            <button onclick="copyTerminalCommands()" class="px-4 py-1.5 rounded-full capsule-pill text-xs font-mono font-medium hover:text-brand-blue transition flex items-center gap-1.5 text-slate-800 dark:text-white">
+              <i data-lucide="copy" class="w-3.5 h-3.5 text-brand-blue"></i>
+              <span>Copy Instructions</span>
+            </button>
           </div>
         </div>
 
-        <!-- Terminal Output Body -->
-        <div class="p-6 font-mono text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed overflow-x-auto space-y-3 bg-white/30 dark:bg-black/40" id="terminalCommands">
-          <!-- Populated via script -->
-        </div>
-
-        <!-- Copy Action Footer -->
-        <div class="px-6 py-3 bg-slate-100/50 dark:bg-black/50 border-t border-slate-300/30 dark:border-white/10 flex justify-end">
-          <button onclick="copyTerminalCode()" class="px-4 py-1.5 rounded-full liquid-capsule text-xs font-mono font-medium hover:bg-white/40 dark:hover:bg-white/20 transition flex items-center gap-1.5 text-slate-800 dark:text-white">
-            <i data-lucide="copy" class="w-3.5 h-3.5 text-liquid-blue"></i>
-            <span>Copy Commands</span>
-          </button>
-        </div>
       </div>
+    </section>
+  </main>
 
-    </div>
-  </section>
-
-  <div id="deviceModal" class="fixed inset-0 z-50 bg-slate-900/40 dark:bg-black/75 backdrop-blur-xl hidden flex items-center justify-center p-4">
-    <div class="liquid-glass rounded-[32px] max-w-xl w-full p-7 space-y-6 shadow-2xl relative bg-white/95 dark:bg-slate-950/95 border border-white/60 dark:border-white/20">
+  <div id="deviceModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="crystal-card rounded-[32px] max-w-lg w-full p-7 space-y-6 shadow-2xl relative bg-white/95 dark:bg-slate-950/95 border border-slate-200 dark:border-white/15">
       
       <!-- Modal Header -->
       <div class="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-4">
         <div>
           <h3 id="modalDeviceTitle" class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Device Package</h3>
-          <p id="modalDeviceMeta" class="text-xs font-mono text-liquid-blue dark:text-liquid-cyan mt-1">codename &bull; version</p>
+          <p id="modalDeviceMeta" class="text-xs font-mono text-brand-blue dark:text-brand-cyan mt-1">codename &bull; v17.0</p>
         </div>
-        <button id="closeModal" class="p-2 rounded-full liquid-capsule hover:bg-white/40 dark:hover:bg-white/15 transition text-slate-700 dark:text-white">
+        <button id="closeModal" class="p-2 rounded-full capsule-pill text-slate-700 dark:text-white hover:scale-105 transition">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
 
-      <!-- Variant Selector (GApps vs Vanilla) -->
+      <!-- Variant Selector -->
       <div class="flex items-center gap-2 p-1 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 font-mono text-xs">
-        <button onclick="switchVariant('gapps')" id="btn-var-gapps" class="flex-1 py-2 rounded-xl bg-liquid-blue text-white font-semibold transition">GApps Included</button>
-        <button onclick="switchVariant('vanilla')" id="btn-var-vanilla" class="flex-1 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-white transition">Vanilla (MicroG Ready)</button>
+        <button onclick="switchVariant('gapps')" id="btn-var-gapps" class="flex-1 py-2 rounded-xl bg-brand-blue text-white font-semibold transition">GApps Edition</button>
+        <button onclick="switchVariant('vanilla')" id="btn-var-vanilla" class="flex-1 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-white transition">Vanilla (MicroG)</button>
       </div>
 
-      <!-- Checksum Container -->
+      <!-- Checksum -->
       <div class="p-3.5 bg-slate-100/70 dark:bg-black/60 rounded-2xl border border-slate-200 dark:border-white/10 space-y-1">
         <div class="flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
-          <span>SHA-256 INTEGRITY SIGNATURE</span>
-          <button id="copyHashBtn" class="text-liquid-blue hover:underline flex items-center gap-1 font-semibold">
+          <span>SHA-256 CHECKSUM</span>
+          <button id="copyHashBtn" class="text-brand-blue hover:underline flex items-center gap-1 font-semibold">
             <i data-lucide="copy" class="w-3 h-3"></i> Copy
           </button>
         </div>
@@ -615,25 +592,21 @@
         </div>
       </div>
 
-      <!-- Build Notes -->
+      <!-- Changelog -->
       <div>
         <h4 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2 font-mono">Changelog Highlights</h4>
-        <ul id="modalChangelog" class="text-xs text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside max-h-36 overflow-y-auto pr-1">
-          <!-- Dynamic list -->
+        <ul id="modalChangelog" class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 list-disc list-inside max-h-36 overflow-y-auto pr-1">
+          <!-- Populated by script -->
         </ul>
       </div>
 
       <!-- Modal Footer -->
       <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-3">
-        <span class="text-xs font-mono text-slate-500 dark:text-slate-400" id="modalFileSize">1.78 GB</span>
+        <span class="text-xs font-mono text-slate-500 dark:text-slate-400" id="modalFileSize">1.82 GB</span>
         <div class="flex gap-2">
-          <a id="modalDownloadLink" href="#" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-full bg-liquid-blue text-white hover:bg-blue-600 font-semibold text-xs transition flex items-center gap-2 shadow-sm">
+          <a id="modalDownloadLink" href="#" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-full bg-brand-blue text-white hover:bg-blue-600 font-semibold text-xs transition flex items-center gap-2">
             <i data-lucide="download" class="w-3.5 h-3.5"></i>
-            <span>SourceForge Download</span>
-          </a>
-          <a href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-full liquid-capsule text-slate-700 dark:text-white font-medium text-xs hover:bg-white/30 dark:hover:bg-white/15 transition flex items-center gap-1.5">
-            <i data-lucide="send" class="w-3.5 h-3.5 text-liquid-blue"></i>
-            <span>Support Chat</span>
+            <span>Download Mirror</span>
           </a>
         </div>
       </div>
@@ -642,38 +615,45 @@
   </div>
 
   <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition duration-300 liquid-capsule text-slate-900 dark:text-white px-5 py-3 rounded-full font-mono text-xs shadow-2xl flex items-center gap-2.5 border border-slate-300 dark:border-white/20">
-    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i>
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition duration-300 capsule-pill text-slate-900 dark:text-white px-5 py-3 rounded-full font-mono text-xs shadow-2xl flex items-center gap-2.5">
+    <i data-lucide="check-circle" class="w-4 h-4 text-brand-emerald"></i>
     <span id="toastMsg">Action executed</span>
   </div>
 
-  <footer class="border-t border-slate-200 dark:border-white/10 py-16 text-slate-500 dark:text-slate-400 text-xs relative z-10 bg-slate-100/50 dark:bg-black/60">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <footer class="border-t border-slate-200/80 dark:border-white/10 py-16 text-slate-500 dark:text-slate-400 text-xs relative z-10 bg-slate-100/50 dark:bg-black/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-200 dark:border-white/10">
+        
+        <!-- Logo Brand -->
         <div class="flex items-center gap-3">
-          <div class="w-7 h-7 rounded-full bg-slate-900 dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xs">O</div>
-          <span class="text-slate-900 dark:text-white font-semibold text-sm">OctaviOS Open Source Project</span>
+          <svg class="w-6 h-6" viewBox="0 0 100 100" fill="none">
+            <path d="M 30,8 L 70,8 L 92,30 L 92,70 L 70,92 L 30,92 L 8,70 L 8,30 Z" stroke="#00F0FF" stroke-width="8" stroke-linejoin="round" />
+            <circle cx="50" cy="50" r="10" fill="#0A84FF" />
+          </svg>
+          <span class="text-slate-900 dark:text-white font-bold text-sm">OctaviOS Open Source Project</span>
         </div>
+
         <div class="flex flex-wrap gap-6 text-slate-600 dark:text-slate-400">
-          <a href="https://github.com/OctaviOS-Plus" target="_blank" rel="noopener" class="hover:text-liquid-blue transition">GitHub Org</a>
-          <a href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="hover:text-liquid-blue transition">Telegram Hub</a>
-          <a href="https://sourceforge.net/projects/octavios/" target="_blank" rel="noopener" class="hover:text-liquid-blue transition">SourceForge Mirrors</a>
-          <a href="https://xdaforums.com" target="_blank" rel="noopener" class="hover:text-liquid-blue transition">XDA Community</a>
+          <a href="https://github.com/OctaviOS-Plus" target="_blank" rel="noopener" class="hover:text-brand-blue transition">GitHub Org</a>
+          <a href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="hover:text-brand-blue transition">Telegram Updates</a>
+          <a href="https://sourceforge.net/projects/octavios/" target="_blank" rel="noopener" class="hover:text-brand-blue transition">SourceForge</a>
+          <a href="https://xdaforums.com" target="_blank" rel="noopener" class="hover:text-brand-blue transition">XDA Community</a>
         </div>
       </div>
+
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px]">
-        <p>&copy; <span id="yearSpan"></span> OctaviOS Contributors. Liquid Glass Architecture &bull; AOSP &bull; Free &amp; Open Source.</p>
-        <p class="font-mono">Engineered for GitHub Pages &bull; Dual-Mode GPU Shaders</p>
+        <p>&copy; <span id="yearSpan"></span> OctaviOS Contributors. Android 17 / v17 Liquid Architecture.</p>
+        <p class="font-mono">Zero Neumorphism &bull; True Obsidian Glass</p>
       </div>
     </div>
   </footer>
 
   <script>
-    // Initialize icons
+    // 1. Initialize Icons & Year
     lucide.createIcons();
     document.getElementById('yearSpan').textContent = new Date().getFullYear();
 
-    // 1. THEME ENGINE: Light & Dark Mode with LocalStorage
+    // 2. THEME ENGINE: Obsidian Dark & Crystal Light (No dirty shadows)
     const htmlElem = document.documentElement;
     const themeToggleBtn = document.getElementById('themeToggleBtn');
 
@@ -688,7 +668,6 @@
       lucide.createIcons();
     }
 
-    // Default or stored preference
     const savedTheme = localStorage.getItem('octavi_theme');
     if (savedTheme === 'light') {
       applyTheme(false);
@@ -701,46 +680,46 @@
       applyTheme(!isCurrentlyDark);
     });
 
-    // 2. CAUSTIC MOUSE TRACKER: Real-time specular highlight on hover
-    document.querySelectorAll('.glass-caustic').forEach(card => {
+    // 3. CAUSTIC MOUSE TRACKER
+    document.querySelectorAll('.caustic-glow').forEach(card => {
       card.addEventListener('pointermove', (e) => {
         const rect = card.getBoundingClientRect();
-        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-        card.style.setProperty('--caustic-opacity', '1');
+        card.style.setProperty('--cursor-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--cursor-y', `${e.clientY - rect.top}px`);
+        card.style.setProperty('--caustic-active', '1');
       });
       card.addEventListener('pointerleave', () => {
-        card.style.setProperty('--caustic-opacity', '0');
+        card.style.setProperty('--caustic-active', '0');
       });
     });
 
-    // 3. PHONE CLOCK UPDATE
+    // 4. PHONE CLOCK
     function updateClock() {
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
-      const clockElem = document.getElementById('phoneClock');
-      if (clockElem) clockElem.textContent = `${hours}:${minutes}`;
+      const clock = document.getElementById('phoneClock');
+      if (clock) clock.textContent = `${hours}:${minutes}`;
     }
     setInterval(updateClock, 1000);
     updateClock();
 
-    // 4. PHONE DISPLAY SCREEN TOGGLES
+    // 5. PHONE SCREEN SWITCHER
     const phoneScreenBody = document.getElementById('phoneScreenBody');
     const screenPresets = {
       lock: `
         <div class="space-y-2">
-          <div class="text-[10px] uppercase font-mono text-liquid-cyan">Lockscreen Notifications</div>
+          <div class="text-[10px] uppercase font-mono text-brand-cyan">Lockscreen Glance</div>
           <div class="p-2 rounded-xl bg-white/10 border border-white/10 flex items-center gap-2.5">
-            <i data-lucide="bell" class="w-4 h-4 text-liquid-blue shrink-0"></i>
+            <i data-lucide="bell" class="w-4 h-4 text-brand-blue shrink-0"></i>
             <div class="truncate">
-              <span class="font-bold text-white">Octavi Update</span> &bull; 15.0 Hotfix Ready
+              <span class="font-bold text-white">Octavi Update</span> &bull; v17.0 Stable Installed
             </div>
           </div>
           <div class="p-2 rounded-xl bg-white/10 border border-white/10 flex items-center gap-2.5">
-            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+            <i data-lucide="shield-check" class="w-4 h-4 text-brand-emerald shrink-0"></i>
             <div class="truncate">
-              <span class="font-bold text-white">Google Play</span> &bull; Integrity CTS Passed
+              <span class="font-bold text-white">Play Integrity</span> &bull; MEETS_STRONG_INTEGRITY
             </div>
           </div>
         </div>
@@ -751,19 +730,19 @@
       `,
       lab: `
         <div class="space-y-2">
-          <div class="text-[10px] uppercase font-mono text-liquid-purple">Liquid Control Center</div>
+          <div class="text-[10px] uppercase font-mono text-brand-purple">Octavi Lab v17 Controls</div>
           <div class="grid grid-cols-2 gap-2 text-[10px]">
-            <div class="p-2 rounded-xl bg-liquid-blue text-white font-semibold flex items-center justify-between">
-              <span>Dynamic Island</span>
+            <div class="p-2 rounded-xl bg-brand-blue text-white font-semibold flex items-center justify-between">
+              <span>Liquid Blur</span>
               <i data-lucide="check" class="w-3 h-3"></i>
             </div>
             <div class="p-2 rounded-xl bg-white/10 text-white/90 font-medium flex items-center justify-between">
               <span>AOD 1Hz</span>
               <i data-lucide="moon" class="w-3 h-3"></i>
             </div>
-            <div class="p-2 rounded-xl bg-liquid-purple text-white font-semibold flex items-center justify-between">
-              <span>Liquid Blur</span>
-              <i data-lucide="sliders" class="w-3 h-3"></i>
+            <div class="p-2 rounded-xl bg-brand-purple text-white font-semibold flex items-center justify-between">
+              <span>Dynamic Island</span>
+              <i data-lucide="sparkles" class="w-3 h-3"></i>
             </div>
             <div class="p-2 rounded-xl bg-white/10 text-white/90 font-medium flex items-center justify-between">
               <span>Dolby Spatial</span>
@@ -771,30 +750,26 @@
             </div>
           </div>
         </div>
-        <div class="text-[9px] font-mono text-slate-400 text-center pt-1">Octavi Lab Aero Kernel 2026</div>
+        <div class="text-[9px] font-mono text-slate-400 text-center pt-1">Android 17 Liquid Architecture</div>
       `,
       kernel: `
         <div class="space-y-1.5 font-mono text-[10px]">
-          <div class="text-emerald-400 font-bold uppercase tracking-wider">Kernel Telemetry</div>
+          <div class="text-brand-emerald font-bold uppercase tracking-wider">Kernel Telemetry</div>
           <div class="flex justify-between text-white/80">
-            <span>Governor</span>
-            <span class="text-liquid-cyan">walt-sched (pro)</span>
+            <span>Core Governor</span>
+            <span class="text-brand-cyan">walt-sched (v17)</span>
           </div>
           <div class="flex justify-between text-white/80">
-            <span>Frame Jitter</span>
-            <span class="text-emerald-400">0.08 ms (Locked)</span>
-          </div>
-          <div class="flex justify-between text-white/80">
-            <span>ZRAM Swappiness</span>
-            <span class="text-liquid-blue">60% (LZ4)</span>
+            <span>Buffer Jitter</span>
+            <span class="text-brand-emerald">0.08 ms (Locked)</span>
           </div>
           <div class="flex justify-between text-white/80">
             <span>Idle Draw</span>
-            <span class="text-emerald-400">0.24% / hour</span>
+            <span class="text-brand-emerald">0.21% / hour</span>
           </div>
         </div>
-        <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mt-1">
-          <div class="bg-gradient-to-r from-liquid-cyan to-liquid-purple h-full w-[85%] rounded-full"></div>
+        <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mt-2">
+          <div class="bg-gradient-to-r from-brand-cyan to-brand-purple h-full w-[90%] rounded-full"></div>
         </div>
       `
     };
@@ -814,60 +789,55 @@
     };
     switchScreen('lock');
 
-    // Dynamic Island Click Expansion
+    // Dynamic Island Click Interaction
     const dynamicIsland = document.getElementById('dynamicIsland');
     let isIslandExpanded = false;
     dynamicIsland.addEventListener('click', () => {
       isIslandExpanded = !isIslandExpanded;
       if (isIslandExpanded) {
-        dynamicIsland.classList.remove('w-44');
-        dynamicIsland.classList.add('w-64', 'bg-black');
-        document.getElementById('islandSubtext').textContent = 'Bit-perfect ALAC • 921kbps';
+        dynamicIsland.classList.remove('w-48');
+        dynamicIsland.classList.add('w-64');
+        document.getElementById('islandSubtext').textContent = 'Direct ALAC 921kbps • Spatial';
       } else {
         dynamicIsland.classList.remove('w-64');
-        dynamicIsland.classList.add('w-44');
-        document.getElementById('islandSubtext').textContent = 'Dolby Spatial • 120Hz';
+        dynamicIsland.classList.add('w-48');
+        document.getElementById('islandSubtext').textContent = 'Dolby Atmos • 120Hz';
       }
     });
 
-    // 5. BENTO INTERACTIVE SLIDERS & QS
+    // 6. REFRESH RATE SLIDER
     const rateSlider = document.getElementById('rateSlider');
     const rateLabel = document.getElementById('rateLabel');
     rateSlider.addEventListener('input', (e) => {
       rateLabel.textContent = `${e.target.value} Hz`;
     });
 
-    window.setAccent = function(color, name) {
-      document.getElementById('accentName').textContent = name;
-      showToast(`Liquid accent switched to ${name}`);
-    };
-
-    window.toggleQs = function(btn) {
+    // Tile toggle
+    window.toggleTile = function(btn) {
       btn.classList.toggle('active');
       if (btn.classList.contains('active')) {
-        btn.classList.remove('bg-white/40', 'dark:bg-white/10', 'text-slate-800', 'dark:text-white');
-        btn.classList.add('bg-liquid-blue', 'text-white');
+        btn.classList.remove('bg-slate-200/60', 'dark:bg-white/10', 'text-slate-800', 'dark:text-white');
+        btn.classList.add('bg-brand-blue', 'text-white');
       } else {
-        btn.classList.remove('bg-liquid-blue', 'text-white');
-        btn.classList.add('bg-white/40', 'dark:bg-white/10', 'text-slate-800', 'dark:text-white');
+        btn.classList.remove('bg-brand-blue', 'text-white');
+        btn.classList.add('bg-slate-200/60', 'dark:bg-white/10', 'text-slate-800', 'dark:text-white');
       }
     };
 
-    // 6. LIVE FRAME PACING TELEMETRY CANVAS
+    // 7. REAL-TIME JITTER GRAPH
     const canvas = document.getElementById('jitterCanvas');
     const ctx = canvas.getContext('2d');
-    let points = Array.from({ length: 40 }, () => 42 + Math.random() * 4);
+    let jitterPoints = Array.from({ length: 40 }, () => 40 + Math.random() * 3);
 
-    function drawGraph() {
+    function drawJitterGraph() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Line path
       ctx.beginPath();
-      ctx.strokeStyle = '#00f2fe';
+      ctx.strokeStyle = '#00F0FF';
       ctx.lineWidth = 2;
-      const step = canvas.width / (points.length - 1);
+      const step = canvas.width / (jitterPoints.length - 1);
 
-      points.forEach((val, i) => {
+      jitterPoints.forEach((val, i) => {
         const x = i * step;
         const y = canvas.height - (val / 60) * canvas.height;
         if (i === 0) ctx.moveTo(x, y);
@@ -875,41 +845,39 @@
       });
       ctx.stroke();
 
-      // Flat reference line (8.33ms / 120Hz)
+      // Flat reference guideline
       ctx.beginPath();
       ctx.setLineDash([4, 4]);
-      ctx.strokeStyle = 'rgba(48, 209, 88, 0.45)';
+      ctx.strokeStyle = 'rgba(48, 209, 88, 0.5)';
       ctx.moveTo(0, canvas.height * 0.4);
       ctx.lineTo(canvas.width, canvas.height * 0.4);
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // Update data
-      points.shift();
-      points.push(42 + (Math.random() * 3 - 1.5));
-      requestAnimationFrame(drawGraph);
+      jitterPoints.shift();
+      jitterPoints.push(40 + (Math.random() * 2 - 1));
+      requestAnimationFrame(drawJitterGraph);
     }
-    // Resize canvas to display bounds
     canvas.width = canvas.offsetWidth;
-    drawGraph();
+    drawJitterGraph();
 
-    // 7. DEVICE CATALOG & MATRIX
+    // 8. DEVICE MATRIX (v17 Updates)
     const devices = [
       {
         name: "POCO F3 / Redmi K40 / Mi 11X",
         codename: "alioth",
         oem: "Xiaomi",
         maintainer: "Pranav",
-        version: "v15.0-Liquid",
-        size: "1.78 GB",
-        date: "2026-10-02",
-        sha256: "9f83a48e718274a123bc454991b7852b855e3b0c44298fc1c149afbf4c8996fb",
+        version: "v17.0-Liquid",
+        size: "1.82 GB",
+        date: "2026-10-04",
+        sha256: "3f94a817bca890124e98f712ac98b15e4782bf6109dcba8912ef57b1029c9a62",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/alioth/",
         changelog: [
-          "Merged October Android 15 Core Security Patches",
-          "Engineered Leica Camera Liquid Spatial Color integration",
-          "Fixed 120Hz ProMotion screen flicker during sleep wake",
-          "Dolby Atmos binaural processing profile calibration"
+          "Initial Android 17 Core integration",
+          "Leica Camera 5.0 with Liquid UI controls",
+          "120Hz ProMotion screen flicker fix during low-brightness sleep wake",
+          "Dolby Atmos spatial binaural audio profile tuned"
         ]
       },
       {
@@ -917,15 +885,15 @@
         codename: "lemonadep",
         oem: "OnePlus",
         maintainer: "Gaurav",
-        version: "v15.0-Liquid",
-        size: "1.65 GB",
-        date: "2026-10-01",
-        sha256: "3d7b4198fa1239cba85012489cbe34015698bc124976a14298fcb154817a26f0",
+        version: "v17.0-Liquid",
+        size: "1.74 GB",
+        date: "2026-10-03",
+        sha256: "8e4129bcfe510928374a0198bc721498bfe19283746a510928374a0198bc7214",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/lemonadep/",
         changelog: [
-          "Three-stage physical alert slider haptic synchronizer",
-          "Upstream Linux 5.4 kernel LTS merge",
-          "Hasselblad Color Calibration pipeline restoration"
+          "Physical alert slider haptic synchronizer for Android 17",
+          "Upstream Linux 5.4.280 LTS kernel merge",
+          "Hasselblad Color Calibration pipeline active"
         ]
       },
       {
@@ -933,10 +901,10 @@
         codename: "sweet",
         oem: "Xiaomi",
         maintainer: "Madhav",
-        version: "v15.0-Liquid",
-        size: "1.69 GB",
-        date: "2026-09-28",
-        sha256: "6c5e0382d114d3cc910ebd20130d3f745e93f5ec26fb9e37d527f5e9b8924512",
+        version: "v17.0-Liquid",
+        size: "1.71 GB",
+        date: "2026-10-02",
+        sha256: "7b10928374a0198bc721498bfe19283746a510928374a0198bc721498bfe1928",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/sweet/",
         changelog: [
           "108MP camera ISP pipeline stabilization",
@@ -949,15 +917,15 @@
         codename: "vayu",
         oem: "Xiaomi",
         maintainer: "Akash",
-        version: "v14.9-Stable",
-        size: "1.58 GB",
-        date: "2026-09-20",
-        sha256: "4a28f804598d363b93478912ef57b1029c9a6234d8ef0816b328102d84792bce",
+        version: "v17.0-Liquid",
+        size: "1.65 GB",
+        date: "2026-09-30",
+        sha256: "510928374a0198bc721498bfe19283746a510928374a0198bc721498bfe19283",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/vayu/",
         changelog: [
-          "Snapdragon 860 thermal governor overhaul",
-          "Biometric wake latency lowered to 98ms",
-          "Dynamic 90Hz limiters for video codecs"
+          "Snapdragon 860 thermal governor overhauled",
+          "Biometric wake latency dropped below 90ms",
+          "Dynamic frame pacing for Vulkan renderers"
         ]
       },
       {
@@ -965,15 +933,15 @@
         codename: "oriole",
         oem: "Google",
         maintainer: "Team Octavi",
-        version: "v15.0-Liquid",
-        size: "1.91 GB",
+        version: "v17.0-Liquid",
+        size: "1.94 GB",
         date: "2026-10-04",
-        sha256: "88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589",
+        sha256: "99aabbccddeeff00112233445566778899aabbccddeeff001122334455667788",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/oriole/",
         changelog: [
-          "Google Tensor scheduler profiling",
-          "Integrated Pixel Camera with Liquid UI toggles",
-          "Sunlight High Brightness Mode auto-activation"
+          "Google Tensor G1 scheduler profiling",
+          "Pixel Camera embedded with Octavi Lab HDR switches",
+          "High Brightness Mode auto-activation under direct sunlight"
         ]
       },
       {
@@ -981,15 +949,15 @@
         codename: "Spacewar",
         oem: "Nothing",
         maintainer: "Kishore",
-        version: "v15.0-Liquid",
-        size: "1.72 GB",
-        date: "2026-10-03",
-        sha256: "112233445566778899aabbccddeeff00112233445566778899aabbccddeeff00",
+        version: "v17.0-Liquid",
+        size: "1.79 GB",
+        date: "2026-10-01",
+        sha256: "445566778899aabbccddeeff00112233445566778899aabbccddeeff00112233",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/Spacewar/",
         changelog: [
-          "Complete Glyph Interface lighting SDK integration",
+          "Full Glyph Interface lighting engine hooks for Android 17",
           "120Hz OLED gamma curve tuning",
-          "Flip-to-Glyph silence trigger implementation"
+          "Flip-to-Glyph silent trigger active"
         ]
       },
       {
@@ -997,14 +965,14 @@
         codename: "arm64-ab",
         oem: "GSI",
         maintainer: "Redline",
-        version: "v15.0-Universal",
-        size: "1.19 GB",
+        version: "v17.0-Universal",
+        size: "1.24 GB",
         date: "2026-10-05",
-        sha256: "c3ab8ff13720e8ad9047dd39466b3c8974e592c2fa383d4a3960714caef0c4f2",
+        sha256: "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/GSI/",
         changelog: [
-          "Universal Treble 3.0 runtime validation",
-          "Phh Treble Settings embedded inside Octavi Lab",
+          "Universal Treble runtime validation for Android 17",
+          "Phh Treble settings integrated inside Octavi Lab",
           "Adaptive brightness curve normalization"
         ]
       }
@@ -1013,7 +981,7 @@
     const deviceGrid = document.getElementById('deviceGrid');
     const deviceSearchInput = document.getElementById('deviceSearchInput');
     const noMatchContainer = document.getElementById('noMatchContainer');
-    const oemChips = document.querySelectorAll('.oem-chip');
+    const oemChips = document.querySelectorAll('.oem-btn');
 
     let currentOem = 'all';
     let currentSearchTerm = '';
@@ -1034,40 +1002,40 @@
         noMatchContainer.classList.add('hidden');
         filtered.forEach(d => {
           const card = document.createElement('div');
-          card.className = "liquid-glass glass-caustic rounded-3xl p-7 flex flex-col justify-between group";
+          card.className = "crystal-card caustic-glow rounded-3xl p-7 flex flex-col justify-between group";
           card.innerHTML = `
             <div>
               <div class="flex items-center justify-between mb-3">
-                <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400">${d.oem}</span>
-                <span class="font-mono text-xs text-liquid-blue dark:text-liquid-cyan bg-liquid-blue/10 px-2.5 py-0.5 rounded-full border border-liquid-blue/20">${d.codename}</span>
+                <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">${d.oem}</span>
+                <span class="font-mono text-xs text-brand-blue dark:text-brand-cyan bg-brand-blue/10 dark:bg-brand-cyan/15 px-2.5 py-0.5 rounded-full border border-brand-blue/20 dark:border-brand-cyan/20">${d.codename}</span>
               </div>
 
-              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-liquid-blue transition">${d.name}</h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Maintained by <strong class="text-slate-800 dark:text-white">${d.maintainer}</strong></p>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-cyan transition">${d.name}</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Maintainer: <strong class="text-slate-800 dark:text-slate-200">${d.maintainer}</strong></p>
 
-              <div class="grid grid-cols-2 gap-3 py-4 my-4 border-y border-slate-200 dark:border-white/10 font-mono text-xs">
+              <div class="grid grid-cols-2 gap-3 py-4 my-4 border-y border-slate-200/80 dark:border-white/10 font-mono text-xs">
                 <div>
                   <span class="text-slate-400 block text-[10px] uppercase">Edition</span>
                   <span class="text-slate-800 dark:text-slate-200">${d.version}</span>
                 </div>
                 <div>
-                  <span class="text-slate-400 block text-[10px] uppercase">Package</span>
+                  <span class="text-slate-400 block text-[10px] uppercase">Size</span>
                   <span class="text-slate-800 dark:text-slate-200">${d.size}</span>
                 </div>
                 <div>
-                  <span class="text-slate-400 block text-[10px] uppercase">Released</span>
+                  <span class="text-slate-400 block text-[10px] uppercase">Build Date</span>
                   <span class="text-slate-800 dark:text-slate-200">${d.date}</span>
                 </div>
                 <div>
                   <span class="text-slate-400 block text-[10px] uppercase">Security</span>
-                  <span class="text-emerald-500 font-semibold">Verified</span>
+                  <span class="text-brand-emerald font-semibold">Enforced</span>
                 </div>
               </div>
             </div>
 
-            <button onclick="openModal('${d.codename}')" class="w-full py-3 rounded-full liquid-capsule hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 font-semibold text-xs tracking-tight transition duration-200 flex items-center justify-center gap-2">
+            <button onclick="openModal('${d.codename}')" class="w-full py-3 rounded-full capsule-pill hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 font-semibold text-xs tracking-tight transition duration-200 flex items-center justify-center gap-2">
               <i data-lucide="download" class="w-4 h-4"></i>
-              <span>Get Download Sheet</span>
+              <span>Download Sheet</span>
             </button>
           `;
           deviceGrid.appendChild(card);
@@ -1075,41 +1043,39 @@
       }
       lucide.createIcons();
 
-      // Bind caustic effects
-      document.querySelectorAll('.glass-caustic').forEach(card => {
+      // Bind caustic tracking
+      document.querySelectorAll('.caustic-glow').forEach(card => {
         card.addEventListener('pointermove', (e) => {
           const rect = card.getBoundingClientRect();
-          card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-          card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-          card.style.setProperty('--caustic-opacity', '1');
+          card.style.setProperty('--cursor-x', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--cursor-y', `${e.clientY - rect.top}px`);
+          card.style.setProperty('--caustic-active', '1');
         });
         card.addEventListener('pointerleave', () => {
-          card.style.setProperty('--caustic-opacity', '0');
+          card.style.setProperty('--caustic-active', '0');
         });
       });
     }
 
-    // Filter Chips Event
     oemChips.forEach(chip => {
       chip.addEventListener('click', () => {
         oemChips.forEach(c => {
-          c.classList.remove('bg-slate-900', 'text-white', 'dark:bg-white', 'dark:text-slate-950');
-          c.classList.add('liquid-capsule', 'text-slate-600', 'dark:text-slate-300');
+          c.classList.remove('bg-slate-950', 'text-white', 'dark:bg-white', 'dark:text-slate-950');
+          c.classList.add('capsule-pill', 'text-slate-600', 'dark:text-slate-300');
         });
-        chip.classList.remove('liquid-capsule', 'text-slate-600', 'dark:text-slate-300');
-        chip.classList.add('bg-slate-900', 'text-white', 'dark:bg-white', 'dark:text-slate-950');
+        chip.classList.remove('capsule-pill', 'text-slate-600', 'dark:text-slate-300');
+        chip.classList.add('bg-slate-950', 'text-white', 'dark:bg-white', 'dark:text-slate-950');
         currentOem = chip.getAttribute('data-oem');
         renderDevices();
       });
     });
 
-    // Search Input
     deviceSearchInput.addEventListener('input', (e) => {
       currentSearchTerm = e.target.value.trim();
       renderDevices();
     });
 
-    // 8. MODAL SHEET LOGIC
+    // 9. MODAL LOGIC
     const modal = document.getElementById('deviceModal');
     const closeModal = document.getElementById('closeModal');
     const modalDeviceTitle = document.getElementById('modalDeviceTitle');
@@ -1134,9 +1100,7 @@
       modal.classList.remove('hidden');
     };
 
-    function hideModal() {
-      modal.classList.add('hidden');
-    }
+    function hideModal() { modal.classList.add('hidden'); }
     closeModal.addEventListener('click', hideModal);
     modal.addEventListener('click', (e) => {
       if (e.target === modal) hideModal();
@@ -1146,56 +1110,56 @@
       const btnGapps = document.getElementById('btn-var-gapps');
       const btnVanilla = document.getElementById('btn-var-vanilla');
       if (type === 'gapps') {
-        btnGapps.className = "flex-1 py-2 rounded-xl bg-liquid-blue text-white font-semibold transition";
+        btnGapps.className = "flex-1 py-2 rounded-xl bg-brand-blue text-white font-semibold transition";
         btnVanilla.className = "flex-1 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-white transition";
-        modalFileSize.textContent = "Size: 1.78 GB (GApps Included)";
+        modalFileSize.textContent = "Size: 1.82 GB (GApps Included)";
       } else {
-        btnVanilla.className = "flex-1 py-2 rounded-xl bg-liquid-blue text-white font-semibold transition";
+        btnVanilla.className = "flex-1 py-2 rounded-xl bg-brand-blue text-white font-semibold transition";
         btnGapps.className = "flex-1 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-white transition";
-        modalFileSize.textContent = "Size: 1.22 GB (Vanilla MicroG Ready)";
+        modalFileSize.textContent = "Size: 1.25 GB (Vanilla MicroG Ready)";
       }
     };
 
-    // 9. TERMINAL TAB ENGINE
+    // 10. TERMINAL PROTOCOL ENGINE
     const terminalCommands = document.getElementById('terminalCommands');
     const terminalData = {
       recovery: `
-        <div><span class="text-emerald-500 font-bold">host@macbook</span>:<span class="text-liquid-blue">~</span>$ adb devices</div>
+        <div><span class="text-brand-emerald font-bold">host@developer</span>:<span class="text-brand-blue">~</span>$ adb devices</div>
         <div class="text-slate-500 text-xs">List of devices attached: 871a28cb device</div>
-        <div><span class="text-emerald-500 font-bold">host@macbook</span>:<span class="text-liquid-blue">~</span>$ adb reboot recovery</div>
-        <div class="text-slate-500 text-xs">&gt;&gt; Rebooting to Octavi Recovery... Select Apply update from ADB</div>
-        <div><span class="text-emerald-500 font-bold">host@macbook</span>:<span class="text-liquid-blue">~</span>$ adb sideload OctaviOS-15.0-OFFICIAL.zip</div>
-        <div class="text-liquid-cyan text-xs">serving: 'OctaviOS-15.0-OFFICIAL.zip'  (~48%)  [================&gt;                 ]</div>
-        <div class="text-emerald-500 font-bold text-xs mt-1">&gt;&gt; Total xfer: 1.00x — Verified Checksum: OK</div>
-        <div><span class="text-emerald-500 font-bold">host@macbook</span>:<span class="text-liquid-blue">~</span>$ adb reboot</div>
+        <div><span class="text-brand-emerald font-bold">host@developer</span>:<span class="text-brand-blue">~</span>$ adb reboot recovery</div>
+        <div class="text-slate-500 text-xs">&gt;&gt; In Octavi Recovery, select "Apply update" -&gt; "Apply from ADB"</div>
+        <div><span class="text-brand-emerald font-bold">host@developer</span>:<span class="text-brand-blue">~</span>$ adb sideload OctaviOS-17.0-OFFICIAL.zip</div>
+        <div class="text-brand-cyan text-xs">serving: 'OctaviOS-17.0-OFFICIAL.zip'  (~52%)  [================&gt;                 ]</div>
+        <div class="text-brand-emerald font-bold text-xs mt-1">&gt;&gt; Total xfer: 1.00x — Verified Checksum: OK</div>
+        <div><span class="text-brand-emerald font-bold">host@developer</span>:<span class="text-brand-blue">~</span>$ adb reboot</div>
       `,
       fastboot: `
-        <div><span class="text-emerald-500 font-bold">host@macbook</span>:<span class="text-liquid-blue">~</span>$ fastboot devices</div>
+        <div><span class="text-brand-emerald font-bold">host@developer</span>:<span class="text-brand-blue">~</span>$ fastboot devices</div>
         <div class="text-slate-500 text-xs">871a28cb fastboot</div>
-        <div><span class="text-emerald-500 font-bold">host@macbook</span>:<span class="text-liquid-blue">~</span>$ fastboot reboot fastboot</div>
-        <div class="text-slate-500 text-xs">&gt;&gt; Entering fastbootd userspace mode...</div>
-        <div><span class="text-emerald-500 font-bold">host@macbook</span>:<span class="text-liquid-blue">~</span>$ fastboot flash boot boot.img</div>
-        <div><span class="text-emerald-500 font-bold">host@macbook</span>:<span class="text-liquid-blue">~</span>$ fastboot flash vendor_boot vendor_boot.img</div>
-        <div><span class="text-emerald-500 font-bold">host@macbook</span>:<span class="text-liquid-blue">~</span>$ fastboot reboot recovery</div>
+        <div><span class="text-brand-emerald font-bold">host@developer</span>:<span class="text-brand-blue">~</span>$ fastboot reboot fastboot</div>
+        <div class="text-slate-500 text-xs">&gt;&gt; Entering userspace fastbootd environment...</div>
+        <div><span class="text-brand-emerald font-bold">host@developer</span>:<span class="text-brand-blue">~</span>$ fastboot flash boot boot.img</div>
+        <div><span class="text-brand-emerald font-bold">host@developer</span>:<span class="text-brand-blue">~</span>$ fastboot flash vendor_boot vendor_boot.img</div>
+        <div><span class="text-brand-emerald font-bold">host@developer</span>:<span class="text-brand-blue">~</span>$ fastboot reboot recovery</div>
       `,
-      dirty: `
-        <div><span class="text-emerald-500 font-bold">host@macbook</span>:<span class="text-liquid-blue">~</span>$ adb reboot sideload</div>
-        <div><span class="text-emerald-500 font-bold">host@macbook</span>:<span class="text-liquid-blue">~</span>$ adb sideload OctaviOS-15.0-OTA-Update.zip</div>
-        <div class="text-liquid-cyan text-xs">&gt;&gt; Patching system_a and system_b partitions... (No data wipe required)</div>
-        <div><span class="text-emerald-500 font-bold">host@macbook</span>:<span class="text-liquid-blue">~</span>$ adb reboot</div>
+      ota: `
+        <div><span class="text-brand-emerald font-bold">host@developer</span>:<span class="text-brand-blue">~</span>$ adb reboot sideload</div>
+        <div><span class="text-brand-emerald font-bold">host@developer</span>:<span class="text-brand-blue">~</span>$ adb sideload OctaviOS-17.0-Incremental-OTA.zip</div>
+        <div class="text-brand-cyan text-xs">&gt;&gt; Applying dual partition A/B slot patch... (No data wipe required)</div>
+        <div><span class="text-brand-emerald font-bold">host@developer</span>:<span class="text-brand-blue">~</span>$ adb reboot</div>
       `
     };
 
-    window.switchTerminalTab = function(tab) {
-      document.querySelectorAll('#tab-recovery, #tab-fastboot, #tab-dirty').forEach(t => {
+    window.switchTerminal = function(tab) {
+      document.querySelectorAll('#tab-recovery, #tab-fastboot, #tab-ota').forEach(t => {
         t.className = "px-3 py-1 rounded-lg text-slate-600 dark:text-slate-300 hover:text-white transition";
       });
-      document.getElementById(`tab-${tab}`).className = "px-3 py-1 rounded-lg bg-liquid-blue text-white font-semibold transition";
+      document.getElementById(`tab-${tab}`).className = "px-3 py-1 rounded-lg bg-brand-blue text-white font-semibold transition";
       terminalCommands.innerHTML = terminalData[tab];
     };
-    switchTerminalTab('recovery');
+    switchTerminal('recovery');
 
-    // 10. CLIPBOARD & TOAST
+    // 11. TOAST & CLIPBOARD
     function showToast(text) {
       const toast = document.getElementById('toast');
       document.getElementById('toastMsg').textContent = text;
@@ -1219,10 +1183,10 @@
       showToast("Checksum copied to clipboard");
     });
 
-    window.copyTerminalCode = function() {
-      const commands = `adb reboot sideload\nadb sideload OctaviOS-15.0-OFFICIAL.zip\nadb reboot`;
+    window.copyTerminalCommands = function() {
+      const commands = `adb reboot sideload\nadb sideload OctaviOS-17.0-OFFICIAL.zip\nadb reboot`;
       copyToClipboard(commands);
-      showToast("Terminal sequence copied");
+      showToast("Terminal commands copied");
     };
 
     // Initial render
