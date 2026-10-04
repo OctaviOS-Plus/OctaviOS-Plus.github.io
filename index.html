@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OctaviOS — Redefine Your Android Experience</title>
+  <meta name="description" content="OctaviOS is an AOSP-based custom ROM featuring unique cardified UI, Octavi Lab customizations, battery optimizations, and fluid animations.">
+  
+  <!-- Fonts: Inter & Outfit for modern sleek typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            octavi: {
+              purple: '#8b5cf6',
+              violet: '#a855f7',
+              cyan: '#06b6d4',
+              glow: '#c084fc',
+              dark: '#090a10',
+              card: 'rgba(18, 20, 32, 0.7)',
+              border: 'rgba(255, 255, 255, 0.08)'
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 5s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom glow and backdrop effects */
+    body {
+      background-color: #07080d;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    
+    .glass-card {
+      background: rgba(15, 17, 26, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    
+    .glass-card-hover {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .glass-card-hover:hover {
+      border-color: rgba(168, 85, 247, 0.35);
+      box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .neon-gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .neon-border {
+      position: relative;
+    }
+
+    .neon-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, #06b6d4, #a855f7, #ec4899);
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0.2;
+      transition: opacity 0.3s;
+    }
+
+    .neon-border:hover::before {
+      opacity: 0.6;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090a10;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #272738;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #7c3aed;
+    }
+  </style>
+</head>
+<body class="selection:bg-purple-600 selection:text-white antialiased">
+
+  <!-- Ambient background glow spots -->
+  <div class="fixed top-0 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-slow"></div>
+  <div class="fixed top-1/3 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-slow" style="animation-delay: 2s;"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-white/5 bg-[#080910]/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-cyan-500 p-0.5 shadow-lg shadow-purple-500/25 group-hover:scale-105 transition-transform">
+          <div class="w-full h-full bg-[#0a0c16] rounded-[10px] flex items-center justify-center">
+            <span class="font-display font-black text-xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-300">O</span>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-extrabold text-xl tracking-tight text-white flex items-center gap-1.5">
+            Octavi<span class="text-cyan-400">OS</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">Official</span>
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#features" class="hover:text-purple-400 transition-colors">Features</a>
+        <a href="#devices" class="hover:text-purple-400 transition-colors">Downloads</a>
+        <a href="#showcase" class="hover:text-purple-400 transition-colors">Showcase</a>
+        <a href="#installation" class="hover:text-purple-400 transition-colors">Guide</a>
+        <a href="#team" class="hover:text-purple-400 transition-colors">Team</a>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="p-2.5 rounded-xl border border-white/10 hover:border-purple-500/40 text-slate-300 hover:text-white hover:bg-white/5 transition flex items-center justify-center" title="Telegram Channel">
+          <i data-lucide="send" class="w-4 h-4 text-cyan-400"></i>
+        </a>
+        <a href="https://github.com/Octavi-OS" target="_blank" rel="noopener" class="p-2.5 rounded-xl border border-white/10 hover:border-purple-500/40 text-slate-300 hover:text-white hover:bg-white/5 transition flex items-center justify-center" title="GitHub Org">
+          <i data-lucide="github" class="w-4 h-4"></i>
+        </a>
+        <a href="#devices" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-purple-500 to-cyan-500 text-white font-semibold text-sm shadow-lg shadow-purple-500/20 hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition">
+          Get OctaviOS
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-300 hover:text-white focus:outline-none">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-6 space-y-3 border-t border-white/5 bg-[#0a0c16]/95 backdrop-blur-xl">
+      <a href="#features" class="block px-3 py-2 rounded-lg text-slate-200 hover:bg-purple-500/10">Features</a>
+      <a href="#devices" class="block px-3 py-2 rounded-lg text-slate-200 hover:bg-purple-500/10">Downloads</a>
+      <a href="#showcase" class="block px-3 py-2 rounded-lg text-slate-200 hover:bg-purple-500/10">Showcase</a>
+      <a href="#installation" class="block px-3 py-2 rounded-lg text-slate-200 hover:bg-purple-500/10">Installation Guide</a>
+      <a href="#team" class="block px-3 py-2 rounded-lg text-slate-200 hover:bg-purple-500/10">Team</a>
+      <div class="pt-2 flex items-center gap-3">
+        <a href="#devices" class="w-full text-center py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 font-semibold text-white">Download ROM</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="relative pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Copy & Call To Actions -->
+        <div class="lg:col-span-7 space-y-7 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs font-medium">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+            </span>
+            OctaviOS Official Release Portal
+          </div>
+
+          <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
+            Redefine your <br>
+            <span class="neon-gradient-text">Android Experience.</span>
+          </h1>
+
+          <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            A distinct AOSP-based custom firmware engineered for those who crave personality. 
+            Featuring the signature <strong class="text-slate-200">card-style One-Hand UI</strong>, deep <strong class="text-slate-200">Octavi Lab</strong> customization suite, 
+            and rock-solid daily driver battery life.
+          </p>
+
+          <!-- Buttons -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#devices" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-purple-500 to-cyan-500 text-white font-semibold text-base shadow-xl shadow-purple-600/30 hover:shadow-purple-600/50 hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5">
+              <i data-lucide="download" class="w-5 h-5"></i>
+              <span>Download Builds</span>
+            </a>
+            
+            <a href="https://github.com/Octavi-OS" target="_blank" rel="noopener" class="px-6 py-3.5 rounded-xl glass-card text-white font-semibold text-base border border-white/10 hover:border-purple-400/40 hover:bg-white/5 active:scale-95 transition-all flex items-center gap-2">
+              <i data-lucide="git-branch" class="w-5 h-5 text-purple-400"></i>
+              <span>Source Manifest</span>
+            </a>
+
+            <a href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="px-5 py-3.5 rounded-xl glass-card text-slate-300 font-semibold text-base border border-white/10 hover:text-white hover:border-cyan-400/40 hover:bg-white/5 active:scale-95 transition-all flex items-center gap-2">
+              <i data-lucide="message-circle" class="w-5 h-5 text-cyan-400"></i>
+              <span>Community</span>
+            </a>
+          </div>
+
+          <!-- Quick Spec Badges -->
+          <div class="pt-6 grid grid-cols-3 gap-4 border-t border-white/10 max-w-lg mx-auto lg:mx-0">
+            <div>
+              <p class="font-display text-2xl font-bold text-white">AOSP</p>
+              <p class="text-xs text-slate-400">Android 12 / 13 Base</p>
+            </div>
+            <div>
+              <p class="font-display text-2xl font-bold text-cyan-400">100+</p>
+              <p class="text-xs text-slate-400">Octavi Lab Tweaks</p>
+            </div>
+            <div>
+              <p class="font-display text-2xl font-bold text-purple-400">Daily</p>
+              <p class="text-xs text-slate-400">Driver Stability</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Device Mockup -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-[340px] animate-float">
+            <!-- Backdrop Glow -->
+            <div class="absolute -inset-4 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-[50px] blur-2xl opacity-30"></div>
+
+            <!-- Phone Frame -->
+            <div class="relative rounded-[44px] p-3.5 bg-gradient-to-b from-slate-700 via-slate-900 to-black shadow-2xl border border-white/20">
+              <!-- Inner Screen -->
+              <div class="relative bg-[#0c0d17] rounded-[36px] overflow-hidden border border-white/10 aspect-[9/19] flex flex-col justify-between p-5 select-none">
+                
+                <!-- Status Bar Mockup -->
+                <div class="flex items-center justify-between text-xs text-slate-400 pt-1">
+                  <span class="font-semibold text-white tracking-wider">12:30</span>
+                  <!-- Pill camera punchhole -->
+                  <div class="w-3.5 h-3.5 rounded-full bg-black border border-white/10"></div>
+                  <div class="flex items-center gap-1.5">
+                    <i data-lucide="wifi" class="w-3.5 h-3.5"></i>
+                    <i data-lucide="battery" class="w-4 h-4 text-purple-400"></i>
+                  </div>
+                </div>
+
+                <!-- Octavi Cardified Settings Header preview -->
+                <div class="space-y-4 my-auto">
+                  <div class="text-center pt-2">
+                    <p class="text-[11px] font-bold tracking-widest uppercase text-cyan-400">OctaviOS Experience</p>
+                    <h2 class="font-display text-2xl font-extrabold text-white">Settings</h2>
+                  </div>
+
+                  <!-- Big Hero Banner (Signature Octavi style) -->
+                  <div class="rounded-2xl p-4 bg-gradient-to-br from-purple-900/60 to-purple-950/80 border border-purple-500/30 flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-purple-300">
+                      <i data-lucide="sliders" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-sm font-bold text-white">Octavi Lab</h3>
+                      <p class="text-[11px] text-purple-200/80">Customize statusbar, clocks & UI</p>
+                    </div>
+                  </div>
+
+                  <!-- Mock Settings Cards -->
+                  <div class="space-y-2">
+                    <div class="rounded-xl p-3 bg-white/5 border border-white/5 flex items-center justify-between">
+                      <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                          <i data-lucide="smartphone" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                          <p class="text-xs font-semibold text-white">About Phone</p>
+                          <p class="text-[10px] text-slate-400">OctaviOS v3.8 • Official</p>
+                        </div>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+                    </div>
+
+                    <div class="rounded-xl p-3 bg-white/5 border border-white/5 flex items-center justify-between">
+                      <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-lg bg-pink-500/20 text-pink-400 flex items-center justify-center">
+                          <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                          <p class="text-xs font-semibold text-white">Security & Privacy</p>
+                          <p class="text-[10px] text-slate-400">Enforcing • SafetyNet Passed</p>
+                        </div>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+                    </div>
+
+                    <div class="rounded-xl p-3 bg-white/5 border border-white/5 flex items-center justify-between">
+                      <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                          <i data-lucide="zap" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                          <p class="text-xs font-semibold text-white">Battery Optimization</p>
+                          <p class="text-[10px] text-slate-400">Smart Charging & Thermal profiles</p>
+                        </div>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Navigation Pill bar -->
+                <div class="w-28 h-1 bg-white/30 rounded-full mx-auto pb-0 mb-1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="py-24 relative border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <h2 class="text-xs uppercase font-extrabold tracking-widest text-cyan-400">Why OctaviOS?</h2>
+        <h3 class="font-display text-3xl sm:text-5xl font-black text-white">Meticulously Crafted Features</h3>
+        <p class="text-slate-400 text-sm sm:text-base">We didn't just rebrand vanilla AOSP. We redesigned its interaction model from the ground up for style and speed.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Feature 1: Octavi Lab -->
+        <div class="glass-card glass-card-hover rounded-2xl p-7 relative overflow-hidden group">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-300 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="sliders" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-display text-xl font-bold text-white mb-2">Octavi Lab</h4>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            The heart of customization: switch lockscreen clocks, adjust status bar icons, battery styles, carrier labels, quick settings layout, and system animations with zero reboots.
+          </p>
+          <span class="inline-flex items-center text-xs font-semibold text-purple-400 gap-1">
+            Built-in Customizer <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+        <!-- Feature 2: Cardified OneUI Settings -->
+        <div class="glass-card glass-card-hover rounded-2xl p-7 relative overflow-hidden group">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="layout-grid" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-display text-xl font-bold text-white mb-2">Cardified One-Handed UI</h4>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Say goodbye to endless vertical text lists. Octavi's card-based dashboard lowers controls to thumb height, bringing clean separation and intuitive navigation.
+          </p>
+          <span class="inline-flex items-center text-xs font-semibold text-cyan-400 gap-1">
+            Ergonomic Reach <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+        <!-- Feature 3: Performance & Battery -->
+        <div class="glass-card glass-card-hover rounded-2xl p-7 relative overflow-hidden group">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="zap" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-display text-xl font-bold text-white mb-2">Performance & Battery</h4>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Under-the-hood scheduler tweaks, aggressive deep sleep idle drains, thermal throttling profiles, and per-app refresh rate selection for extreme battery longevity.
+          </p>
+          <span class="inline-flex items-center text-xs font-semibold text-emerald-400 gap-1">
+            Deep Sleep Optimized <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+        <!-- Feature 4: Signature Spoofing & MicroG -->
+        <div class="glass-card glass-card-hover rounded-2xl p-7 relative overflow-hidden group">
+          <div class="w-12 h-12 rounded-xl bg-pink-500/20 border border-pink-500/40 text-pink-300 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-display text-xl font-bold text-white mb-2">Signature Spoofing & Privacy</h4>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Full out-of-the-box microG support with restricted signature spoofing permissions. Pass Play Integrity / SafetyNet easily for uninterrupted banking apps.
+          </p>
+          <span class="inline-flex items-center text-xs font-semibold text-pink-400 gap-1">
+            Banking App Friendly <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+        <!-- Feature 5: Themed System Apps -->
+        <div class="glass-card glass-card-hover rounded-2xl p-7 relative overflow-hidden group">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="palette" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-display text-xl font-bold text-white mb-2">Themed In-House Apps</h4>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Custom-styled Dialer, Messaging, and File Manager styled to integrate with Octavi's aesthetic instead of plain, mismatched Google or generic AOSP apps.
+          </p>
+          <span class="inline-flex items-center text-xs font-semibold text-amber-400 gap-1">
+            Unified Theme <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+        <!-- Feature 6: Gaming & Network Tweaks -->
+        <div class="glass-card glass-card-hover rounded-2xl p-7 relative overflow-hidden group">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-500/40 text-blue-300 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="gamepad-2" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-display text-xl font-bold text-white mb-2">Gaming & Network Mode</h4>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Octavi Game Space integrates FPS counters, DND notification muting, touch sensitivity boost, and network jitter reduction for uninterrupted competitive sessions.
+          </p>
+          <span class="inline-flex items-center text-xs font-semibold text-blue-400 gap-1">
+            Game Space HUD <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="devices" class="py-24 relative bg-[#07080f] border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-widest text-purple-400">Official Device Portal</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-black text-white mt-1">Download OctaviOS</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-2">Select your OEM or search for your codename to find official builds and changelogs.</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="w-full md:w-80">
+          <div class="relative">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+            <input 
+              type="text" 
+              id="deviceSearch" 
+              placeholder="Search phone or codename..." 
+              class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-sm transition"
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- OEM Filter Pills -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar" id="oemFilters">
+        <button class="filter-btn active px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-purple-600 text-white transition whitespace-nowrap" data-oem="all">All Devices</button>
+        <button class="filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white transition whitespace-nowrap" data-oem="Xiaomi">Xiaomi / Poco</button>
+        <button class="filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white transition whitespace-nowrap" data-oem="OnePlus">OnePlus</button>
+        <button class="filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white transition whitespace-nowrap" data-oem="Realme">Realme</button>
+        <button class="filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white transition whitespace-nowrap" data-oem="Google">Google Pixel</button>
+        <button class="filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white transition whitespace-nowrap" data-oem="GSI">Generic (GSI)</button>
+      </div>
+
+      <!-- Device Cards Grid -->
+      <div id="devicesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Devices injected dynamically via JS -->
+      </div>
+
+      <!-- No results fallback -->
+      <div id="noResults" class="hidden text-center py-16 space-y-3">
+        <i data-lucide="smartphone" class="w-12 h-12 text-slate-600 mx-auto"></i>
+        <p class="text-lg font-semibold text-slate-300">No matching devices found</p>
+        <p class="text-sm text-slate-500">Try searching for the device codename (e.g., 'alioth', 'sweet', 'guacamole') or check GSI builds.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="showcase" class="py-24 relative border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs uppercase font-extrabold tracking-widest text-cyan-400">Visual Aesthetic</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-black text-white">Experience the Interface</h2>
+        <p class="text-slate-400 text-sm sm:text-base">Designed with rounded elegance, cardified sections, and custom typography accents.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Showcase Card 1 -->
+        <div class="glass-card rounded-2xl p-4 flex flex-col justify-between">
+          <div class="rounded-xl overflow-hidden bg-slate-900 border border-white/10 aspect-[9/16] relative flex flex-col justify-between p-4 group">
+            <div class="space-y-2 pt-2">
+              <span class="text-[10px] font-bold text-purple-400 uppercase tracking-wider">Dashboard</span>
+              <p class="text-xs font-bold text-white">Octavi Lab Hub</p>
+              <div class="p-2.5 rounded-lg bg-white/5 border border-white/5 space-y-1.5 mt-2">
+                <div class="h-2 w-16 bg-purple-400/60 rounded"></div>
+                <div class="h-1.5 w-28 bg-white/20 rounded"></div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-white/5 border border-white/5 space-y-1.5">
+                <div class="h-2 w-20 bg-cyan-400/60 rounded"></div>
+                <div class="h-1.5 w-24 bg-white/20 rounded"></div>
+              </div>
+            </div>
+            <div class="p-3 bg-purple-600/20 border border-purple-500/30 rounded-xl text-center">
+              <span class="text-[11px] font-bold text-purple-300">Deep Customization</span>
+            </div>
+          </div>
+          <div class="pt-3">
+            <p class="text-sm font-semibold text-white">Octavi Lab Suite</p>
+            <p class="text-xs text-slate-400">Status bar, QS Tiles, Gestures</p>
+          </div>
+        </div>
+
+        <!-- Showcase Card 2 -->
+        <div class="glass-card rounded-2xl p-4 flex flex-col justify-between">
+          <div class="rounded-xl overflow-hidden bg-slate-900 border border-white/10 aspect-[9/16] relative flex flex-col justify-between p-4 group">
+            <div class="space-y-4 pt-4 text-center">
+              <div class="w-12 h-12 mx-auto rounded-full bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-400 font-bold text-lg">
+                12
+              </div>
+              <div>
+                <p class="font-display font-extrabold text-2xl text-white">10:45</p>
+                <p class="text-[10px] text-cyan-300 font-medium">Sunday, Oct 24 • 24°C</p>
+              </div>
+            </div>
+            <div class="p-2 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between text-[10px] text-slate-400">
+              <span>Notification</span>
+              <span class="text-white">Telegram</span>
+            </div>
+          </div>
+          <div class="pt-3">
+            <p class="text-sm font-semibold text-white">Custom Lockscreen Clocks</p>
+            <p class="text-xs text-slate-400">Bold typefaces & weather widgets</p>
+          </div>
+        </div>
+
+        <!-- Showcase Card 3 -->
+        <div class="glass-card rounded-2xl p-4 flex flex-col justify-between">
+          <div class="rounded-xl overflow-hidden bg-slate-900 border border-white/10 aspect-[9/16] relative flex flex-col justify-between p-4 group">
+            <div class="space-y-2">
+              <div class="text-xs font-bold text-white flex items-center justify-between">
+                <span>Quick Settings</span>
+                <i data-lucide="settings" class="w-3.5 h-3.5 text-slate-400"></i>
+              </div>
+              <!-- QS Tiles Grid Mock -->
+              <div class="grid grid-cols-2 gap-1.5 pt-2">
+                <div class="p-2 rounded-lg bg-purple-600 text-white flex items-center gap-1.5">
+                  <i data-lucide="wifi" class="w-3 h-3"></i>
+                  <span class="text-[9px] font-bold">Wi-Fi</span>
+                </div>
+                <div class="p-2 rounded-lg bg-cyan-600 text-white flex items-center gap-1.5">
+                  <i data-lucide="bluetooth" class="w-3 h-3"></i>
+                  <span class="text-[9px] font-bold">Bluetooth</span>
+                </div>
+                <div class="p-2 rounded-lg bg-white/10 text-slate-300 flex items-center gap-1.5">
+                  <i data-lucide="moon" class="w-3 h-3"></i>
+                  <span class="text-[9px] font-bold">Dark UI</span>
+                </div>
+                <div class="p-2 rounded-lg bg-white/10 text-slate-300 flex items-center gap-1.5">
+                  <i data-lucide="flashlight" class="w-3 h-3"></i>
+                  <span class="text-[9px] font-bold">Torch</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-2.5 bg-cyan-500/10 border border-cyan-400/20 rounded-xl text-center">
+              <span class="text-[10px] font-medium text-cyan-300">Fluid QS Animations</span>
+            </div>
+          </div>
+          <div class="pt-3">
+            <p class="text-sm font-semibold text-white">Redesigned QS Panel</p>
+            <p class="text-xs text-slate-400">Modern layout with haptic switches</p>
+          </div>
+        </div>
+
+        <!-- Showcase Card 4 -->
+        <div class="glass-card rounded-2xl p-4 flex flex-col justify-between">
+          <div class="rounded-xl overflow-hidden bg-slate-900 border border-white/10 aspect-[9/16] relative flex flex-col justify-between p-4 group">
+            <div class="space-y-3 pt-2">
+              <p class="text-[10px] font-bold uppercase text-purple-400">Themed Dialer</p>
+              <div class="grid grid-cols-3 gap-1.5 text-center text-white font-mono text-xs pt-3">
+                <div class="p-2 rounded-lg bg-white/5">1</div>
+                <div class="p-2 rounded-lg bg-white/5">2</div>
+                <div class="p-2 rounded-lg bg-white/5">3</div>
+                <div class="p-2 rounded-lg bg-white/5">4</div>
+                <div class="p-2 rounded-lg bg-white/5">5</div>
+                <div class="p-2 rounded-lg bg-white/5">6</div>
+              </div>
+            </div>
+            <div class="p-2 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-300 text-xs gap-1 font-semibold">
+              <i data-lucide="phone-call" class="w-3.5 h-3.5"></i> Call Recording
+            </div>
+          </div>
+          <div class="pt-3">
+            <p class="text-sm font-semibold text-white">In-House Themed Apps</p>
+            <p class="text-xs text-slate-400">Clean dialer & call recording</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="installation" class="py-24 relative bg-[#07080f] border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs uppercase font-extrabold tracking-widest text-purple-400">Step-by-Step</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-black text-white">Installation Guide</h2>
+        <p class="text-slate-400 text-sm sm:text-base">Ensure your bootloader is unlocked and you have the recommended custom recovery (TWRP, OrangeFox, or PBRP) flashed.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+        
+        <!-- Step 1 -->
+        <div class="glass-card rounded-2xl p-6 relative">
+          <div class="w-10 h-10 rounded-xl bg-purple-600 text-white font-display font-extrabold flex items-center justify-center text-lg mb-4">
+            01
+          </div>
+          <h4 class="font-display text-lg font-bold text-white mb-2">Backup Everything</h4>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Backup your internal storage, photos, and OTP authenticators to a PC or cloud drive. A clean flash requires formatting data.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="glass-card rounded-2xl p-6 relative">
+          <div class="w-10 h-10 rounded-xl bg-cyan-600 text-white font-display font-extrabold flex items-center justify-center text-lg mb-4">
+            02
+          </div>
+          <h4 class="font-display text-lg font-bold text-white mb-2">Reboot to Recovery</h4>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Boot into OrangeFox or TWRP recovery. Wipe System, Dalvik-Cache, and format data (type <code class="text-cyan-400 bg-cyan-950/60 px-1 rounded font-mono text-xs">yes</code>).
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="glass-card rounded-2xl p-6 relative">
+          <div class="w-10 h-10 rounded-xl bg-purple-600 text-white font-display font-extrabold flex items-center justify-center text-lg mb-4">
+            03
+          </div>
+          <h4 class="font-display text-lg font-bold text-white mb-2">Flash Firmware & ROM</h4>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Flash the recommended vendor/firmware if required by your maintainer, followed by the <code class="text-purple-300 bg-purple-950/60 px-1 rounded font-mono text-xs">OctaviOS.zip</code> package.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="glass-card rounded-2xl p-6 relative">
+          <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white font-display font-extrabold flex items-center justify-center text-lg mb-4">
+            04
+          </div>
+          <h4 class="font-display text-lg font-bold text-white mb-2">Reboot & Enjoy</h4>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Reboot system. First boot may take 2-4 minutes while ART pre-compiles. Welcome to OctaviOS!
+          </p>
+        </div>
+
+      </div>
+
+      <div class="mt-12 glass-card rounded-2xl p-6 border-l-4 border-amber-500 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <i data-lucide="alert-triangle" class="w-6 h-6 text-amber-400 shrink-0"></i>
+          <div>
+            <h5 class="text-sm font-bold text-white">Dirty Flash note</h5>
+            <p class="text-xs text-slate-400">Dirty flashing between versions is generally supported if upgrading official builds. Clean flash is strictly mandatory when switching from other ROMs.</p>
+          </div>
+        </div>
+        <a href="https://t.me/OctaviOS_Chat" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold whitespace-nowrap transition">
+          Ask in Support Group
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="team" class="py-24 relative border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs uppercase font-extrabold tracking-widest text-cyan-400">The Creators</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-black text-white">Team & Contributors</h2>
+        <p class="text-slate-400 text-sm sm:text-base">The passionate developers, designers, and maintainers driving OctaviOS forward.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Member 1 -->
+        <div class="glass-card rounded-2xl p-6 text-center group">
+          <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-purple-600 to-cyan-500 p-0.5 mb-4 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full bg-[#0a0c16] rounded-full flex items-center justify-center font-bold text-xl text-purple-300">
+              MK
+            </div>
+          </div>
+          <h4 class="font-display text-lg font-bold text-white">Madhav</h4>
+          <p class="text-xs text-purple-400 font-medium">Founder & Lead Core Developer</p>
+          <p class="text-xs text-slate-400 mt-2">ROM Architect & UI integration engine lead.</p>
+        </div>
+
+        <!-- Member 2 -->
+        <div class="glass-card rounded-2xl p-6 text-center group">
+          <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-cyan-500 to-blue-500 p-0.5 mb-4 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full bg-[#0a0c16] rounded-full flex items-center justify-center font-bold text-xl text-cyan-300">
+              PR
+            </div>
+          </div>
+          <h4 class="font-display text-lg font-bold text-white">Pranav</h4>
+          <p class="text-xs text-cyan-400 font-medium">Co-Founder & UI Designer</p>
+          <p class="text-xs text-slate-400 mt-2">Creator of the signature cardified settings dashboard.</p>
+        </div>
+
+        <!-- Member 3 -->
+        <div class="glass-card rounded-2xl p-6 text-center group">
+          <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-pink-500 to-purple-500 p-0.5 mb-4 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full bg-[#0a0c16] rounded-full flex items-center justify-center font-bold text-xl text-pink-300">
+              RL
+            </div>
+          </div>
+          <h4 class="font-display text-lg font-bold text-white">Redline</h4>
+          <p class="text-xs text-pink-400 font-medium">Infrastructure & Build Systems</p>
+          <p class="text-xs text-slate-400 mt-2">CI/CD pipelines, GSI images, server maintainer.</p>
+        </div>
+
+        <!-- Member 4 -->
+        <div class="glass-card rounded-2xl p-6 text-center group">
+          <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-emerald-500 to-cyan-500 p-0.5 mb-4 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full bg-[#0a0c16] rounded-full flex items-center justify-center font-bold text-xl text-emerald-300">
+              DEV
+            </div>
+          </div>
+          <h4 class="font-display text-lg font-bold text-white">Device Maintainers</h4>
+          <p class="text-xs text-emerald-400 font-medium">Global Maintainer Fleet</p>
+          <p class="text-xs text-slate-400 mt-2">Over 30+ dedicated device maintainers worldwide.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div id="changelogModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="glass-card bg-[#0b0c16] border border-white/10 rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl relative">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <div>
+          <h3 id="modalDeviceName" class="font-display font-bold text-xl text-white">Device Changelog</h3>
+          <p id="modalCodename" class="text-xs text-purple-400 font-mono">codename</p>
+        </div>
+        <button id="closeModalBtn" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="text-xs text-slate-300 space-y-2 max-h-80 overflow-y-auto pr-2" id="modalChangelogContent">
+        <!-- Injected via JS -->
+      </div>
+
+      <div class="pt-2 flex justify-end gap-3 border-t border-white/10">
+        <button id="modalCloseAction" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:bg-white/5 transition">Close</button>
+        <a id="modalDownloadBtn" href="#" target="_blank" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-xs font-bold text-white transition flex items-center gap-2">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <span>Direct Download</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="border-t border-white/10 bg-[#05060a] py-16 text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        
+        <div class="space-y-4 md:col-span-2">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-cyan-500 flex items-center justify-center font-bold text-white text-sm">
+              O
+            </div>
+            <span class="font-display font-extrabold text-lg text-white">Octavi<span class="text-cyan-400">OS</span></span>
+          </div>
+          <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+            OctaviOS is an open-source Android firmware focused on refined ergonomics, distinct card styling, and solid day-to-day power efficiency. Free for everyone, maintained by the community.
+          </p>
+          <div class="flex items-center gap-3 pt-2">
+            <a href="https://github.com/Octavi-OS" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-slate-300 hover:text-white transition">
+              <i data-lucide="github" class="w-4 h-4"></i>
+            </a>
+            <a href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-slate-300 hover:text-cyan-400 transition">
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </a>
+            <a href="https://xdaforums.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-slate-300 hover:text-amber-400 transition" title="XDA Forums">
+              <i data-lucide="code" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-display font-bold text-white text-xs uppercase tracking-wider mb-4">Quick Navigation</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#features" class="hover:text-purple-400 transition">Octavi Lab Features</a></li>
+            <li><a href="#devices" class="hover:text-purple-400 transition">Device Downloads</a></li>
+            <li><a href="#installation" class="hover:text-purple-400 transition">Flashing Instructions</a></li>
+            <li><a href="#showcase" class="hover:text-purple-400 transition">Screenshots Gallery</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-display font-bold text-white text-xs uppercase tracking-wider mb-4">Open Source</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="https://github.com/Octavi-OS/platform_manifest" target="_blank" class="hover:text-cyan-400 transition">ROM Manifest</a></li>
+            <li><a href="https://github.com/Octavi-OS" target="_blank" class="hover:text-cyan-400 transition">Maintainer Trees</a></li>
+            <li><a href="https://t.me/OctaviOS_Chat" target="_blank" class="hover:text-cyan-400 transition">Maintainer Application</a></li>
+            <li><a href="https://sourceforge.net" target="_blank" class="hover:text-cyan-400 transition">SourceForge Mirrors</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>© <span id="yearSpan"></span> OctaviOS Project. Android is a trademark of Google LLC.</p>
+        <p>Built for instant deployment on <span class="text-slate-300 font-semibold">GitHub Pages</span>.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Current year in footer
+    document.getElementById('yearSpan').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when a link is clicked
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // Device Database
+    const devices = [
+      {
+        name: "POCO F3 / Redmi K40 / Mi 11X",
+        codename: "alioth",
+        oem: "Xiaomi",
+        maintainer: "Pranav",
+        android: "13.0 (T)",
+        version: "v3.9",
+        date: "2023-09-14",
+        variant: "GAPPS",
+        size: "1.6 GB",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/alioth/",
+        changelog: [
+          "Merged September Android Security Bulletin",
+          "Fixed NFC toggle lag on certain vendor variants",
+          "Improved thermals in gaming mode",
+          "Added custom clock style 'Octavi Classic'",
+          "Upgraded Leica Camera blobs to v4.5"
+        ]
+      },
+      {
+        name: "Redmi Note 10 Pro / Pro Max",
+        codename: "sweet",
+        oem: "Xiaomi",
+        maintainer: "Madhav",
+        android: "13.0 (T)",
+        version: "v3.9",
+        date: "2023-09-12",
+        variant: "GAPPS",
+        size: "1.7 GB",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/sweet/",
+        changelog: [
+          "Merged September 2023 Security Patch",
+          "Fixed 120Hz refresh rate drop in Low Battery mode",
+          "Audio amplifier sound enhancement enabled",
+          "Updated Kernel to 4.14.320 upstream"
+        ]
+      },
+      {
+        name: "POCO X3 Pro",
+        codename: "vayu",
+        oem: "Xiaomi",
+        maintainer: "Akash",
+        android: "13.0 (T)",
+        version: "v3.8",
+        date: "2023-08-28",
+        variant: "GAPPS",
+        size: "1.5 GB",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/vayu/",
+        changelog: [
+          "Merged August security patch",
+          "Prevented thermal sudden downclocks",
+          "Enabled Dirac sound enhancer",
+          "Fixed fingerprint sensor sleep wake responsiveness"
+        ]
+      },
+      {
+        name: "OnePlus 7 Pro",
+        codename: "guacamole",
+        oem: "OnePlus",
+        maintainer: "Gaurav",
+        android: "13.0 (T)",
+        version: "v3.8",
+        date: "2023-08-20",
+        variant: "VANILLA & GAPPS",
+        size: "1.4 GB",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/guacamole/",
+        changelog: [
+          "Motorized pop-up camera sound profiles added",
+          "FOD icon animations synced with Octavi Lab",
+          "Alert Slider custom vibration configurations added",
+          "Merged latest kernel sources"
+        ]
+      },
+      {
+        name: "Realme 6 / 6i / 6s",
+        codename: "RMX2001",
+        oem: "Realme",
+        maintainer: "Siddharth",
+        android: "12.1 (S)",
+        version: "v3.4",
+        date: "2022-11-05",
+        variant: "GAPPS",
+        size: "1.3 GB",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/RMX2001/",
+        changelog: [
+          "Full Realme UI 2.0 vendor compatibility",
+          "SELinux Enforcing",
+          "Smooth 90Hz frame limiter fix",
+          "SafetyNet pass without Magisk"
+        ]
+      },
+      {
+        name: "Google Pixel 4 / 4 XL",
+        codename: "flame / coral",
+        oem: "Google",
+        maintainer: "Core Team",
+        android: "13.0 (T)",
+        version: "v3.8",
+        date: "2023-07-15",
+        variant: "PIXEL OFFICIAL",
+        size: "1.5 GB",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/coral/",
+        changelog: [
+          "Soli radar gesture tweaks in Octavi Lab",
+          "Smooth Display 90Hz calibrated",
+          "Google Camera 8.8 integration",
+          "Battery health percentage calibrated"
+        ]
+      },
+      {
+        name: "Generic System Image (GSI)",
+        codename: "arm64-ab",
+        oem: "GSI",
+        maintainer: "Redline",
+        android: "13.0 (T)",
+        version: "v3.9",
+        date: "2023-09-18",
+        variant: "VANILLA / GAPPS",
+        size: "1.1 GB",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/GSI/",
+        changelog: [
+          "Universal Treble v2.0+ compatibility",
+          "Fix in-call audio for MediaTek / Unisoc devices",
+          "Integrated PHH treble settings directly into Octavi Lab",
+          "Brightness overlay auto-fix"
+        ]
+      }
+    ];
+
+    const devicesContainer = document.getElementById('devicesContainer');
+    const deviceSearch = document.getElementById('deviceSearch');
+    const noResults = document.getElementById('noResults');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    let currentOemFilter = 'all';
+    let currentSearchTerm = '';
+
+    function renderDevices() {
+      devicesContainer.innerHTML = '';
+      
+      const filtered = devices.filter(dev => {
+        const matchesOem = currentOemFilter === 'all' || dev.oem.toLowerCase() === currentOemFilter.toLowerCase();
+        const matchesQuery = dev.name.toLowerCase().includes(currentSearchTerm.toLowerCase()) || 
+                             dev.codename.toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
+                             dev.maintainer.toLowerCase().includes(currentSearchTerm.toLowerCase());
+        return matchesOem && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        noResults.classList.remove('hidden');
+      } else {
+        noResults.classList.add('hidden');
+        filtered.forEach(dev => {
+          const card = document.createElement('div');
+          card.className = "glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between";
+          card.innerHTML = `
+            <div>
+              <div class="flex items-start justify-between gap-2 mb-3">
+                <span class="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                  ${dev.oem}
+                </span>
+                <span class="text-xs font-mono text-cyan-400 font-bold bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-800/30">
+                  ${dev.codename}
+                </span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white mb-1">${dev.name}</h3>
+              <p class="text-xs text-slate-400 mb-4 flex items-center gap-1.5">
+                <i data-lucide="user" class="w-3.5 h-3.5 text-slate-500"></i>
+                Maintainer: <span class="text-slate-300 font-medium">${dev.maintainer}</span>
+              </p>
+
+              <div class="grid grid-cols-2 gap-2 text-xs py-3 border-y border-white/5 mb-4">
+                <div>
+                  <span class="text-slate-500 block text-[10px] uppercase">Android Version</span>
+                  <span class="text-slate-200 font-medium">${dev.android}</span>
+                </div>
+                <div>
+                  <span class="text-slate-500 block text-[10px] uppercase">Octavi Build</span>
+                  <span class="text-slate-200 font-medium">${dev.version}</span>
+                </div>
+                <div>
+                  <span class="text-slate-500 block text-[10px] uppercase">Release Date</span>
+                  <span class="text-slate-200 font-medium">${dev.date}</span>
+                </div>
+                <div>
+                  <span class="text-slate-500 block text-[10px] uppercase">Variant / Size</span>
+                  <span class="text-slate-200 font-medium">${dev.variant} (${dev.size})</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 pt-2">
+              <button onclick="openChangelogModal('${dev.codename}')" class="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-semibold border border-white/10 transition flex items-center justify-center gap-1.5">
+                <i data-lucide="file-text" class="w-3.5 h-3.5 text-slate-400"></i>
+                Changelog
+              </button>
+              <a href="${dev.downloadUrl}" target="_blank" rel="noopener" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-md shadow-purple-600/20">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                Download
+              </a>
+            </div>
+          `;
+          devicesContainer.appendChild(card);
+        });
+      }
+
+      // Re-trigger icon parsing for new card elements
+      lucide.createIcons();
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-purple-600', 'text-white');
+          b.classList.add('bg-white/5', 'text-slate-300');
+        });
+        btn.classList.remove('bg-white/5', 'text-slate-300');
+        btn.classList.add('bg-purple-600', 'text-white');
+        
+        currentOemFilter = btn.getAttribute('data-oem');
+        renderDevices();
+      });
+    });
+
+    deviceSearch.addEventListener('input', (e) => {
+      currentSearchTerm = e.target.value.trim();
+      renderDevices();
+    });
+
+    const modal = document.getElementById('changelogModal');
+    const modalDeviceName = document.getElementById('modalDeviceName');
+    const modalCodename = document.getElementById('modalCodename');
+    const modalContent = document.getElementById('modalChangelogContent');
+    const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalCloseAction = document.getElementById('modalCloseAction');
+
+    window.openChangelogModal = function(codename) {
+      const dev = devices.find(d => d.codename === codename);
+      if (!dev) return;
+
+      modalDeviceName.textContent = dev.name;
+      modalCodename.textContent = `${dev.codename} • OctaviOS ${dev.version} (${dev.date})`;
+      modalDownloadBtn.href = dev.downloadUrl;
+
+      modalContent.innerHTML = `
+        <p class="font-semibold text-slate-200 mb-2">Build Highlights:</p>
+        <ul class="space-y-1.5 list-disc list-inside">
+          ${dev.changelog.map(item => `<li class="text-slate-300">${item}</li>`).join('')}
+        </ul>
+        <div class="mt-4 p-3 bg-white/5 rounded-xl border border-white/5 text-[11px] text-slate-400">
+          <strong>Note:</strong> Always verify MD5 / SHA256 checksums on SourceForge before flashing.
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+    }
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modalCloseAction.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Initial render
+    renderDevices();
+  </script>
+</body>
+</html>
