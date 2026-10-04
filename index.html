@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OctaviOS — Free and Open Source Android Firmware</title>
-  <meta name="description" content="OctaviOS is a lightweight, high-performance AOSP distribution focused on ergonomics, long battery life, and clean customization.">
+  <title>OctaviOS — Pure Performance. Engineered Freedom.</title>
+  <meta name="description" content="OctaviOS is a lightweight, high-performance AOSP distribution focused on ergonomics, uncompromising battery life, and curated system customization.">
 
-  <!-- Inter & JetBrains Mono Fonts for clean open-source engineering typography -->
+  <!-- Inter & JetBrains Mono Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -22,20 +22,21 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['"Plus Jakarta Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            lineage: {
-              teal: '#167C80',
-              tealLight: '#1FA2A6',
-              tealDark: '#0E5456',
-              accent: '#26C6DA',
-              bg: '#0B0F17',
-              surface: '#111827',
-              surfaceHover: '#172033',
-              border: '#1F2937',
-              borderSubtle: '#192231'
+            brand: {
+              teal: '#00c4b4',
+              tealDeep: '#167C80',
+              tealDark: '#0b4d50',
+              tealGlow: 'rgba(0, 196, 180, 0.15)',
+              obsidian: '#090d14',
+              card: '#0f1624',
+              cardHover: '#151f33',
+              subtle: '#1b263b',
+              border: 'rgba(255, 255, 255, 0.08)',
+              borderFocus: 'rgba(0, 196, 180, 0.45)'
             }
           }
         }
@@ -44,38 +45,47 @@
   </script>
 
   <style>
+    :root {
+      color-scheme: dark;
+    }
     body {
-      background-color: #0B0F17;
-      color: #E2E8F0;
+      background-color: #090d14;
+      color: #e2e8f0;
+      overflow-x: hidden;
     }
 
-    /* Lineage-style clean code badge */
-    .codename-badge {
+    /* Subtle technical grid background */
+    .bg-tech-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    }
+
+    /* Glow aura */
+    .glow-aura {
+      background: radial-gradient(circle at 50% 20%, rgba(0, 196, 180, 0.12) 0%, transparent 65%);
+    }
+
+    /* Codename badge */
+    .badge-code {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.75rem;
-      background: #111827;
-      border: 1px solid #1F2937;
-      padding: 0.15rem 0.45rem;
-      border-radius: 4px;
-      color: #26C6DA;
+      background: rgba(0, 196, 180, 0.08);
+      border: 1px solid rgba(0, 196, 180, 0.25);
+      color: #00c4b4;
     }
 
-    /* Subtle grid pattern background */
-    .lineage-grid {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
-
-    /* Clean scrollbar */
+    /* Custom subtle scrollbar */
     ::-webkit-scrollbar {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #0B0F17;
+      background: #090d14;
     }
     ::-webkit-scrollbar-thumb {
-      background: #1F2937;
+      background: #1b263b;
       border-radius: 4px;
     }
     ::-webkit-scrollbar-thumb:hover {
@@ -83,485 +93,630 @@
     }
   </style>
 </head>
-<body class="selection:bg-teal-900 selection:text-teal-100 antialiased font-sans">
+<body class="antialiased selection:bg-brand-tealDeep selection:text-white">
 
-  <!-- Header / Navigation -->
-  <header class="sticky top-0 z-50 bg-[#0B0F17]/95 backdrop-blur-md border-b border-[#1F2937]">
+  <header class="sticky top-0 z-40 bg-[#090d14]/90 backdrop-blur-xl border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       
-      <!-- Brand Logo -->
+      <!-- Logo Branding -->
       <a href="#" class="flex items-center gap-3 group">
-        <div class="w-8 h-8 rounded-lg bg-[#167C80] flex items-center justify-center text-white font-bold text-base shadow-sm">
-          O
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-teal to-brand-tealDark p-[1px] shadow-sm shadow-brand-teal/20 transition-transform group-hover:scale-105">
+          <div class="w-full h-full bg-[#090d14] rounded-[7px] flex items-center justify-center">
+            <svg class="w-5 h-5 text-brand-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+          </div>
         </div>
-        <span class="font-bold text-lg text-white tracking-tight flex items-center gap-1.5">
-          Octavi<span class="text-[#26C6DA]">OS</span>
-        </span>
+        <div class="flex flex-col">
+          <span class="font-extrabold text-base tracking-tight text-white flex items-center gap-1">
+            OCTAVI<span class="text-brand-teal">OS</span>
+          </span>
+          <span class="text-[9px] uppercase tracking-widest text-slate-400 font-mono -mt-1">Project Plus</span>
+        </div>
       </a>
 
-      <!-- Desktop Navigation Links -->
-      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
-        <a href="#features" class="hover:text-white transition-colors">Features</a>
-        <a href="#devices" class="hover:text-[#26C6DA] transition-colors">Downloads & Devices</a>
-        <a href="#installation" class="hover:text-white transition-colors">Install Wiki</a>
-        <a href="#team" class="hover:text-white transition-colors">Team</a>
-        <a href="https://github.com/OctaviOS-Plus" target="_blank" rel="noopener" class="hover:text-white flex items-center gap-1 transition-colors">
-          Source <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-500"></i>
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#features" class="hover:text-white transition">Features</a>
+        <a href="#devices" class="hover:text-brand-teal transition">Devices & Downloads</a>
+        <a href="#wiki" class="hover:text-white transition">Install Wiki</a>
+        <a href="#manifest" class="hover:text-white transition">Source</a>
+        <a href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="hover:text-white transition flex items-center gap-1.5 text-xs text-slate-400 bg-brand-card px-2.5 py-1 rounded-md border border-brand-border">
+          <i data-lucide="send" class="w-3.5 h-3.5 text-brand-teal"></i>
+          Community
         </a>
       </nav>
 
-      <!-- Action Buttons -->
+      <!-- Desktop CTA & Git Stars -->
       <div class="hidden sm:flex items-center gap-3">
-        <a href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="p-2 rounded-lg border border-[#1F2937] hover:border-slate-700 text-slate-300 hover:text-white hover:bg-[#111827] transition" title="Telegram Channel">
-          <i data-lucide="send" class="w-4 h-4 text-[#26C6DA]"></i>
+        <a href="https://github.com/OctaviOS-Plus/octavios-website" target="_blank" rel="noopener" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-xs font-mono text-slate-300 transition">
+          <i data-lucide="github" class="w-4 h-4 text-slate-200"></i>
+          <span class="text-slate-400">Stars</span>
+          <span class="bg-brand-subtle px-1.5 py-0.5 rounded text-[10px] text-brand-teal font-semibold">1.4k</span>
         </a>
-        <a href="https://github.com/OctaviOS-Plus" target="_blank" rel="noopener" class="p-2 rounded-lg border border-[#1F2937] hover:border-slate-700 text-slate-300 hover:text-white hover:bg-[#111827] transition" title="GitHub">
-          <i data-lucide="github" class="w-4 h-4"></i>
-        </a>
-        <a href="#devices" class="px-4 py-2 rounded-lg bg-[#167C80] hover:bg-[#1FA2A6] text-white text-xs font-semibold tracking-wide transition shadow-sm flex items-center gap-1.5">
+        <a href="#devices" class="px-4 py-1.5 rounded-lg bg-brand-tealDeep hover:bg-brand-teal hover:text-black text-white text-xs font-semibold tracking-wide transition flex items-center gap-1.5 shadow-sm">
           <i data-lucide="download" class="w-3.5 h-3.5"></i>
-          <span>Get Builds</span>
+          <span>Get Build</span>
         </a>
       </div>
 
-      <!-- Mobile Menu Button -->
-      <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-400 hover:text-white focus:outline-none" aria-label="Toggle navigation">
+      <!-- Mobile Hamburger -->
+      <button id="navToggle" class="md:hidden p-2 text-slate-400 hover:text-white" aria-label="Toggle navigation">
         <i data-lucide="menu" class="w-5 h-5"></i>
       </button>
     </div>
 
-    <!-- Mobile Dropdown -->
-    <div id="mobileMenu" class="hidden md:hidden px-4 py-4 space-y-2 border-b border-[#1F2937] bg-[#0E1420]">
-      <a href="#features" class="block px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-[#111827] hover:text-white">Features</a>
-      <a href="#devices" class="block px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-[#111827] hover:text-white">Downloads & Devices</a>
-      <a href="#installation" class="block px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-[#111827] hover:text-white">Install Wiki</a>
-      <a href="#team" class="block px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-[#111827] hover:text-white">Team</a>
-      <div class="pt-2 flex gap-2">
-        <a href="#devices" class="w-full text-center py-2 rounded-lg bg-[#167C80] text-white font-medium text-xs">Download Builds</a>
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileDrawer" class="hidden md:hidden px-5 py-4 border-b border-brand-border bg-[#0b101a] space-y-3">
+      <a href="#features" class="block text-sm font-medium text-slate-300 hover:text-white">Features</a>
+      <a href="#devices" class="block text-sm font-medium text-slate-300 hover:text-brand-teal">Devices & Downloads</a>
+      <a href="#wiki" class="block text-sm font-medium text-slate-300 hover:text-white">Install Wiki</a>
+      <a href="#manifest" class="block text-sm font-medium text-slate-300 hover:text-white">Manifest Sources</a>
+      <div class="pt-3 border-t border-brand-border flex gap-2">
+        <a href="#devices" class="w-full text-center py-2.5 rounded-lg bg-brand-tealDeep text-white text-xs font-bold">Download OctaviOS</a>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section (LineageOS Minimalist Engineering Style) -->
-  <section class="relative pt-20 pb-20 lineage-grid border-b border-[#1F2937]">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+  <section class="relative pt-24 pb-20 overflow-hidden bg-tech-grid glow-aura border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
       
-      <!-- Version & Status Pill -->
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-teal-900/60 bg-teal-950/40 text-teal-300 text-xs font-mono">
-        <span class="w-2 h-2 rounded-full bg-teal-400"></span>
-        <span>AOSP Distribution &bull; Android 13 & 14 Branch</span>
+      <!-- Top Pill -->
+      <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-brand-border bg-brand-card/80 backdrop-blur-md text-xs font-mono text-slate-300 mb-8">
+        <span class="w-2 h-2 rounded-full bg-brand-teal animate-pulse"></span>
+        <span class="text-brand-teal font-semibold">OctaviOS v4.x</span>
+        <span class="text-slate-500">|</span>
+        <span>Android 14 QPR3 &amp; 15 Base</span>
+        <span class="text-[10px] bg-emerald-950/80 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-800/40">Stable</span>
       </div>
 
-      <!-- Main Headline -->
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-        A clean, free, and open-source <br class="hidden sm:inline">
-        Android operating system.
+      <!-- Hero Header -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.12]">
+        Pure Performance. <br>
+        <span class="bg-gradient-to-r from-teal-200 via-brand-teal to-teal-400 bg-clip-text text-transparent">Engineered Freedom.</span>
       </h1>
 
       <!-- Subtitle -->
-      <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
-        Engineered for stability, privacy, and ergonomics. OctaviOS strips vendor bloatware, refines power management, and introduces intuitive one-handed interface cards.
+      <p class="mt-6 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed">
+        A meticulously curated AOSP distribution combining low-overhead system schedulers, cardified ergonomic UI reachability, and deep zero-bloat customization.
       </p>
 
-      <!-- Primary Action Buttons -->
-      <div class="flex flex-wrap items-center justify-center gap-3 pt-3">
-        <a href="#devices" class="px-6 py-3 rounded-lg bg-[#167C80] hover:bg-[#1FA2A6] text-white font-semibold text-sm transition flex items-center gap-2 shadow-sm">
-          <i data-lucide="download" class="w-4 h-4"></i>
-          <span>Download for Device</span>
+      <!-- CTA Button Row -->
+      <div class="mt-9 flex flex-wrap items-center justify-center gap-3.5">
+        <a href="#devices" class="px-6 py-3 rounded-xl bg-brand-teal hover:bg-teal-300 text-[#090d14] font-bold text-sm transition shadow-lg shadow-brand-teal/20 flex items-center gap-2">
+          <i data-lucide="smartphone" class="w-4 h-4"></i>
+          <span>Explore Devices</span>
         </a>
-        <a href="#installation" class="px-5 py-3 rounded-lg bg-[#111827] hover:bg-[#172033] text-slate-200 border border-[#1F2937] hover:border-slate-700 font-medium text-sm transition flex items-center gap-2">
-          <i data-lucide="terminal" class="w-4 h-4 text-[#26C6DA]"></i>
-          <span>Installation Guide</span>
+        <a href="#wiki" class="px-5 py-3 rounded-xl bg-brand-card hover:bg-brand-cardHover border border-brand-border text-slate-200 font-semibold text-sm transition flex items-center gap-2">
+          <i data-lucide="terminal" class="w-4 h-4 text-brand-teal"></i>
+          <span>Flashing Guide</span>
         </a>
-        <a href="https://github.com/OctaviOS-Plus" target="_blank" rel="noopener" class="px-4 py-3 rounded-lg bg-[#111827] hover:bg-[#172033] text-slate-300 border border-[#1F2937] hover:border-slate-700 font-medium text-sm transition flex items-center gap-2">
-          <i data-lucide="git-branch" class="w-4 h-4"></i>
-          <span>Manifest</span>
+        <a href="https://github.com/OctaviOS-Plus" target="_blank" rel="noopener" class="px-4 py-3 rounded-xl bg-brand-card hover:bg-brand-cardHover border border-brand-border text-slate-300 text-sm font-medium transition flex items-center gap-1.5">
+          <i data-lucide="git-fork" class="w-4 h-4"></i>
+          <span>Source Code</span>
         </a>
       </div>
 
-      <!-- Key Engineering Stats Bar -->
-      <div class="pt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto border-t border-[#1F2937] text-left">
-        <div class="p-3 bg-[#111827]/60 rounded-lg border border-[#1F2937]">
-          <div class="text-xs text-slate-400 uppercase font-mono tracking-wider">Base</div>
-          <div class="text-lg font-bold text-white mt-0.5">Pure AOSP</div>
+      <!-- Live Engineering Metrics Strip -->
+      <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
+        <div class="p-4 rounded-xl bg-brand-card/90 border border-brand-border backdrop-blur-sm">
+          <div class="text-slate-400 text-xs font-mono uppercase tracking-wider">Device Fleet</div>
+          <div class="text-2xl font-extrabold text-white mt-1">28+</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">Officially validated builds</div>
         </div>
-        <div class="p-3 bg-[#111827]/60 rounded-lg border border-[#1F2937]">
-          <div class="text-xs text-slate-400 uppercase font-mono tracking-wider">SELinux</div>
-          <div class="text-lg font-bold text-teal-400 mt-0.5">Enforcing</div>
+
+        <div class="p-4 rounded-xl bg-brand-card/90 border border-brand-border backdrop-blur-sm">
+          <div class="text-slate-400 text-xs font-mono uppercase tracking-wider">Telemetry Bloat</div>
+          <div class="text-2xl font-extrabold text-brand-teal mt-1">0.00%</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">Strict privacy by default</div>
         </div>
-        <div class="p-3 bg-[#111827]/60 rounded-lg border border-[#1F2937]">
-          <div class="text-xs text-slate-400 uppercase font-mono tracking-wider">Integrity</div>
-          <div class="text-lg font-bold text-white mt-0.5">SafetyNet Pass</div>
+
+        <div class="p-4 rounded-xl bg-brand-card/90 border border-brand-border backdrop-blur-sm">
+          <div class="text-slate-400 text-xs font-mono uppercase tracking-wider">Security State</div>
+          <div class="text-2xl font-extrabold text-emerald-400 mt-1">Enforcing</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">Strict SELinux policies</div>
         </div>
-        <div class="p-3 bg-[#111827]/60 rounded-lg border border-[#1F2937]">
-          <div class="text-xs text-slate-400 uppercase font-mono tracking-wider">License</div>
-          <div class="text-lg font-bold text-slate-300 mt-0.5">GPL / Apache 2.0</div>
+
+        <div class="p-4 rounded-xl bg-brand-card/90 border border-brand-border backdrop-blur-sm">
+          <div class="text-slate-400 text-xs font-mono uppercase tracking-wider">Integrity</div>
+          <div class="text-2xl font-extrabold text-white mt-1">Play Pass</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">Native SafetyNet &amp; GMS</div>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Device Download Portal (Inspired by download.lineageos.org) -->
-  <section id="devices" class="py-16 bg-[#0B0F17]">
+  <section id="features" class="py-24 bg-[#090d14] border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 pb-6 border-b border-[#1F2937]">
-        <div>
-          <span class="text-xs font-mono text-[#26C6DA] uppercase tracking-wider">Official Builds</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Device Downloads</h2>
-          <p class="text-slate-400 text-sm mt-1">Select your device manufacturer or search by device model or codename.</p>
+      <div class="max-w-2xl mb-14">
+        <div class="inline-flex items-center gap-2 text-xs font-mono text-brand-teal uppercase tracking-widest">
+          <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+          Architecture & System Highlights
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 tracking-tight">Crafted for everyday reliability</h2>
+        <p class="text-slate-400 text-sm mt-3 leading-relaxed">OctaviOS eliminates vendor clutter without stripping essential everyday usability. Explore our signature modules below.</p>
+      </div>
+
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-6">
+        
+        <!-- Bento 1: Octavi Lab (Span 7) -->
+        <div class="lg:col-span-7 rounded-2xl bg-brand-card border border-brand-border p-7 flex flex-col justify-between hover:border-brand-borderFocus transition duration-300">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded bg-brand-teal/10 text-brand-teal font-mono text-xs border border-brand-teal/20">System Customization</span>
+              <i data-lucide="sliders" class="w-5 h-5 text-slate-400"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Octavi Lab Suite</h3>
+            <p class="text-slate-400 text-sm leading-relaxed max-w-xl">
+              Our signature all-in-one control center. Fine-tune notification tickers, custom status bar clocks, lockscreen layouts, icon packs, network traffic monitors, and volume panels without restarting your device.
+            </p>
+          </div>
+
+          <!-- Interactive Mock Control Bar -->
+          <div class="mt-8 p-4 rounded-xl bg-[#090d14] border border-brand-border space-y-3 font-mono text-xs">
+            <div class="flex items-center justify-between text-slate-300">
+              <span class="flex items-center gap-2"><i data-lucide="palette" class="w-4 h-4 text-brand-teal"></i> Monet Engine Palette</span>
+              <span class="text-brand-teal">Dynamic Algorithmic</span>
+            </div>
+            <div class="flex items-center justify-between text-slate-300">
+              <span class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-brand-teal"></i> Lockscreen Clock Styles</span>
+              <span class="text-slate-400">14 Typographic Presets</span>
+            </div>
+            <div class="flex items-center justify-between text-slate-300">
+              <span class="flex items-center gap-2"><i data-lucide="shield" class="w-4 h-4 text-brand-teal"></i> Signature Spoofing Guard</span>
+              <span class="text-emerald-400">Restricted MicroG Only</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Search Input -->
+        <!-- Bento 2: Battery & Thermals (Span 5) -->
+        <div class="lg:col-span-5 rounded-2xl bg-brand-card border border-brand-border p-7 flex flex-col justify-between hover:border-brand-borderFocus transition duration-300">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded bg-amber-500/10 text-amber-300 font-mono text-xs border border-amber-500/20">Efficiency Tuning</span>
+              <i data-lucide="battery-charging" class="w-5 h-5 text-slate-400"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Thermal Governor & Deep Sleep</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Upstream Linux kernel patches, granular per-app refresh rate limiters (60Hz / 90Hz / 120Hz), and aggressive wakelock suppression to preserve standby longevity.
+            </p>
+          </div>
+
+          <div class="mt-6 p-4 rounded-xl bg-[#090d14] border border-brand-border">
+            <div class="flex justify-between text-xs font-mono text-slate-300 mb-2">
+              <span>Overnight Idle Drain</span>
+              <span class="text-brand-teal font-bold">&lt; 0.4% / hr</span>
+            </div>
+            <div class="w-full bg-brand-subtle h-2 rounded-full overflow-hidden">
+              <div class="bg-brand-teal h-full rounded-full" style="width: 94%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 3: One-Handed Reachability (Span 4) -->
+        <div class="lg:col-span-4 rounded-2xl bg-brand-card border border-brand-border p-6 hover:border-brand-borderFocus transition duration-300">
+          <div class="w-9 h-9 rounded-lg bg-brand-teal/10 flex items-center justify-center text-brand-teal mb-4 border border-brand-teal/20">
+            <i data-lucide="layout" class="w-4 h-4"></i>
+          </div>
+          <h4 class="text-base font-bold text-white mb-1.5">Cardified Settings Layout</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Engineered around reachable hero headers, grouping nested settings items into ergonomic cards designed for modern tall 20:9 displays.
+          </p>
+        </div>
+
+        <!-- Bento 4: Privacy & microG (Span 4) -->
+        <div class="lg:col-span-4 rounded-2xl bg-brand-card border border-brand-border p-6 hover:border-brand-borderFocus transition duration-300">
+          <div class="w-9 h-9 rounded-lg bg-brand-teal/10 flex items-center justify-center text-brand-teal mb-4 border border-brand-teal/20">
+            <i data-lucide="lock" class="w-4 h-4"></i>
+          </div>
+          <h4 class="text-base font-bold text-white mb-1.5">Uncompromising Privacy</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Zero proprietary analytics, granular camera/microphone hardware toggles, and optional vanilla builds ready for microG or standalone F-Droid setups.
+          </p>
+        </div>
+
+        <!-- Bento 5: Generic System Images (Span 4) -->
+        <div class="lg:col-span-4 rounded-2xl bg-brand-card border border-brand-border p-6 hover:border-brand-borderFocus transition duration-300">
+          <div class="w-9 h-9 rounded-lg bg-brand-teal/10 flex items-center justify-center text-brand-teal mb-4 border border-brand-teal/20">
+            <i data-lucide="cpu" class="w-4 h-4"></i>
+          </div>
+          <h4 class="text-base font-bold text-white mb-1.5">Project Treble GSI</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            ARM64 A/B universal system images built regularly to bring the OctaviOS experience to devices without dedicated tree maintainers.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="devices" class="py-24 bg-[#090d14]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header & Real-time Search -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-brand-border">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-brand-teal uppercase tracking-widest">
+            <i data-lucide="hard-drive-download" class="w-3.5 h-3.5"></i>
+            Firmware Repository
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1 tracking-tight">Device Downloads</h2>
+          <p class="text-slate-400 text-sm mt-1">Search your hardware codename or filter by brand to grab official recovery packages.</p>
+        </div>
+
+        <!-- Search Bar with Codename Helper -->
         <div class="w-full md:w-80">
           <div class="relative">
             <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
             <input 
               type="text" 
-              id="deviceSearch" 
-              placeholder="Search codename or device..." 
-              class="w-full pl-10 pr-4 py-2.5 rounded-lg bg-[#111827] border border-[#1F2937] text-white placeholder-slate-500 focus:outline-none focus:border-[#167C80] text-sm transition"
+              id="deviceSearchInput" 
+              placeholder="Search 'alioth', 'sweet', 'OnePlus'..." 
+              class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-brand-card border border-brand-border text-white text-xs placeholder-slate-500 focus:outline-none focus:border-brand-teal transition"
             >
           </div>
         </div>
       </div>
 
-      <!-- OEM Filter Pills -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-8 no-scrollbar" id="oemFilters">
-        <button class="filter-btn active px-3.5 py-1.5 rounded-md text-xs font-semibold bg-[#167C80] text-white transition whitespace-nowrap" data-oem="all">All Manufacturers</button>
-        <button class="filter-btn px-3.5 py-1.5 rounded-md text-xs font-semibold bg-[#111827] text-slate-300 hover:text-white hover:bg-[#172033] border border-[#1F2937] transition whitespace-nowrap" data-oem="Xiaomi">Xiaomi / Poco</button>
-        <button class="filter-btn px-3.5 py-1.5 rounded-md text-xs font-semibold bg-[#111827] text-slate-300 hover:text-white hover:bg-[#172033] border border-[#1F2937] transition whitespace-nowrap" data-oem="OnePlus">OnePlus</button>
-        <button class="filter-btn px-3.5 py-1.5 rounded-md text-xs font-semibold bg-[#111827] text-slate-300 hover:text-white hover:bg-[#172033] border border-[#1F2937] transition whitespace-nowrap" data-oem="Realme">Realme</button>
-        <button class="filter-btn px-3.5 py-1.5 rounded-md text-xs font-semibold bg-[#111827] text-slate-300 hover:text-white hover:bg-[#172033] border border-[#1F2937] transition whitespace-nowrap" data-oem="Google">Google Pixel</button>
-        <button class="filter-btn px-3.5 py-1.5 rounded-md text-xs font-semibold bg-[#111827] text-slate-300 hover:text-white hover:bg-[#172033] border border-[#1F2937] transition whitespace-nowrap" data-oem="GSI">Generic (GSI)</button>
+      <!-- OEM Filter Chips -->
+      <div class="flex items-center gap-2 overflow-x-auto py-5 no-scrollbar" id="oemChips">
+        <button class="oem-chip active px-3.5 py-1.5 rounded-lg text-xs font-medium bg-brand-teal text-black font-semibold transition whitespace-nowrap" data-oem="all">All Devices</button>
+        <button class="oem-chip px-3.5 py-1.5 rounded-lg text-xs font-medium bg-brand-card hover:bg-brand-cardHover border border-brand-border text-slate-300 transition whitespace-nowrap" data-oem="Xiaomi">Xiaomi &amp; POCO</button>
+        <button class="oem-chip px-3.5 py-1.5 rounded-lg text-xs font-medium bg-brand-card hover:bg-brand-cardHover border border-brand-border text-slate-300 transition whitespace-nowrap" data-oem="OnePlus">OnePlus</button>
+        <button class="oem-chip px-3.5 py-1.5 rounded-lg text-xs font-medium bg-brand-card hover:bg-brand-cardHover border border-brand-border text-slate-300 transition whitespace-nowrap" data-oem="Google">Google Pixel</button>
+        <button class="oem-chip px-3.5 py-1.5 rounded-lg text-xs font-medium bg-brand-card hover:bg-brand-cardHover border border-brand-border text-slate-300 transition whitespace-nowrap" data-oem="Realme">Realme</button>
+        <button class="oem-chip px-3.5 py-1.5 rounded-lg text-xs font-medium bg-brand-card hover:bg-brand-cardHover border border-brand-border text-slate-300 transition whitespace-nowrap" data-oem="GSI">Treble GSI</button>
       </div>
 
-      <!-- Clean Device List Container -->
-      <div id="devicesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Rendered dynamically -->
+      <!-- Device Cards Container -->
+      <div id="deviceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+        <!-- Rendered dynamically via JavaScript -->
       </div>
 
-      <!-- No Results Container -->
-      <div id="noResults" class="hidden text-center py-16 bg-[#111827] rounded-xl border border-[#1F2937] space-y-2">
-        <i data-lucide="search-x" class="w-8 h-8 text-slate-500 mx-auto"></i>
-        <p class="text-base font-semibold text-slate-300">No matching device trees found</p>
-        <p class="text-xs text-slate-500">Check device codenames (e.g. 'alioth', 'sweet', 'vayu') or install the Generic System Image (GSI).</p>
+      <!-- Empty State -->
+      <div id="noMatchContainer" class="hidden text-center py-16 bg-brand-card rounded-2xl border border-brand-border mt-4">
+        <i data-lucide="package-x" class="w-8 h-8 text-slate-500 mx-auto mb-2"></i>
+        <h4 class="text-sm font-bold text-slate-300">No matching device found</h4>
+        <p class="text-xs text-slate-500 mt-1">Try searching by model number, or flash our Generic System Image (GSI).</p>
       </div>
 
     </div>
   </section>
 
-  <!-- Features Section (LineageOS Core Pillars) -->
-  <section id="features" class="py-20 border-t border-[#1F2937] bg-[#0E1420]">
+  <section id="wiki" class="py-24 bg-[#0a0f19] border-t border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="max-w-3xl mb-14">
-        <span class="text-xs font-mono text-[#26C6DA] uppercase tracking-wider">Design & Engineering</span>
-        <h2 class="text-3xl font-extrabold text-white mt-1">Built for Daily Use</h2>
-        <p class="text-slate-400 text-sm mt-2">OctaviOS refines stock Android with granular system customization while keeping source trees close to upstream AOSP.</p>
+      <div class="max-w-2xl mb-12">
+        <div class="inline-flex items-center gap-2 text-xs font-mono text-brand-teal uppercase tracking-widest">
+          <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+          Standard Operating Procedures
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1 tracking-tight">Installation Guide</h2>
+        <p class="text-slate-400 text-sm mt-2">Pick your preferred installation method. Ensure your bootloader is unlocked prior to flashing.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Pillar 1 -->
-        <div class="p-6 rounded-xl bg-[#111827] border border-[#1F2937] hover:border-slate-700 transition">
-          <div class="w-10 h-10 rounded-lg bg-[#167C80]/20 border border-[#167C80]/40 flex items-center justify-center text-[#26C6DA] mb-4">
-            <i data-lucide="sliders" class="w-5 h-5"></i>
-          </div>
-          <h3 class="text-base font-bold text-white mb-2">Octavi Lab Dashboard</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            Centralized settings menu for lockscreen styles, battery icons, status bar clock alignments, network speed meters, and gesture behaviors.
-          </p>
-        </div>
-
-        <!-- Pillar 2 -->
-        <div class="p-6 rounded-xl bg-[#111827] border border-[#1F2937] hover:border-slate-700 transition">
-          <div class="w-10 h-10 rounded-lg bg-[#167C80]/20 border border-[#167C80]/40 flex items-center justify-center text-[#26C6DA] mb-4">
-            <i data-lucide="shield-check" class="w-5 h-5"></i>
-          </div>
-          <h3 class="text-base font-bold text-white mb-2">Security & Signature Spoofing</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            SELinux Enforcing across official builds. Native microG signature spoofing permissions with isolated app sandboxing and SafetyNet pass.
-          </p>
-        </div>
-
-        <!-- Pillar 3 -->
-        <div class="p-6 rounded-xl bg-[#111827] border border-[#1F2937] hover:border-slate-700 transition">
-          <div class="w-10 h-10 rounded-lg bg-[#167C80]/20 border border-[#167C80]/40 flex items-center justify-center text-[#26C6DA] mb-4">
-            <i data-lucide="battery-charging" class="w-5 h-5"></i>
-          </div>
-          <h3 class="text-base font-bold text-white mb-2">Thermal & Deep Sleep Tuning</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            Upstream Linux kernel optimizations, per-app refresh rate limiters, and aggressive deep sleep schedulers to prevent standby battery drain.
-          </p>
-        </div>
-
-        <!-- Pillar 4 -->
-        <div class="p-6 rounded-xl bg-[#111827] border border-[#1F2937] hover:border-slate-700 transition">
-          <div class="w-10 h-10 rounded-lg bg-[#167C80]/20 border border-[#167C80]/40 flex items-center justify-center text-[#26C6DA] mb-4">
-            <i data-lucide="layout" class="w-5 h-5"></i>
-          </div>
-          <h3 class="text-base font-bold text-white mb-2">Ergonomic Card UI</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            Clean header offsets and reachable card grouping across Settings, reducing thumb strain on modern tall aspect-ratio displays.
-          </p>
-        </div>
-
-        <!-- Pillar 5 -->
-        <div class="p-6 rounded-xl bg-[#111827] border border-[#1F2937] hover:border-slate-700 transition">
-          <div class="w-10 h-10 rounded-lg bg-[#167C80]/20 border border-[#167C80]/40 flex items-center justify-center text-[#26C6DA] mb-4">
-            <i data-lucide="cpu" class="w-5 h-5"></i>
-          </div>
-          <h3 class="text-base font-bold text-white mb-2">Generic System Images (GSI)</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            Project Treble ARM64 A/B system builds for devices without dedicated maintainers. Verified on Unisoc, MediaTek, and Qualcomm platforms.
-          </p>
-        </div>
-
-        <!-- Pillar 6 -->
-        <div class="p-6 rounded-xl bg-[#111827] border border-[#1F2937] hover:border-slate-700 transition">
-          <div class="w-10 h-10 rounded-lg bg-[#167C80]/20 border border-[#167C80]/40 flex items-center justify-center text-[#26C6DA] mb-4">
-            <i data-lucide="git-pull-request" class="w-5 h-5"></i>
-          </div>
-          <h3 class="text-base font-bold text-white mb-2">Community Maintained</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            Completely transparent Git repositories. Community contributions are reviewed via GitHub pull requests with continuous automated builds.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Installation Wiki / Fastboot Terminal Guide -->
-  <section id="installation" class="py-20 border-t border-[#1F2937] bg-[#0B0F17]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="max-w-3xl mb-12">
-        <span class="text-xs font-mono text-[#26C6DA] uppercase tracking-wider">Documentation</span>
-        <h2 class="text-3xl font-extrabold text-white mt-1">Installation Wiki</h2>
-        <p class="text-slate-400 text-sm mt-2">Standard flashing flow for AOSP custom recoveries (OrangeFox, TWRP, or Lineage Recovery).</p>
+      <!-- Guide Tabs -->
+      <div class="flex gap-2 border-b border-brand-border pb-4 mb-8">
+        <button class="wiki-tab active px-4 py-2 rounded-lg text-xs font-semibold bg-brand-teal text-black transition" data-target="tab-recovery">Recovery Sideload (Recommended)</button>
+        <button class="wiki-tab px-4 py-2 rounded-lg text-xs font-semibold bg-brand-card hover:bg-brand-cardHover border border-brand-border text-slate-300 transition" data-target="tab-fastboot">Fastboot Flash</button>
+        <button class="wiki-tab px-4 py-2 rounded-lg text-xs font-semibold bg-brand-card hover:bg-brand-cardHover border border-brand-border text-slate-300 transition" data-target="tab-ota">Dirty / OTA Update</button>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        <!-- Left: Steps List -->
-        <div class="lg:col-span-6 space-y-4">
-          <div class="p-4 rounded-lg bg-[#111827] border border-[#1F2937] flex items-start gap-4">
-            <span class="w-7 h-7 rounded bg-[#167C80] text-white text-xs font-mono font-bold flex items-center justify-center shrink-0">1</span>
+      <!-- Tab Content 1: Recovery Sideload -->
+      <div id="tab-recovery" class="wiki-content grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-6 space-y-3.5">
+          <div class="p-4 rounded-xl bg-brand-card border border-brand-border flex items-start gap-4">
+            <span class="w-6 h-6 rounded bg-brand-tealDeep text-white text-xs font-mono font-bold flex items-center justify-center shrink-0">1</span>
             <div>
-              <h4 class="text-sm font-bold text-white">Unlock Bootloader & Backup</h4>
-              <p class="text-xs text-slate-400 mt-1 leading-relaxed">Ensure OEM unlocking is enabled. Back up internal storage, photos, and authenticator keys.</p>
+              <h5 class="text-xs font-bold text-white uppercase tracking-wide">Backup &amp; Boot Recovery</h5>
+              <p class="text-xs text-slate-400 mt-1">Boot your verified custom recovery (OrangeFox, Lineage Recovery, or TWRP) via fastboot.</p>
             </div>
           </div>
-
-          <div class="p-4 rounded-lg bg-[#111827] border border-[#1F2937] flex items-start gap-4">
-            <span class="w-7 h-7 rounded bg-[#167C80] text-white text-xs font-mono font-bold flex items-center justify-center shrink-0">2</span>
+          <div class="p-4 rounded-xl bg-brand-card border border-brand-border flex items-start gap-4">
+            <span class="w-6 h-6 rounded bg-brand-tealDeep text-white text-xs font-mono font-bold flex items-center justify-center shrink-0">2</span>
             <div>
-              <h4 class="text-sm font-bold text-white">Boot Custom Recovery</h4>
-              <p class="text-xs text-slate-400 mt-1 leading-relaxed">Boot your device's verified TWRP or OrangeFox recovery image via fastboot.</p>
+              <h5 class="text-xs font-bold text-white uppercase tracking-wide">Mandatory Clean Wipe</h5>
+              <p class="text-xs text-slate-400 mt-1">Go to Wipe &gt; Format Data &gt; type <code>yes</code> to remove previous vendor encryption tokens.</p>
             </div>
           </div>
-
-          <div class="p-4 rounded-lg bg-[#111827] border border-[#1F2937] flex items-start gap-4">
-            <span class="w-7 h-7 rounded bg-[#167C80] text-white text-xs font-mono font-bold flex items-center justify-center shrink-0">3</span>
+          <div class="p-4 rounded-xl bg-brand-card border border-brand-border flex items-start gap-4">
+            <span class="w-6 h-6 rounded bg-brand-tealDeep text-white text-xs font-mono font-bold flex items-center justify-center shrink-0">3</span>
             <div>
-              <h4 class="text-sm font-bold text-white">Format Data (Mandatory for clean flash)</h4>
-              <p class="text-xs text-slate-400 mt-1 leading-relaxed">Navigate to Wipe &gt; Format Data and confirm typing <code>yes</code> to remove file-based encryption keys.</p>
-            </div>
-          </div>
-
-          <div class="p-4 rounded-lg bg-[#111827] border border-[#1F2937] flex items-start gap-4">
-            <span class="w-7 h-7 rounded bg-[#167C80] text-white text-xs font-mono font-bold flex items-center justify-center shrink-0">4</span>
-            <div>
-              <h4 class="text-sm font-bold text-white">Sideload or Flash Zip</h4>
-              <p class="text-xs text-slate-400 mt-1 leading-relaxed">Flash the ROM package via ADB Sideload or Install menu, followed by reboot to system.</p>
+              <h5 class="text-xs font-bold text-white uppercase tracking-wide">Sideload ROM Package</h5>
+              <p class="text-xs text-slate-400 mt-1">Under recovery, select <code>Apply update from ADB</code>, connect USB, and execute sideload.</p>
             </div>
           </div>
         </div>
 
-        <!-- Right: Terminal Snippet -->
-        <div class="lg:col-span-6 bg-[#0E1420] rounded-xl border border-[#1F2937] overflow-hidden shadow-lg">
-          <div class="px-4 py-3 bg-[#111827] border-b border-[#1F2937] flex items-center justify-between">
+        <div class="lg:col-span-6 rounded-2xl bg-[#070b12] border border-brand-border overflow-hidden">
+          <div class="px-4 py-3 bg-brand-card border-b border-brand-border flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
-              <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
-              <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
-              <span class="text-xs font-mono text-slate-400 ml-2">fastboot / adb terminal</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+              <span class="text-xs font-mono text-slate-400 ml-2">Terminal (adb sideload)</span>
             </div>
-            <span class="text-[11px] font-mono text-slate-500">bash</span>
+            <button onclick="copySnippet('code-recovery')" class="text-xs font-mono text-slate-400 hover:text-brand-teal flex items-center gap-1 transition">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy
+            </button>
           </div>
+          <pre id="code-recovery" class="p-5 text-xs font-mono text-slate-300 leading-relaxed overflow-x-auto"><span class="text-slate-500"># Verify connected device</span>
+<span class="text-brand-teal">adb</span> devices
 
-          <pre class="p-5 font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto">
-<span class="text-slate-500"># 1. Verify fastboot device connectivity</span>
-<span class="text-[#26C6DA]">fastboot</span> devices
+<span class="text-slate-500"># Sideload the downloaded OctaviOS archive</span>
+<span class="text-brand-teal">adb</span> sideload OctaviOS-Release-OFFICIAL.zip
 
-<span class="text-slate-500"># 2. Boot into custom recovery</span>
-<span class="text-[#26C6DA]">fastboot</span> boot recovery.img
+<span class="text-slate-500"># Reboot into OctaviOS system</span>
+<span class="text-brand-teal">adb</span> reboot</pre>
+        </div>
+      </div>
 
-<span class="text-slate-500"># 3. Enter sideload mode in recovery & flash</span>
-<span class="text-[#26C6DA]">adb</span> sideload OctaviOS-v3.9-OFFICIAL.zip
-
-<span class="text-slate-500"># 4. Reboot into OctaviOS</span>
-<span class="text-[#26C6DA]">fastboot</span> reboot</pre>
+      <!-- Tab Content 2: Fastboot Flash -->
+      <div id="tab-fastboot" class="wiki-content hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-6 space-y-3.5">
+          <div class="p-4 rounded-xl bg-brand-card border border-brand-border flex items-start gap-4">
+            <span class="w-6 h-6 rounded bg-brand-tealDeep text-white text-xs font-mono font-bold flex items-center justify-center shrink-0">1</span>
+            <div>
+              <h5 class="text-xs font-bold text-white uppercase tracking-wide">Enter FastbootD Mode</h5>
+              <p class="text-xs text-slate-400 mt-1">Boot device into bootloader, then transition into fastbootd dynamic partitions.</p>
+            </div>
+          </div>
+          <div class="p-4 rounded-xl bg-brand-card border border-brand-border flex items-start gap-4">
+            <span class="w-6 h-6 rounded bg-brand-tealDeep text-white text-xs font-mono font-bold flex items-center justify-center shrink-0">2</span>
+            <div>
+              <h5 class="text-xs font-bold text-white uppercase tracking-wide">Flash Partitions</h5>
+              <p class="text-xs text-slate-400 mt-1">Flash boot, dtbo, vendor_boot, and system partitions sequentially.</p>
+            </div>
+          </div>
         </div>
 
+        <div class="lg:col-span-6 rounded-2xl bg-[#070b12] border border-brand-border overflow-hidden">
+          <div class="px-4 py-3 bg-brand-card border-b border-brand-border flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400">Terminal (fastbootd)</span>
+            <button onclick="copySnippet('code-fastboot')" class="text-xs font-mono text-slate-400 hover:text-brand-teal flex items-center gap-1 transition">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy
+            </button>
+          </div>
+          <pre id="code-fastboot" class="p-5 text-xs font-mono text-slate-300 leading-relaxed overflow-x-auto"><span class="text-slate-500"># Transition to fastbootd</span>
+<span class="text-brand-teal">fastboot</span> reboot fastboot
+
+<span class="text-slate-500"># Flash boot images</span>
+<span class="text-brand-teal">fastboot</span> flash boot boot.img
+<span class="text-brand-teal">fastboot</span> flash vendor_boot vendor_boot.img
+
+<span class="text-slate-500"># Erase user data and reboot</span>
+<span class="text-brand-teal">fastboot</span> -w
+<span class="text-brand-teal">fastboot</span> reboot</pre>
+        </div>
+      </div>
+
+      <!-- Tab Content 3: Dirty Update -->
+      <div id="tab-ota" class="wiki-content hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-6 space-y-3.5">
+          <div class="p-4 rounded-xl bg-brand-card border border-brand-border flex items-start gap-4">
+            <span class="w-6 h-6 rounded bg-brand-tealDeep text-white text-xs font-mono font-bold flex items-center justify-center shrink-0">1</span>
+            <div>
+              <h5 class="text-xs font-bold text-white uppercase tracking-wide">No Data Wipe Required</h5>
+              <p class="text-xs text-slate-400 mt-1">When updating from a previous OctaviOS build, internal storage and user accounts remain intact.</p>
+            </div>
+          </div>
+          <div class="p-4 rounded-xl bg-brand-card border border-brand-border flex items-start gap-4">
+            <span class="w-6 h-6 rounded bg-brand-tealDeep text-white text-xs font-mono font-bold flex items-center justify-center shrink-0">2</span>
+            <div>
+              <h5 class="text-xs font-bold text-white uppercase tracking-wide">Flash &amp; Wipe Cache Only</h5>
+              <p class="text-xs text-slate-400 mt-1">Wipe Dalvik Cache before rebooting to let the ART compiler regenerate bytecode.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 rounded-2xl bg-[#070b12] border border-brand-border overflow-hidden">
+          <div class="px-4 py-3 bg-brand-card border-b border-brand-border flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400">Terminal (OTA dirty-flash)</span>
+            <button onclick="copySnippet('code-ota')" class="text-xs font-mono text-slate-400 hover:text-brand-teal flex items-center gap-1 transition">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy
+            </button>
+          </div>
+          <pre id="code-ota" class="p-5 text-xs font-mono text-slate-300 leading-relaxed overflow-x-auto"><span class="text-slate-500"># Direct sideload over existing install</span>
+<span class="text-brand-teal">adb</span> sideload OctaviOS-Update-latest.zip
+
+<span class="text-slate-500"># No data format required — reboot straight to system</span>
+<span class="text-brand-teal">adb</span> reboot</pre>
+        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Team / Contributors Section -->
-  <section id="team" class="py-16 border-t border-[#1F2937] bg-[#0E1420]">
+  <section id="manifest" class="py-20 bg-[#090d14] border-t border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="max-w-3xl mb-12">
-        <span class="text-xs font-mono text-[#26C6DA] uppercase tracking-wider">Open Source</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Core Maintainers</h2>
-        <p class="text-slate-400 text-sm mt-1">The developers leading system integration and device infrastructure.</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         
-        <div class="p-5 rounded-lg bg-[#111827] border border-[#1F2937]">
-          <div class="font-bold text-white text-base">Madhav</div>
-          <div class="text-xs font-mono text-[#26C6DA] mt-0.5">Core Developer & Founder</div>
-          <p class="text-xs text-slate-400 mt-2">ROM framework architect and base tree maintenance.</p>
+        <!-- Left: Manifest Init -->
+        <div>
+          <span class="text-xs font-mono text-brand-teal uppercase tracking-widest">Developers & Maintainers</span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Build from Source</h3>
+          <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+            Interested in porting OctaviOS to your device? Our trees are open-source and modular. Initialize our manifest repository via Google repo tool:
+          </p>
+
+          <div class="mt-6 p-4 rounded-xl bg-brand-card border border-brand-border font-mono text-xs text-slate-300 space-y-2">
+            <div class="text-slate-500"># Initialize Android 14 manifest</div>
+            <div class="text-brand-teal select-all overflow-x-auto">repo init -u https://github.com/OctaviOS-Plus/manifest -b 14 --depth=1</div>
+            <div class="text-slate-500 mt-2"># Synchronize source trees</div>
+            <div class="text-brand-teal select-all">repo sync -c -j$(nproc --all) --force-sync</div>
+          </div>
         </div>
 
-        <div class="p-5 rounded-lg bg-[#111827] border border-[#1F2937]">
-          <div class="font-bold text-white text-base">Pranav</div>
-          <div class="text-xs font-mono text-[#26C6DA] mt-0.5">UI Lead & Maintainer</div>
-          <p class="text-xs text-slate-400 mt-2">Octavi Lab dashboard styling and device trees.</p>
-        </div>
-
-        <div class="p-5 rounded-lg bg-[#111827] border border-[#1F2937]">
-          <div class="font-bold text-white text-base">Redline</div>
-          <div class="text-xs font-mono text-[#26C6DA] mt-0.5">Infrastructure & GSI</div>
-          <p class="text-xs text-slate-400 mt-2">CI/CD automation, SourceForge mirrors, and Treble ports.</p>
-        </div>
-
-        <div class="p-5 rounded-lg bg-[#111827] border border-[#1F2937]">
-          <div class="font-bold text-white text-base">Device Maintainers</div>
-          <div class="text-xs font-mono text-teal-400 mt-0.5">Global Maintainer Fleet</div>
-          <p class="text-xs text-slate-400 mt-2">30+ volunteer maintainers building for their hardware.</p>
+        <!-- Right: Maintainer CTA Card -->
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-brand-card to-[#0d1627] border border-brand-border text-center space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-teal/10 border border-brand-teal/30 text-brand-teal flex items-center justify-center mx-auto">
+            <i data-lucide="git-pull-request" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-lg font-bold text-white">Become an Official Maintainer</h4>
+          <p class="text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
+            Maintain trees for your device, run testing pipelines, and join our Telegram dev channels.
+          </p>
+          <div class="pt-2 flex justify-center gap-3">
+            <a href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-brand-tealDeep hover:bg-brand-teal hover:text-black text-white font-semibold text-xs transition flex items-center gap-2">
+              <i data-lucide="send" class="w-3.5 h-3.5"></i>
+              <span>Join Telegram</span>
+            </a>
+            <a href="https://github.com/OctaviOS-Plus" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-brand-card hover:bg-brand-cardHover border border-brand-border text-slate-300 font-semibold text-xs transition flex items-center gap-2">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i>
+              <span>GitHub Organization</span>
+            </a>
+          </div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Changelog Modal -->
-  <div id="changelogModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-[#111827] border border-[#1F2937] rounded-xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+  <div id="deviceModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-brand-card border border-brand-border rounded-2xl max-w-xl w-full p-6 space-y-5 shadow-2xl relative">
       
-      <div class="flex items-center justify-between border-b border-[#1F2937] pb-3">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-brand-border pb-4">
         <div>
-          <h3 id="modalDeviceName" class="font-bold text-lg text-white">Device Changelog</h3>
-          <p id="modalCodename" class="text-xs font-mono text-[#26C6DA] mt-0.5">codename</p>
+          <h3 id="modalDeviceTitle" class="text-lg font-bold text-white">Device Downloads</h3>
+          <p id="modalDeviceMeta" class="text-xs font-mono text-brand-teal mt-0.5">codename &bull; version</p>
         </div>
-        <button id="closeModalBtn" class="text-slate-400 hover:text-white p-1 rounded hover:bg-[#1F2937] transition">
-          <i data-lucide="x" class="w-4 h-4"></i>
+        <button id="closeModal" class="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-brand-subtle transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
-      <div class="text-xs text-slate-300 space-y-2 max-h-72 overflow-y-auto pr-2" id="modalChangelogContent">
-        <!-- Injected via JS -->
+      <!-- SHA256 Checksum Box -->
+      <div class="p-3 bg-[#090d14] rounded-xl border border-brand-border space-y-1">
+        <div class="flex items-center justify-between text-[11px] font-mono text-slate-400">
+          <span>SHA256 CHECKSUM</span>
+          <button id="copyHashBtn" class="text-brand-teal hover:underline flex items-center gap-1">
+            <i data-lucide="copy" class="w-3 h-3"></i> Copy
+          </button>
+        </div>
+        <div id="modalSha256" class="text-[11px] font-mono text-slate-300 break-all select-all">
+          e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+        </div>
       </div>
 
-      <div class="pt-3 flex justify-end gap-2 border-t border-[#1F2937]">
-        <button id="modalCloseAction" class="px-3.5 py-1.5 rounded-md text-xs font-medium text-slate-300 hover:bg-[#1F2937] transition">Close</button>
-        <a id="modalDownloadBtn" href="#" target="_blank" rel="noopener" class="px-4 py-1.5 rounded-md bg-[#167C80] hover:bg-[#1FA2A6] text-xs font-semibold text-white transition flex items-center gap-1.5">
-          <i data-lucide="download" class="w-3.5 h-3.5"></i>
-          <span>Download Zip</span>
-        </a>
+      <!-- Changelog list -->
+      <div>
+        <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Build Changelog</h4>
+        <ul id="modalChangelog" class="text-xs text-slate-400 space-y-1.5 list-disc list-inside max-h-44 overflow-y-auto pr-2">
+          <!-- Dynamic logs -->
+        </ul>
       </div>
+
+      <!-- Modal Footer Mirrors -->
+      <div class="pt-4 border-t border-brand-border flex items-center justify-between gap-3">
+        <span class="text-xs text-slate-500 font-mono" id="modalFileSize">1.6 GB</span>
+        <div class="flex gap-2">
+          <a id="modalMirrorSourceForge" href="#" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-brand-tealDeep hover:bg-brand-teal hover:text-black text-white text-xs font-semibold transition flex items-center gap-1.5">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span>SourceForge Mirror</span>
+          </a>
+          <a id="modalMirrorTelegram" href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="px-3 py-2 rounded-lg bg-brand-subtle hover:bg-slate-800 text-slate-300 text-xs font-semibold border border-brand-border transition flex items-center gap-1.5">
+            <i data-lucide="send" class="w-3.5 h-3.5 text-brand-teal"></i>
+            <span>Channel Post</span>
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- Minimalist Lineage-style Footer -->
-  <footer class="border-t border-[#1F2937] bg-[#070A0F] py-12 text-slate-400 text-xs">
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-16 opacity-0 transition duration-300 bg-brand-teal text-[#090d14] px-4 py-2.5 rounded-xl font-mono text-xs font-bold shadow-xl flex items-center gap-2">
+    <i data-lucide="check" class="w-4 h-4"></i>
+    <span id="toastMsg">Copied to clipboard</span>
+  </div>
+
+  <footer class="bg-[#06080d] border-t border-brand-border py-12 text-slate-500 text-xs font-normal">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-[#1F2937]">
-        <div class="flex items-center gap-2">
-          <div class="w-6 h-6 rounded bg-[#167C80] text-white font-bold text-xs flex items-center justify-center">O</div>
-          <span class="font-bold text-slate-200 text-sm">OctaviOS Open Source Project</span>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pb-8 border-b border-brand-border">
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 rounded-md bg-brand-tealDeep text-white flex items-center justify-center font-bold text-xs">O</div>
+          <span class="text-slate-300 font-bold text-sm">OctaviOS Open Source Project</span>
         </div>
-        
-        <div class="flex flex-wrap gap-6 text-slate-400">
-          <a href="https://github.com/OctaviOS-Plus" target="_blank" rel="noopener" class="hover:text-white transition">GitHub Org</a>
-          <a href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="hover:text-white transition">Telegram Channel</a>
-          <a href="https://sourceforge.net/projects/octavios/" target="_blank" rel="noopener" class="hover:text-white transition">SourceForge</a>
-          <a href="https://xdaforums.com" target="_blank" rel="noopener" class="hover:text-white transition">XDA Forums</a>
+        <div class="flex gap-6 text-slate-400">
+          <a href="https://github.com/OctaviOS-Plus" target="_blank" rel="noopener" class="hover:text-brand-teal transition">GitHub</a>
+          <a href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="hover:text-brand-teal transition">Telegram</a>
+          <a href="https://sourceforge.net/projects/octavios/" target="_blank" rel="noopener" class="hover:text-brand-teal transition">SourceForge</a>
+          <a href="https://xdaforums.com" target="_blank" rel="noopener" class="hover:text-brand-teal transition">XDA Portal</a>
         </div>
       </div>
 
-      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500">
-        <p>&copy; <span id="yearSpan"></span> OctaviOS Project. Android is a trademark of Google LLC.</p>
-        <p class="font-mono text-[11px]">Free software released under Apache 2.0 &amp; GPLv2.</p>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-500">
+        <p>&copy; <span id="yearSpan"></span> OctaviOS Contributors. Android is a registered trademark of Google LLC.</p>
+        <p class="font-mono text-[11px]">Free Software distributed under Apache 2.0 &amp; GPL-3.0.</p>
       </div>
-      
+
     </div>
   </footer>
 
   <script>
-    // Initialize Lucide icons
+    // Initialize icons
     lucide.createIcons();
-
-    // Footer Year
     document.getElementById('yearSpan').textContent = new Date().getFullYear();
 
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    navToggle.addEventListener('click', () => {
+      mobileDrawer.classList.toggle('hidden');
     });
 
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-    });
-
-    // Device Database
-    const devices = [
+    // Device Fleet Database
+    const deviceCatalog = [
       {
         name: "POCO F3 / Redmi K40 / Mi 11X",
         codename: "alioth",
         oem: "Xiaomi",
         maintainer: "Pranav",
-        android: "13.0 (Tiramisu)",
-        version: "v3.9",
-        date: "2023-09-14",
+        avatar: "https://placehold.co/40x40/151f33/00c4b4?text=PR",
+        android: "14.0",
+        version: "v4.2-OFFICIAL",
         variant: "GAPPS",
-        size: "1.6 GB",
-        status: "Official",
+        size: "1.74 GB",
+        date: "2024-03-22",
+        sha256: "9f83a48e718274a123bc454991b7852b855e3b0c44298fc1c149afbf4c8996fb",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/alioth/",
         changelog: [
-          "Merged September Android Security Bulletin",
-          "Fixed NFC toggle lag on select global variants",
-          "Improved thermals in high-performance profiles",
-          "Upgraded Leica Camera blobs to v4.5 upstream"
+          "Merged March Android 14 Security Bulletin (r27)",
+          "Enhanced Leica Camera 5.0 blobbing and HDR processing",
+          "Fixed idle battery drain during 120Hz display refresh lock",
+          "Improved Dolby Atmos profile audio amplification"
         ]
       },
       {
-        name: "Redmi Note 10 Pro / Pro Max",
+        name: "Redmi Note 10 Pro / Max",
         codename: "sweet",
         oem: "Xiaomi",
         maintainer: "Madhav",
-        android: "13.0 (Tiramisu)",
-        version: "v3.9",
-        date: "2023-09-12",
+        avatar: "https://placehold.co/40x40/151f33/00c4b4?text=MD",
+        android: "14.0",
+        version: "v4.2-OFFICIAL",
         variant: "GAPPS",
-        size: "1.7 GB",
-        status: "Official",
+        size: "1.68 GB",
+        date: "2024-03-18",
+        sha256: "6c5e0382d114d3cc910ebd20130d3f745e93f5ec26fb9e37d527f5e9b8924512",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/sweet/",
         changelog: [
-          "Merged September 2023 Security Patch",
-          "Fixed 120Hz refresh rate drop in Battery Saver",
-          "Updated Kernel to upstream 4.14.320",
-          "Audio amplifier sound enhancement enabled"
+          "Updated upstream kernel to 4.14.336-perf",
+          "Fixed proximity sensor lag during high brightness calls",
+          "Enabled per-app audio output stream isolation",
+          "SELinux Enforcing mode validated"
         ]
       },
       {
@@ -569,18 +724,19 @@
         codename: "vayu",
         oem: "Xiaomi",
         maintainer: "Akash",
-        android: "13.0 (Tiramisu)",
-        version: "v3.8",
-        date: "2023-08-28",
+        avatar: "https://placehold.co/40x40/151f33/00c4b4?text=AK",
+        android: "14.0",
+        version: "v4.1-OFFICIAL",
         variant: "GAPPS",
-        size: "1.5 GB",
-        status: "Official",
+        size: "1.55 GB",
+        date: "2024-02-28",
+        sha256: "4a28f804598d363b93478912ef57b1029c9a6234d8ef0816b328102d84792bce",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/vayu/",
         changelog: [
-          "Merged August security bulletin",
-          "Prevented thermal sudden downclocks during load",
-          "Fixed fingerprint sensor sleep-wake latency",
-          "Enabled Dirac audio enhancement"
+          "Optimized thermal mitigation scheduler for Snapdragon 860",
+          "Fingerprint wake-from-sleep latency reduced to 120ms",
+          "Enabled 90Hz frame limiter for supported video players",
+          "Clean SafetyNet pass without Magisk modules"
         ]
       },
       {
@@ -588,18 +744,39 @@
         codename: "guacamole",
         oem: "OnePlus",
         maintainer: "Gaurav",
-        android: "13.0 (Tiramisu)",
-        version: "v3.8",
-        date: "2023-08-20",
+        avatar: "https://placehold.co/40x40/151f33/00c4b4?text=GR",
+        android: "14.0",
+        version: "v4.1-OFFICIAL",
         variant: "VANILLA / GAPPS",
-        size: "1.4 GB",
-        status: "Official",
+        size: "1.49 GB",
+        date: "2024-02-19",
+        sha256: "a1b2c3d4e5f67890123456789abcdef0123456789abcdef0123456789abcdef0",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/guacamole/",
         changelog: [
-          "Motorized pop-up camera sound calibration",
-          "FOD icon animations synced with Octavi Lab",
-          "Alert Slider custom vibration configurations added",
-          "Merged latest kernel sources"
+          "Calibrated motorized camera pop-up sound timings",
+          "Alert slider multi-mode vibration customization",
+          "Synced Horizon light ambient edge notification colors",
+          "Upstream kernel synchronization"
+        ]
+      },
+      {
+        name: "Google Pixel 7 / 7 Pro",
+        codename: "cheetah",
+        oem: "Google",
+        maintainer: "Team Octavi",
+        avatar: "https://placehold.co/40x40/151f33/00c4b4?text=TO",
+        android: "14.0",
+        version: "v4.2-OFFICIAL",
+        variant: "PIXEL GAPPS",
+        size: "1.92 GB",
+        date: "2024-03-24",
+        sha256: "88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589",
+        downloadUrl: "https://sourceforge.net/projects/octavios/files/cheetah/",
+        changelog: [
+          "Tensor G2 energy-efficient scheduler tuning",
+          "Integrated Google Camera v9.2 post-processing",
+          "High brightness mode toggle in quick settings",
+          "Latest security patch merged"
         ]
       },
       {
@@ -607,37 +784,18 @@
         codename: "RMX2001",
         oem: "Realme",
         maintainer: "Siddharth",
-        android: "12.1 (Snow Cone)",
-        version: "v3.4",
-        date: "2022-11-05",
+        avatar: "https://placehold.co/40x40/151f33/00c4b4?text=SD",
+        android: "13.0",
+        version: "v3.9-OFFICIAL",
         variant: "GAPPS",
-        size: "1.3 GB",
-        status: "Official",
+        size: "1.32 GB",
+        date: "2023-11-12",
+        sha256: "123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/RMX2001/",
         changelog: [
-          "Realme UI 2.0 vendor compatibility",
-          "SELinux Enforcing mode validated",
-          "Smooth 90Hz frame limiter calibration",
-          "SafetyNet pass without Magisk"
-        ]
-      },
-      {
-        name: "Google Pixel 4 / 4 XL",
-        codename: "coral",
-        oem: "Google",
-        maintainer: "Core Team",
-        android: "13.0 (Tiramisu)",
-        version: "v3.8",
-        date: "2023-07-15",
-        variant: "GAPPS",
-        size: "1.5 GB",
-        status: "Official",
-        downloadUrl: "https://sourceforge.net/projects/octavios/files/coral/",
-        changelog: [
-          "Soli radar gesture tweaks in Octavi Lab",
-          "Smooth Display 90Hz calibrated",
-          "Google Camera 8.8 integration",
-          "Battery health metrics updated"
+          "MediaTek Helio G90T thermal profile overhaul",
+          "Smooth 90Hz touch sampling rate enforcement",
+          "Fix in-call speakerphone routing latency"
         ]
       },
       {
@@ -645,162 +803,214 @@
         codename: "arm64-ab",
         oem: "GSI",
         maintainer: "Redline",
-        android: "13.0 (Tiramisu)",
-        version: "v3.9",
-        date: "2023-09-18",
+        avatar: "https://placehold.co/40x40/151f33/00c4b4?text=RL",
+        android: "14.0",
+        version: "v4.2-GSI",
         variant: "VANILLA & GAPPS",
-        size: "1.1 GB",
-        status: "Official",
+        size: "1.18 GB",
+        date: "2024-03-26",
+        sha256: "c3ab8ff13720e8ad9047dd39466b3c8974e592c2fa383d4a3960714caef0c4f2",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/GSI/",
         changelog: [
-          "Universal Treble v2.0+ compatibility",
-          "Fix in-call audio for MediaTek / Unisoc chips",
-          "Integrated PHH treble settings in Octavi Lab",
-          "Brightness overlay auto-fix"
+          "Universal Treble 2.0 / 3.0 runtime support",
+          "Phh Treble App controls embedded directly into Octavi Lab",
+          "Fix MediaTek in-call audio volume sliders",
+          "Backlight slider brightness scale mapping fix"
         ]
       }
     ];
 
-    const devicesContainer = document.getElementById('devicesContainer');
-    const deviceSearch = document.getElementById('deviceSearch');
-    const noResults = document.getElementById('noResults');
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const deviceGrid = document.getElementById('deviceGrid');
+    const deviceSearchInput = document.getElementById('deviceSearchInput');
+    const noMatchContainer = document.getElementById('noMatchContainer');
+    const oemChips = document.querySelectorAll('.oem-chip');
 
-    let currentOemFilter = 'all';
-    let currentSearchTerm = '';
+    let currentOem = 'all';
+    let currentFilterTerm = '';
 
-    function renderDevices() {
-      devicesContainer.innerHTML = '';
+    function renderDeviceMatrix() {
+      deviceGrid.innerHTML = '';
       
-      const filtered = devices.filter(dev => {
-        const matchesOem = currentOemFilter === 'all' || dev.oem.toLowerCase() === currentOemFilter.toLowerCase();
-        const matchesQuery = dev.name.toLowerCase().includes(currentSearchTerm.toLowerCase()) || 
-                             dev.codename.toLowerCase().includes(currentSearchTerm.toLowerCase()) ||
-                             dev.maintainer.toLowerCase().includes(currentSearchTerm.toLowerCase());
-        return matchesOem && matchesQuery;
+      const filtered = deviceCatalog.filter(device => {
+        const matchesOem = currentOem === 'all' || device.oem.toLowerCase() === currentOem.toLowerCase();
+        const matchesTerm = device.name.toLowerCase().includes(currentFilterTerm.toLowerCase()) ||
+                            device.codename.toLowerCase().includes(currentFilterTerm.toLowerCase()) ||
+                            device.maintainer.toLowerCase().includes(currentFilterTerm.toLowerCase());
+        return matchesOem && matchesTerm;
       });
 
       if (filtered.length === 0) {
-        noResults.classList.remove('hidden');
+        noMatchContainer.classList.remove('hidden');
       } else {
-        noResults.classList.add('hidden');
-        filtered.forEach(dev => {
+        noMatchContainer.classList.add('hidden');
+        filtered.forEach(device => {
           const card = document.createElement('div');
-          card.className = "p-5 rounded-xl bg-[#111827] border border-[#1F2937] hover:border-slate-600 transition flex flex-col justify-between";
+          card.className = "rounded-2xl bg-brand-card border border-brand-border hover:border-brand-borderFocus transition duration-200 p-6 flex flex-col justify-between group";
           card.innerHTML = `
             <div>
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wide">${dev.oem}</span>
-                <span class="codename-badge">${dev.codename}</span>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-[11px] font-mono text-slate-400 uppercase tracking-wider">${device.oem}</span>
+                <span class="badge-code px-2 py-0.5 rounded font-mono">${device.codename}</span>
               </div>
-              
-              <h3 class="text-base font-bold text-white">${dev.name}</h3>
-              <p class="text-xs text-slate-400 mt-1 flex items-center gap-1.5">
-                Maintainer: <span class="text-slate-300">${dev.maintainer}</span>
-              </p>
 
-              <div class="grid grid-cols-2 gap-2 text-xs py-3 my-3 border-y border-[#1F2937]">
+              <h3 class="text-base font-bold text-white group-hover:text-brand-teal transition">${device.name}</h3>
+
+              <!-- Maintainer pill -->
+              <div class="flex items-center gap-2 mt-2">
+                <img src="${device.avatar}" alt="${device.maintainer}" class="w-5 h-5 rounded-full border border-brand-border">
+                <span class="text-xs text-slate-400">Maintainer: <strong class="text-slate-200 font-medium">${device.maintainer}</strong></span>
+              </div>
+
+              <!-- Specs matrix -->
+              <div class="grid grid-cols-2 gap-2 text-xs py-3 my-4 border-y border-brand-border font-mono">
                 <div>
-                  <span class="text-slate-500 block text-[10px] uppercase font-mono">Version</span>
-                  <span class="text-slate-200 font-medium">${dev.version}</span>
+                  <span class="text-slate-500 block text-[10px] uppercase">Version</span>
+                  <span class="text-slate-200">${device.version}</span>
                 </div>
                 <div>
-                  <span class="text-slate-500 block text-[10px] uppercase font-mono">Android</span>
-                  <span class="text-slate-200 font-medium">${dev.android.split(' ')[0]}</span>
+                  <span class="text-slate-500 block text-[10px] uppercase">Android</span>
+                  <span class="text-slate-200">${device.android}</span>
                 </div>
                 <div>
-                  <span class="text-slate-500 block text-[10px] uppercase font-mono">Build Date</span>
-                  <span class="text-slate-200 font-medium">${dev.date}</span>
+                  <span class="text-slate-500 block text-[10px] uppercase">Updated</span>
+                  <span class="text-slate-200">${device.date}</span>
                 </div>
                 <div>
-                  <span class="text-slate-500 block text-[10px] uppercase font-mono">Variant</span>
-                  <span class="text-slate-200 font-medium">${dev.variant}</span>
+                  <span class="text-slate-500 block text-[10px] uppercase">Variant</span>
+                  <span class="text-slate-200">${device.variant}</span>
                 </div>
               </div>
             </div>
 
             <div class="flex items-center gap-2 pt-1">
-              <button onclick="openChangelogModal('${dev.codename}')" class="flex-1 py-2 rounded-md bg-[#172033] hover:bg-[#1E293B] text-slate-200 text-xs font-semibold border border-[#1F2937] transition flex items-center justify-center gap-1.5">
-                <i data-lucide="file-text" class="w-3.5 h-3.5 text-slate-400"></i>
-                Changelog
-              </button>
-              <a href="${dev.downloadUrl}" target="_blank" rel="noopener" class="flex-1 py-2 rounded-md bg-[#167C80] hover:bg-[#1FA2A6] text-white text-xs font-semibold transition flex items-center justify-center gap-1.5">
+              <button onclick="openModal('${device.codename}')" class="w-full py-2.5 rounded-xl bg-brand-tealDeep hover:bg-brand-teal hover:text-black text-white text-xs font-semibold tracking-wide transition flex items-center justify-center gap-2 shadow-sm">
                 <i data-lucide="download" class="w-3.5 h-3.5"></i>
-                Download
-              </a>
+                <span>Get Build &bull; ${device.size}</span>
+              </button>
             </div>
           `;
-          devicesContainer.appendChild(card);
+          deviceGrid.appendChild(card);
         });
       }
 
-      // Reinitialize Lucide icons for injected cards
       lucide.createIcons();
     }
 
-    // Filter Buttons
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => {
-          b.classList.remove('bg-[#167C80]', 'text-white');
-          b.classList.add('bg-[#111827]', 'text-slate-300');
+    // Filter Chips Event
+    oemChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        oemChips.forEach(c => {
+          c.classList.remove('bg-brand-teal', 'text-black', 'font-semibold');
+          c.classList.add('bg-brand-card', 'text-slate-300');
         });
-        btn.classList.remove('bg-[#111827]', 'text-slate-300');
-        btn.classList.add('bg-[#167C80]', 'text-white');
-        
-        currentOemFilter = btn.getAttribute('data-oem');
-        renderDevices();
+        chip.classList.remove('bg-brand-card', 'text-slate-300');
+        chip.classList.add('bg-brand-teal', 'text-black', 'font-semibold');
+        currentOem = chip.getAttribute('data-oem');
+        renderDeviceMatrix();
       });
     });
 
-    // Real-time Search
-    deviceSearch.addEventListener('input', (e) => {
-      currentSearchTerm = e.target.value.trim();
-      renderDevices();
+    // Search Input
+    deviceSearchInput.addEventListener('input', (e) => {
+      currentFilterTerm = e.target.value.trim();
+      renderDeviceMatrix();
     });
 
-    // Modal Handling
-    const modal = document.getElementById('changelogModal');
-    const modalDeviceName = document.getElementById('modalDeviceName');
-    const modalCodename = document.getElementById('modalCodename');
-    const modalContent = document.getElementById('modalChangelogContent');
-    const modalDownloadBtn = document.getElementById('modalDownloadBtn');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const modalCloseAction = document.getElementById('modalCloseAction');
+    // Modal Control
+    const modal = document.getElementById('deviceModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalDeviceTitle = document.getElementById('modalDeviceTitle');
+    const modalDeviceMeta = document.getElementById('modalDeviceMeta');
+    const modalSha256 = document.getElementById('modalSha256');
+    const modalChangelog = document.getElementById('modalChangelog');
+    const modalFileSize = document.getElementById('modalFileSize');
+    const modalMirrorSourceForge = document.getElementById('modalMirrorSourceForge');
+    const copyHashBtn = document.getElementById('copyHashBtn');
 
-    window.openChangelogModal = function(codename) {
-      const dev = devices.find(d => d.codename === codename);
+    window.openModal = function(codename) {
+      const dev = deviceCatalog.find(d => d.codename === codename);
       if (!dev) return;
 
-      modalDeviceName.textContent = dev.name;
-      modalCodename.textContent = `${dev.codename} • OctaviOS ${dev.version} (${dev.date})`;
-      modalDownloadBtn.href = dev.downloadUrl;
+      modalDeviceTitle.textContent = dev.name;
+      modalDeviceMeta.textContent = `${dev.codename} • OctaviOS ${dev.version} (${dev.date})`;
+      modalSha256.textContent = dev.sha256;
+      modalFileSize.textContent = `Size: ${dev.size} • ${dev.variant}`;
+      modalMirrorSourceForge.href = dev.downloadUrl;
 
-      modalContent.innerHTML = `
-        <p class="font-semibold text-slate-200 mb-2">Build Notes & Security Patches:</p>
-        <ul class="space-y-1.5 list-disc list-inside text-slate-300">
-          ${dev.changelog.map(item => `<li>${item}</li>`).join('')}
-        </ul>
-        <div class="mt-4 p-3 bg-[#0E1420] rounded border border-[#1F2937] text-[11px] text-slate-400 font-mono">
-          MD5/SHA256 checksums are verified upon download mirror redirect.
-        </div>
-      `;
+      modalChangelog.innerHTML = dev.changelog.map(log => `<li>${log}</li>`).join('');
 
       modal.classList.remove('hidden');
     }
 
-    function closeModal() {
+    function hideModal() {
       modal.classList.add('hidden');
     }
 
-    closeModalBtn.addEventListener('click', closeModal);
-    modalCloseAction.addEventListener('click', closeModal);
+    closeModal.addEventListener('click', hideModal);
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
+      if (e.target === modal) hideModal();
     });
 
-    // Initial load
-    renderDevices();
+    // Copy Tooltip Utility
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = message;
+      toast.classList.remove('translate-y-16', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-16', 'opacity-0');
+      }, 2500);
+    }
+
+    copyHashBtn.addEventListener('click', () => {
+      const text = modalSha256.textContent.trim();
+      copyToClipboard(text);
+      showToast("Checksum copied to clipboard!");
+    });
+
+    window.copySnippet = function(elementId) {
+      const elem = document.getElementById(elementId);
+      if (elem) {
+        copyToClipboard(elem.innerText);
+        showToast("Terminal snippet copied!");
+      }
+    };
+
+    function copyToClipboard(text) {
+      const input = document.createElement("textarea");
+      input.value = text;
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand("copy");
+      document.body.removeChild(input);
+    }
+
+    // Wiki Tabs Switcher
+    const wikiTabs = document.querySelectorAll('.wiki-tab');
+    const wikiContents = document.querySelectorAll('.wiki-content');
+
+    wikiTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        wikiTabs.forEach(t => {
+          t.classList.remove('bg-brand-teal', 'text-black');
+          t.classList.add('bg-brand-card', 'text-slate-300');
+        });
+        tab.classList.remove('bg-brand-card', 'text-slate-300');
+        tab.classList.add('bg-brand-teal', 'text-black');
+
+        const target = tab.getAttribute('data-target');
+        wikiContents.forEach(content => {
+          if (content.id === target) {
+            content.classList.remove('hidden');
+          } else {
+            content.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Initial Render
+    renderDeviceMatrix();
   </script>
 </body>
 </html>
