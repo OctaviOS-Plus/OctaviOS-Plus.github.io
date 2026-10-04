@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OctaviOS — Engineered Perfection. Welcome to 2026.</title>
-  <meta name="description" content="Experience the pinnacle of AOSP engineering. Inspired by future-forward design, unmatched battery telemetry, and fluid micro-interactions.">
+  <title>OctaviOS — Liquid Intelligence &amp; Speed. Welcome to 2026.</title>
+  <meta name="description" content="Experience the pinnacle of AOSP engineering. Ultra-optimized liquid glass materials, aerospace micro-schedulers, and fluid spatial reachability.">
 
-  <!-- Inter & SF-Pro aligned typography -->
+  <!-- Typography: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -28,14 +28,13 @@
           colors: {
             apple: {
               black: '#000000',
-              space: '#070709',
-              card: '#0c0d12',
-              cardHover: '#13151f',
-              glass: 'rgba(255, 255, 255, 0.05)',
-              glassBorder: 'rgba(255, 255, 255, 0.1)',
+              space: '#050508',
+              card: '#0a0a0f',
               blue: '#2997ff',
               cyan: '#00f2fe',
               purple: '#af52de',
+              emerald: '#30d158',
+              amber: '#ffd60a',
               textMuted: '#86868b',
               textLight: '#f5f5f7'
             }
@@ -55,56 +54,124 @@
       overflow-x: hidden;
     }
 
-    /* Ambient Apple Keynote Luminous Gradients */
-    .hero-glow {
-      background: radial-gradient(circle at 50% 18%, rgba(41, 151, 255, 0.18) 0%, rgba(175, 82, 222, 0.12) 35%, transparent 70%);
-    }
-
-    .card-glow-cyan {
-      background: radial-gradient(circle at 80% 0%, rgba(0, 242, 254, 0.1) 0%, transparent 60%);
-    }
-
-    .card-glow-purple {
-      background: radial-gradient(circle at 20% 0%, rgba(175, 82, 222, 0.12) 0%, transparent 60%);
-    }
-
-    /* Liquid Glass Morphic Capsule */
-    .liquid-glass {
-      background: rgba(18, 18, 22, 0.72);
-      backdrop-filter: blur(28px) saturate(190%);
-      -webkit-backdrop-filter: blur(28px) saturate(190%);
+    /* 
+      ULTRA-OPTIMIZED LIQUID GLASS ENGINE 
+      Using restrained blur(12px-14px), specular 1px border highlight, 
+      inner top sheen, and GPU rasterization flags.
+    */
+    .liquid-capsule {
+      background: rgba(14, 14, 20, 0.68);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      box-shadow: 
+        0 20px 40px -15px rgba(0, 0, 0, 0.8),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.28),
+        inset 0 -1px 1px 0 rgba(255, 255, 255, 0.04);
+      transform: translateZ(0);
     }
 
-    /* Apple Keynote Metallic Gradients */
-    .text-gradient-apple {
-      background: linear-gradient(180deg, #FFFFFF 0%, #B8BAC7 100%);
+    .liquid-card {
+      position: relative;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(10, 10, 15, 0.72);
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 28px;
+      box-shadow: 
+        0 15px 35px -10px rgba(0, 0, 0, 0.7),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.18);
+      transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+      overflow: hidden;
+      transform: translateZ(0);
+    }
+
+    .liquid-card:hover {
+      border-color: rgba(255, 255, 255, 0.22);
+      transform: translateY(-2px) translateZ(0);
+      box-shadow: 
+        0 24px 48px -12px rgba(0, 0, 0, 0.9),
+        0 0 24px -4px rgba(41, 151, 255, 0.15),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.32);
+    }
+
+    /* Interactive Fluid Specular Follower (Zero CPU overhead, updated via transform) */
+    .liquid-sheen::before {
+      content: '';
+      position: absolute;
+      top: var(--sheen-y, -200px);
+      left: var(--sheen-x, -200px);
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, rgba(41, 151, 255, 0.08) 40%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.4s ease;
+      opacity: var(--sheen-opacity, 0);
+      mix-blend-mode: overlay;
+    }
+
+    /* Ambient Liquid Plasma Blobs (Optimized low-frequency CSS transforms) */
+    @keyframes liquidDrift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(25px, -20px) scale(1.06); }
+    }
+    .liquid-blob-1 {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(41, 151, 255, 0.18) 0%, rgba(0, 242, 254, 0.06) 50%, transparent 70%);
+      filter: blur(55px);
+      border-radius: 50%;
+      animation: liquidDrift 14s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .liquid-blob-2 {
+      position: absolute;
+      width: 580px;
+      height: 580px;
+      background: radial-gradient(circle, rgba(175, 82, 222, 0.16) 0%, rgba(41, 151, 255, 0.05) 50%, transparent 70%);
+      filter: blur(65px);
+      border-radius: 50%;
+      animation: liquidDrift 18s ease-in-out infinite reverse;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Keynote Metallic Gradients */
+    .text-metallic {
+      background: linear-gradient(180deg, #FFFFFF 0%, #BFC2CF 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .text-gradient-glow {
+    .text-liquid-glow {
       background: linear-gradient(135deg, #2997ff 0%, #00f2fe 50%, #af52de 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    /* Hardware Phone Frame Mockup */
+    /* Phone Mockup Frame */
     .phone-chassis {
-      box-shadow: 0 0 0 10px #1a1a20, 0 0 0 12px #2f2f38, 0 25px 60px -10px rgba(0,0,0,0.9), inset 0 0 8px rgba(0,0,0,0.8);
+      box-shadow: 
+        0 0 0 10px #17171d, 
+        0 0 0 12px #26262e, 
+        0 30px 70px -10px rgba(0, 0, 0, 0.95), 
+        inset 0 0 12px rgba(0, 0, 0, 0.9);
     }
 
-    /* Dynamic Island pill animation */
-    @keyframes islandPulse {
+    /* Dynamic Island subtle breath animation */
+    @keyframes islandBreathing {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
+      50% { transform: scale(1.015); }
     }
-    .island-anim {
-      animation: islandPulse 4s ease-in-out infinite;
+    .island-pill {
+      animation: islandBreathing 4s ease-in-out infinite;
     }
 
-    /* Custom subtle scrollbar */
+    /* Micro Scrollbar */
     ::-webkit-scrollbar {
       width: 5px;
       height: 5px;
@@ -113,7 +180,7 @@
       background: #000000;
     }
     ::-webkit-scrollbar-thumb {
-      background: #23232b;
+      background: #202029;
       border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
@@ -121,12 +188,17 @@
     }
   </style>
 </head>
-<body class="selection:bg-apple-blue selection:text-white">
+<body class="selection:bg-apple-blue selection:text-white relative">
+
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="liquid-blob-1 top-[-100px] left-1/2 -translate-x-1/2"></div>
+    <div class="liquid-blob-2 top-[35%] right-[-150px]"></div>
+    <div class="liquid-blob-1 bottom-[-100px] left-[-150px]"></div>
+  </div>
 
   <div class="fixed top-5 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
-    <nav class="liquid-glass rounded-full px-5 py-2.5 flex items-center justify-between gap-6 pointer-events-auto max-w-4xl w-full">
-      
-      <!-- Brand Apple Icon + Wordmark -->
+    <nav class="liquid-capsule rounded-full px-5 py-2.5 flex items-center justify-between gap-6 pointer-events-auto max-w-4xl w-full">
+      <!-- Logo Branding -->
       <a href="#" class="flex items-center gap-2.5 group">
         <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-apple-blue via-cyan-400 to-apple-purple p-[1px] transition-transform duration-300 group-hover:scale-110">
           <div class="w-full h-full bg-black rounded-full flex items-center justify-center">
@@ -140,16 +212,16 @@
             </svg>
           </div>
         </div>
-        <span class="text-sm font-semibold tracking-tight text-white flex items-center gap-1">
+        <span class="text-sm font-semibold tracking-tight text-white flex items-center gap-1.5">
           Octavi<span class="text-apple-blue font-light">OS</span>
-          <span class="text-[9px] px-1.5 py-0.2 rounded-full bg-white/10 text-white/80 font-mono tracking-widest font-normal">26</span>
+          <span class="text-[9px] px-2 py-0.5 rounded-full bg-white/10 text-white/80 font-mono tracking-wider">26.0</span>
         </span>
       </a>
 
       <!-- Desktop Nav Items -->
       <div class="hidden md:flex items-center gap-7 text-[13px] font-medium text-apple-textMuted tracking-tight">
         <a href="#overview" class="hover:text-white transition duration-200">Overview</a>
-        <a href="#experience" class="hover:text-white transition duration-200">Intelligence</a>
+        <a href="#intelligence" class="hover:text-white transition duration-200">Intelligence</a>
         <a href="#devices" class="hover:text-apple-blue transition duration-200">Devices</a>
         <a href="#terminal" class="hover:text-white transition duration-200">Developer</a>
         <a href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="hover:text-white transition duration-200">Community</a>
@@ -165,51 +237,47 @@
     </nav>
   </div>
 
-  <section id="overview" class="relative pt-36 pb-24 hero-glow border-b border-white/5 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+  <section id="overview" class="relative pt-36 pb-24 z-10 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       
-      <!-- Keynote Intro Pill -->
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono tracking-wider text-apple-blue uppercase mb-6 backdrop-blur-md">
-        <span class="w-1.5 h-1.5 rounded-full bg-apple-blue animate-ping"></span>
-        Keynote Release &bull; Version 26.0
+      <!-- Keynote Release Pill -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full liquid-capsule text-[11px] font-mono tracking-wider text-apple-cyan uppercase mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-apple-cyan animate-ping"></span>
+        Liquid Glass Architecture &bull; Release 26
       </div>
 
-      <!-- Grand Apple Typography -->
-      <h1 class="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight max-w-5xl mx-auto text-gradient-apple leading-[1.05]">
-        Fluidity beyond <br>
-        <span class="text-gradient-glow">imagination.</span>
+      <!-- Keynote Title -->
+      <h1 class="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight max-w-5xl mx-auto text-metallic leading-[1.05]">
+        Fluidity at the speed <br>
+        <span class="text-liquid-glow">of light.</span>
       </h1>
 
       <p class="mt-7 text-base sm:text-xl text-apple-textMuted max-w-2xl mx-auto font-normal leading-relaxed">
-        The most breathtaking Android custom OS ever created. Engineered with aerospace micro-schedulers, fluid spatial reachability, and zero bloatware.
+        The ultimate Android custom operating system. Handcrafted with lightweight liquid frosted materials, adaptive display schedulers, and uncompromising hardware integrity.
       </p>
 
-      <!-- Keynote CTA Buttons -->
+      <!-- Keynote Actions -->
       <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
         <a href="#devices" class="px-6 py-3 rounded-full bg-white text-black hover:bg-neutral-200 font-semibold text-sm transition duration-200 flex items-center gap-2 shadow-lg shadow-white/10">
           <i data-lucide="download" class="w-4 h-4"></i>
           <span>Download OctaviOS</span>
         </a>
-        <a href="#terminal" class="px-6 py-3 rounded-full liquid-glass hover:bg-white/10 text-white font-medium text-sm transition duration-200 flex items-center gap-2">
+        <a href="#terminal" class="px-6 py-3 rounded-full liquid-capsule hover:bg-white/15 text-white font-medium text-sm transition duration-200 flex items-center gap-2">
           <i data-lucide="terminal" class="w-4 h-4 text-apple-cyan"></i>
-          <span>Terminal Flasher</span>
+          <span>Installation Guide</span>
         </a>
       </div>
 
+      <!-- Phone Chassis Mockup with Dynamic Island -->
       <div class="mt-20 max-w-md mx-auto relative">
-        
-        <!-- Ambient Device Backdrop Aura -->
-        <div class="absolute -inset-4 bg-gradient-to-r from-apple-blue/20 via-apple-purple/20 to-cyan-500/20 rounded-[50px] blur-3xl opacity-60"></div>
-
-        <!-- Phone Hardware Wrapper -->
         <div class="relative w-[340px] sm:w-[380px] mx-auto h-[690px] rounded-[52px] bg-black phone-chassis border-4 border-neutral-800 p-3.5 flex flex-col justify-between overflow-hidden text-left">
           
-          <!-- Front Camera / Dynamic Capsule -->
+          <!-- Dynamic Island Capsule -->
           <div class="relative z-30 pt-2 flex flex-col items-center">
-            <div id="dynamicIsland" class="island-anim liquid-glass h-8 px-4 rounded-full flex items-center justify-between gap-4 text-[11px] font-mono text-white/90 cursor-pointer shadow-lg transition-all duration-300 w-44 hover:w-64">
+            <div id="dynamicIsland" class="island-pill liquid-capsule h-8 px-4 rounded-full flex items-center justify-between gap-4 text-[11px] font-mono text-white/90 cursor-pointer shadow-lg transition-all duration-300 w-48 hover:w-64">
               <div class="flex items-center gap-2">
-                <i data-lucide="music" class="w-3 h-3 text-apple-cyan"></i>
-                <span class="truncate max-w-[90px] text-[10px]">Stargazing &bull; FLAC</span>
+                <i data-lucide="disc" class="w-3 h-3 text-apple-cyan animate-spin"></i>
+                <span class="truncate max-w-[95px] text-[10px]">Octavi Acoustic</span>
               </div>
               <div class="flex items-center gap-1.5 text-apple-blue font-bold text-[10px]">
                 <span>120Hz</span>
@@ -218,140 +286,139 @@
             </div>
           </div>
 
-          <!-- Phone Screen Active Display -->
+          <!-- Active Phone Screen Frame -->
           <div class="relative z-10 flex-1 mt-6 flex flex-col justify-between px-3 pb-4">
-            
-            <!-- Screen Header (Clock / Date) -->
+            <!-- Screen Header -->
             <div class="text-center pt-4">
-              <div class="text-xs font-mono text-white/60 uppercase tracking-widest">Sunday, October 26</div>
+              <div class="text-[11px] font-mono text-white/60 uppercase tracking-widest">Sunday, October 26</div>
               <div id="phoneClock" class="text-6xl font-extralight tracking-tighter text-white mt-1">09:41</div>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] text-white/70 mt-3 backdrop-blur-md">
-                <i data-lucide="zap" class="w-3 h-3 text-amber-400"></i>
-                <span>Octavi Neural Scheduler active</span>
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full liquid-capsule text-[10px] text-white/80 mt-3">
+                <i data-lucide="cpu" class="w-3 h-3 text-apple-cyan"></i>
+                <span>Liquid Micro-Scheduler Active</span>
               </div>
             </div>
 
-            <!-- Interactive Screen Switcher Bar -->
+            <!-- Screen View Selector -->
             <div class="space-y-3">
-              <!-- Mode Tabs -->
               <div class="grid grid-cols-3 gap-1 p-1 bg-white/10 rounded-2xl backdrop-blur-md text-[10px] text-center font-medium">
                 <button onclick="switchScreen('lock')" id="btn-scr-lock" class="py-1.5 rounded-xl bg-white text-black font-semibold transition">Lock</button>
-                <button onclick="switchScreen('lab')" id="btn-scr-lab" class="py-1.5 rounded-xl text-white/70 hover:text-white transition">Lab QS</button>
+                <button onclick="switchScreen('lab')" id="btn-scr-lab" class="py-1.5 rounded-xl text-white/70 hover:text-white transition">Liquid Lab</button>
                 <button onclick="switchScreen('telemetry')" id="btn-scr-telemetry" class="py-1.5 rounded-xl text-white/70 hover:text-white transition">Kernel</button>
               </div>
 
-              <!-- Screen Body Frame (Toggles dynamically) -->
+              <!-- Interactive Dynamic Screen Body -->
               <div id="screenBody" class="h-56 p-4 rounded-3xl bg-neutral-900/80 border border-white/10 backdrop-blur-xl flex flex-col justify-between text-xs">
-                <!-- Injected via JavaScript -->
+                <!-- Populated via script -->
               </div>
             </div>
 
-            <!-- Phone Bottom Gesture Pill -->
+            <!-- Home Gesture Pill -->
             <div class="w-32 h-1 rounded-full bg-white/40 mx-auto mt-2"></div>
           </div>
 
         </div>
 
         <div class="text-center mt-6">
-          <p class="text-xs font-mono text-apple-textMuted tracking-wider">TAP WIDGET CONTROLS TO INTERACT WITH SYSTEM EMULATOR</p>
+          <p class="text-xs font-mono text-apple-textMuted tracking-wider uppercase">Interactive Liquid Phone Simulator</p>
         </div>
-
       </div>
 
     </div>
   </section>
 
-  <section id="experience" class="py-28 bg-apple-space border-b border-white/5 relative">
+  <section id="intelligence" class="py-28 relative z-10 border-b border-white/5 bg-apple-space/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="max-w-2xl mb-16">
-        <span class="text-xs font-mono text-apple-cyan uppercase tracking-widest">Architectural Pillars</span>
-        <h2 class="text-4xl sm:text-5xl font-extrabold text-white mt-2 tracking-tight">Radical refinement. <br>Inside and out.</h2>
-        <p class="text-apple-textMuted text-base mt-3 leading-relaxed">Engineered using modern compilation pipelines with strict focus on zero-bloat performance, spatial ergonomics, and hardware battery efficiency.</p>
+        <span class="text-xs font-mono text-apple-cyan uppercase tracking-widest">Liquid Intelligence</span>
+        <h2 class="text-4xl sm:text-5xl font-extrabold text-white mt-2 tracking-tight">Engineered to outpace. <br>Refined to perfection.</h2>
+        <p class="text-apple-textMuted text-base mt-3 leading-relaxed">
+          Every layer of OctaviOS 26 is optimized for instant tactile responsiveness, efficient memory compression, and zero battery drain.
+        </p>
       </div>
 
-      <!-- Bento Grid Apple Style -->
+      <!-- Bento Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-6">
         
-        <!-- Bento 1: Octavi Spatial Center (Span 8) -->
-        <div class="lg:col-span-8 rounded-[36px] bg-apple-card border border-apple-glassBorder p-8 card-glow-cyan flex flex-col justify-between hover:border-white/20 transition-all duration-300">
+        <!-- Bento 1: Adaptive Refresh Rate (Span 8) -->
+        <div class="lg:col-span-8 liquid-card liquid-sheen p-8 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-5">
-              <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-apple-cyan text-xs font-mono">Micro-Telemetry</span>
-              <i data-lucide="sparkles" class="w-5 h-5 text-white/50"></i>
+              <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-apple-cyan text-xs font-mono">Dynamic Hertz Engine</span>
+              <i data-lucide="zap" class="w-5 h-5 text-apple-cyan"></i>
             </div>
-            <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Adaptive Refresh &amp; Thread Dispatcher</h3>
+            <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Adaptive Display &amp; Frame Pacing</h3>
             <p class="text-apple-textMuted text-sm mt-3 leading-relaxed max-w-xl">
-              Dynamically scales your display refresh rates down to 10Hz when reading static content, ramped effortlessly to 120Hz the millisecond your finger touches glass.
+              Scales refresh down to 1Hz on static reader scenes, ramping instantly to 120Hz the microsecond your thumb makes contact.
             </p>
           </div>
 
-          <!-- Interactive Live Slider Mockup -->
-          <div class="mt-8 p-5 rounded-2xl bg-black/60 border border-white/5 space-y-4">
+          <!-- Interactive Slider -->
+          <div class="mt-8 p-5 rounded-2xl bg-black/50 border border-white/5 space-y-4">
             <div class="flex justify-between items-center text-xs font-mono">
-              <span class="text-apple-textMuted">Thermal Governor Target</span>
+              <span class="text-apple-textMuted">Liquid Refresh Target</span>
               <span id="targetHzLabel" class="text-apple-cyan font-bold">120 Hz Variable</span>
             </div>
             <input type="range" id="hzSlider" min="60" max="144" step="30" value="120" class="w-full accent-apple-blue bg-neutral-800 rounded-lg cursor-pointer">
             <div class="flex justify-between text-[10px] font-mono text-apple-textMuted">
-              <span>60Hz Power Saver</span>
+              <span>60Hz Battery Saver</span>
               <span>90Hz Balanced</span>
-              <span>120Hz Ultra Fluid</span>
+              <span>120Hz Super Fluid</span>
             </div>
           </div>
         </div>
 
-        <!-- Bento 2: Pure Security (Span 4) -->
-        <div class="lg:col-span-4 rounded-[36px] bg-apple-card border border-apple-glassBorder p-8 card-glow-purple flex flex-col justify-between hover:border-white/20 transition-all duration-300">
+        <!-- Bento 2: Play Integrity Passing (Span 4) -->
+        <div class="lg:col-span-4 liquid-card liquid-sheen p-8 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-5">
-              <span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-apple-purple text-xs font-mono">SELinux Guard</span>
+              <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">SELinux Enforcing</span>
               <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400"></i>
             </div>
-            <h3 class="text-2xl font-bold text-white tracking-tight">Enforcing Integrity</h3>
+            <h3 class="text-2xl font-bold text-white tracking-tight">Pristine Integrity</h3>
             <p class="text-apple-textMuted text-sm mt-3 leading-relaxed">
-              Native SafetyNet, Play Integrity, and hardware-backed keystore passing cleanly out of the box without tricky Magisk modules.
+              Native MEETS_STRONG_INTEGRITY status. Banking applications and streaming DRMs operate out of the box.
             </p>
           </div>
 
-          <div class="mt-6 pt-5 border-t border-white/5 font-mono text-xs flex items-center justify-between text-white/90">
+          <div class="mt-6 pt-5 border-t border-white/10 font-mono text-xs flex items-center justify-between text-white/90">
             <span>Play Integrity API</span>
             <span class="text-emerald-400 font-bold flex items-center gap-1.5">
-              <i data-lucide="check-circle" class="w-4 h-4"></i> PASSED
+              <i data-lucide="check-circle" class="w-4 h-4"></i> VERIFIED
             </span>
           </div>
         </div>
 
-        <!-- Bento 3: Octavi Lab Customization (Span 4) -->
-        <div class="lg:col-span-4 rounded-[36px] bg-apple-card border border-apple-glassBorder p-7 hover:border-white/20 transition duration-300">
+        <!-- Bento 3: Octavi Lab (Span 4) -->
+        <div class="lg:col-span-4 liquid-card liquid-sheen p-7">
           <div class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-apple-blue mb-4">
-            <i data-lucide="palette" class="w-5 h-5"></i>
+            <i data-lucide="sliders" class="w-5 h-5"></i>
           </div>
           <h4 class="text-lg font-bold text-white">Octavi Lab Customizer</h4>
           <p class="text-apple-textMuted text-xs mt-2 leading-relaxed">
-            Tailor dynamic notification headers, lockscreen typography styles, volume slider placements, and status bar network meters without rebooting.
+            Personalize lockscreen clocks, QS header blur, network traffic rate monitors, and haptic feedback profiles in real-time.
           </p>
         </div>
 
         <!-- Bento 4: Zero Bloatware (Span 4) -->
-        <div class="lg:col-span-4 rounded-[36px] bg-apple-card border border-apple-glassBorder p-7 hover:border-white/20 transition duration-300">
+        <div class="lg:col-span-4 liquid-card liquid-sheen p-7">
           <div class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-apple-purple mb-4">
             <i data-lucide="feather" class="w-5 h-5"></i>
           </div>
-          <h4 class="text-lg font-bold text-white">Absolute Zero Bloat</h4>
+          <h4 class="text-lg font-bold text-white">Pure Zero Bloat</h4>
           <p class="text-apple-textMuted text-xs mt-2 leading-relaxed">
-            No tracking SDKs, no duplicate vendor store apps, no hidden daemons consuming valuable CPU cycles or uploading analytics.
+            Stripped of vendor trackers, analytics daemons, and redundant pre-installed apps for maximal RAM availability.
           </p>
         </div>
 
-        <!-- Bento 5: High-Res Audio DAC (Span 4) -->
-        <div class="lg:col-span-4 rounded-[36px] bg-apple-card border border-apple-glassBorder p-7 hover:border-white/20 transition duration-300">
-          <div class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-emerald-400 mb-4">
+        <!-- Bento 5: Audio Engine (Span 4) -->
+        <div class="lg:col-span-4 liquid-card liquid-sheen p-7">
+          <div class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-apple-emerald mb-4">
             <i data-lucide="volume-2" class="w-5 h-5"></i>
           </div>
-          <h4 class="text-lg font-bold text-white">Studio Hi-Res Audio Engine</h4>
+          <h4 class="text-lg font-bold text-white">Spatial Dolby Engine</h4>
           <p class="text-apple-textMuted text-xs mt-2 leading-relaxed">
-            Direct bit-perfect audio stream passthrough, integrated Dolby Atmos spatial profiles, and custom preamp output tuning.
+            Direct bit-perfect Hi-Res DAC stream passthrough with built-in Dolby Atmos presets and volume curve leveling.
           </p>
         </div>
 
@@ -359,18 +426,18 @@
     </div>
   </section>
 
-  <section id="devices" class="py-28 bg-black">
+  <section id="devices" class="py-28 relative z-10 bg-black">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-white/10">
         <div>
-          <span class="text-xs font-mono text-apple-blue uppercase tracking-widest">Global Fleet Repository</span>
-          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-1 tracking-tight">Supported Devices</h2>
-          <p class="text-apple-textMuted text-sm mt-2">Certified official releases optimized for specific hardware pipelines.</p>
+          <span class="text-xs font-mono text-apple-blue uppercase tracking-widest">Hardware Fleet</span>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-1 tracking-tight">Official Devices</h2>
+          <p class="text-apple-textMuted text-sm mt-2">Tested and optimized builds for each device tree.</p>
         </div>
 
-        <!-- Futuristic Keynote Search -->
+        <!-- Search Bar -->
         <div class="w-full md:w-80">
           <div class="relative">
             <i data-lucide="search" class="w-4 h-4 text-apple-textMuted absolute left-4 top-1/2 -translate-y-1/2"></i>
@@ -378,29 +445,28 @@
               type="text" 
               id="deviceSearchInput" 
               placeholder="Search codename 'alioth', 'sweet'..." 
-              class="w-full pl-11 pr-4 py-3 rounded-full bg-apple-card border border-apple-glassBorder text-white text-xs placeholder-apple-textMuted focus:outline-none focus:border-apple-blue transition"
+              class="w-full pl-11 pr-4 py-3 rounded-full bg-apple-card border border-white/15 text-white text-xs placeholder-apple-textMuted focus:outline-none focus:border-apple-blue transition"
             >
           </div>
         </div>
       </div>
 
-      <!-- Category Filter Pills -->
+      <!-- Category Filter Chips -->
       <div class="flex items-center gap-2 overflow-x-auto py-6" id="oemChips">
         <button class="oem-chip active px-4 py-2 rounded-full text-xs font-semibold bg-white text-black transition" data-oem="all">All Devices</button>
-        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-glass text-apple-textMuted hover:text-white transition" data-oem="Xiaomi">Xiaomi &amp; POCO</button>
-        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-glass text-apple-textMuted hover:text-white transition" data-oem="OnePlus">OnePlus</button>
-        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-glass text-apple-textMuted hover:text-white transition" data-oem="Google">Google Pixel</button>
-        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-glass text-apple-textMuted hover:text-white transition" data-oem="Realme">Realme</button>
-        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-glass text-apple-textMuted hover:text-white transition" data-oem="GSI">Treble GSI</button>
+        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-capsule text-apple-textMuted hover:text-white transition" data-oem="Xiaomi">Xiaomi &amp; POCO</button>
+        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-capsule text-apple-textMuted hover:text-white transition" data-oem="OnePlus">OnePlus</button>
+        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-capsule text-apple-textMuted hover:text-white transition" data-oem="Google">Google Pixel</button>
+        <button class="oem-chip px-4 py-2 rounded-full text-xs font-semibold liquid-capsule text-apple-textMuted hover:text-white transition" data-oem="GSI">Treble GSI</button>
       </div>
 
-      <!-- Device Grid -->
+      <!-- Device Matrix Cards Grid -->
       <div id="deviceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-3">
-        <!-- Rendered via JavaScript -->
+        <!-- Rendered via JS -->
       </div>
 
       <!-- Empty State -->
-      <div id="noMatchContainer" class="hidden text-center py-20 bg-apple-card rounded-3xl border border-white/10 mt-6">
+      <div id="noMatchContainer" class="hidden text-center py-20 liquid-card mt-6">
         <i data-lucide="cpu" class="w-10 h-10 text-white/30 mx-auto mb-3"></i>
         <h4 class="text-base font-bold text-white">No hardware match found</h4>
         <p class="text-xs text-apple-textMuted mt-1">Try another codename or download our Universal GSI.</p>
@@ -409,19 +475,19 @@
     </div>
   </section>
 
-  <section id="terminal" class="py-28 bg-apple-space border-t border-white/5">
+  <section id="terminal" class="py-28 relative z-10 border-t border-white/5 bg-apple-space/90">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="max-w-2xl mb-12">
         <span class="text-xs font-mono text-apple-cyan uppercase tracking-widest">macOS Terminal &bull; ADB Shell</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1 tracking-tight">Developer Installation Console</h2>
-        <p class="text-apple-textMuted text-sm mt-2">Execute standard command-line tools to unlock, flash, and boot OctaviOS.</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1 tracking-tight">Installation Console</h2>
+        <p class="text-apple-textMuted text-sm mt-2">Standard sideload sequence for modern verified boot devices.</p>
       </div>
 
-      <!-- Console Window Mockup -->
-      <div class="rounded-3xl bg-[#08080c] border border-white/15 overflow-hidden shadow-2xl">
-        <!-- Window Title Bar -->
-        <div class="px-5 py-3.5 bg-[#121217] border-b border-white/10 flex items-center justify-between">
+      <!-- Terminal Window -->
+      <div class="liquid-card border border-white/15 overflow-hidden shadow-2xl">
+        <!-- Title Bar -->
+        <div class="px-5 py-3.5 bg-black/60 border-b border-white/10 flex items-center justify-between">
           <div class="flex items-center gap-2">
             <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
             <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
@@ -429,35 +495,33 @@
             <span class="text-xs font-mono text-white/60 ml-3">octavi-installer — zsh — 80×24</span>
           </div>
 
-          <div class="flex items-center gap-2">
-            <button onclick="copyTerminalCode()" class="px-3 py-1 rounded-md bg-white/10 hover:bg-white/20 text-white text-xs font-mono transition flex items-center gap-1.5">
-              <i data-lucide="copy" class="w-3.5 h-3.5 text-apple-cyan"></i>
-              <span>Copy Sequence</span>
-            </button>
-          </div>
+          <button onclick="copyTerminalCode()" class="px-3 py-1 rounded-md liquid-capsule hover:bg-white/20 text-white text-xs font-mono transition flex items-center gap-1.5">
+            <i data-lucide="copy" class="w-3.5 h-3.5 text-apple-cyan"></i>
+            <span>Copy Sequence</span>
+          </button>
         </div>
 
-        <!-- Terminal Body -->
+        <!-- Terminal Shell Body -->
         <div class="p-6 font-mono text-xs sm:text-sm text-slate-300 leading-relaxed overflow-x-auto space-y-4">
           <div>
-            <span class="text-emerald-400">developer@macbook</span>:<span class="text-apple-blue">~</span>$ <span class="text-white">adb devices -l</span>
+            <span class="text-apple-emerald">developer@macbook</span>:<span class="text-apple-blue">~</span>$ <span class="text-white">adb devices -l</span>
             <div class="text-white/40 text-xs mt-0.5">List of devices attached: 871a28cb device product:alioth model:M2012K11AC</div>
           </div>
 
           <div>
-            <span class="text-emerald-400">developer@macbook</span>:<span class="text-apple-blue">~</span>$ <span class="text-white">adb reboot sideload</span>
-            <div class="text-white/40 text-xs mt-0.5">&gt;&gt; Transitioning target hardware into verified recovery environment...</div>
+            <span class="text-apple-emerald">developer@macbook</span>:<span class="text-apple-blue">~</span>$ <span class="text-white">adb reboot sideload</span>
+            <div class="text-white/40 text-xs mt-0.5">&gt;&gt; Hardware rebooting into Octavi Recovery environment...</div>
           </div>
 
           <div>
-            <span class="text-emerald-400">developer@macbook</span>:<span class="text-apple-blue">~</span>$ <span class="text-white">adb sideload OctaviOS-26.0-OFFICIAL.zip</span>
+            <span class="text-apple-emerald">developer@macbook</span>:<span class="text-apple-blue">~</span>$ <span class="text-white">adb sideload OctaviOS-26.0-OFFICIAL.zip</span>
             <div class="text-apple-cyan text-xs mt-0.5">serving: 'OctaviOS-26.0-OFFICIAL.zip'  (~47%)  [==================&gt;                   ]</div>
-            <div class="text-emerald-400 text-xs mt-1">Total xfer: 1.00x - Verification: PASSED</div>
+            <div class="text-apple-emerald text-xs mt-1">Total xfer: 1.00x - Verification: SUCCESSFUL</div>
           </div>
 
           <div>
-            <span class="text-emerald-400">developer@macbook</span>:<span class="text-apple-blue">~</span>$ <span class="text-white">adb reboot</span>
-            <div class="text-white/40 text-xs mt-0.5">&gt;&gt; System reboot sequence initiated. Welcome to OctaviOS.</div>
+            <span class="text-apple-emerald">developer@macbook</span>:<span class="text-apple-blue">~</span>$ <span class="text-white">adb reboot</span>
+            <div class="text-white/40 text-xs mt-0.5">&gt;&gt; Rebooting. Welcome to OctaviOS 26.</div>
           </div>
         </div>
       </div>
@@ -465,26 +529,25 @@
     </div>
   </section>
 
-  <div id="deviceModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-xl hidden flex items-center justify-center p-4">
-    <div class="liquid-glass rounded-[32px] max-w-xl w-full p-7 space-y-6 shadow-2xl relative border border-white/15">
-      
+  <div id="deviceModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="liquid-card rounded-[32px] max-w-xl w-full p-7 space-y-6 shadow-2xl relative border border-white/20 bg-black/90">
       <!-- Modal Header -->
       <div class="flex items-center justify-between border-b border-white/10 pb-4">
         <div>
-          <h3 id="modalDeviceTitle" class="text-xl font-bold text-white tracking-tight">Device Downloads</h3>
+          <h3 id="modalDeviceTitle" class="text-xl font-bold text-white tracking-tight">Device Package</h3>
           <p id="modalDeviceMeta" class="text-xs font-mono text-apple-blue mt-1">codename &bull; version</p>
         </div>
-        <button id="closeModal" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition">
+        <button id="closeModal" class="p-2 rounded-full liquid-capsule hover:bg-white/20 text-white transition">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
 
-      <!-- SHA256 Checksum Box -->
-      <div class="p-3.5 bg-black/80 rounded-2xl border border-white/10 space-y-1">
+      <!-- SHA256 Box -->
+      <div class="p-3.5 bg-black/70 rounded-2xl border border-white/10 space-y-1">
         <div class="flex items-center justify-between text-[11px] font-mono text-apple-textMuted">
-          <span>SHA-256 INTEGRITY HASH</span>
+          <span>SHA-256 CHECKSUM</span>
           <button id="copyHashBtn" class="text-apple-cyan hover:underline flex items-center gap-1">
-            <i data-lucide="copy" class="w-3 h-3"></i> Copy Hash
+            <i data-lucide="copy" class="w-3 h-3"></i> Copy
           </button>
         </div>
         <div id="modalSha256" class="text-[11px] font-mono text-white/90 break-all select-all">
@@ -492,41 +555,39 @@
         </div>
       </div>
 
-      <!-- Changelog list -->
+      <!-- Changelog -->
       <div>
-        <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-2 font-mono">Build Release Notes</h4>
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-2 font-mono">Build Notes</h4>
         <ul id="modalChangelog" class="text-xs text-apple-textMuted space-y-2 list-disc list-inside max-h-40 overflow-y-auto pr-2">
-          <!-- Dynamic logs -->
+          <!-- Dynamic notes -->
         </ul>
       </div>
 
-      <!-- Modal Footer Mirrors -->
+      <!-- Footer Mirrors -->
       <div class="pt-4 border-t border-white/10 flex items-center justify-between gap-3">
         <span class="text-xs text-apple-textMuted font-mono" id="modalFileSize">1.6 GB</span>
         <div class="flex gap-2.5">
           <a id="modalMirrorSourceForge" href="#" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-full bg-white text-black hover:bg-apple-blue hover:text-white text-xs font-semibold transition flex items-center gap-2">
             <i data-lucide="download" class="w-3.5 h-3.5"></i>
-            <span>SourceForge Mirror</span>
+            <span>SourceForge</span>
           </a>
-          <a id="modalMirrorTelegram" href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-full liquid-glass text-white text-xs font-medium hover:bg-white/15 transition flex items-center gap-1.5">
+          <a id="modalMirrorTelegram" href="https://t.me/OctaviOS" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-full liquid-capsule text-white text-xs font-medium hover:bg-white/15 transition flex items-center gap-1.5">
             <i data-lucide="send" class="w-3.5 h-3.5 text-apple-blue"></i>
-            <span>Telegram Channel</span>
+            <span>Telegram</span>
           </a>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-16 opacity-0 transition duration-300 liquid-glass text-white px-5 py-3 rounded-full font-mono text-xs shadow-2xl flex items-center gap-2.5 border border-white/20">
+  <!-- Micro Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-16 opacity-0 transition duration-300 liquid-capsule text-white px-5 py-3 rounded-full font-mono text-xs shadow-2xl flex items-center gap-2.5 border border-white/20">
     <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
-    <span id="toastMsg">Copied to clipboard</span>
+    <span id="toastMsg">Action completed</span>
   </div>
 
-  <footer class="bg-black border-t border-white/10 py-16 text-apple-textMuted text-xs">
+  <footer class="bg-black border-t border-white/10 py-16 text-apple-textMuted text-xs relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
       <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pb-8 border-b border-white/10">
         <div class="flex items-center gap-3">
           <div class="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center font-bold text-xs">O</div>
@@ -539,19 +600,32 @@
           <a href="https://xdaforums.com" target="_blank" rel="noopener" class="hover:text-white transition">XDA Developers</a>
         </div>
       </div>
-
-      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-apple-textMuted text-[11px]">
-        <p>&copy; <span id="yearSpan"></span> OctaviOS Contributors. Inspired by futuristic design systems. Free &amp; Open Source.</p>
-        <p class="font-mono">Compiled with LLVM / Clang 18.0 &bull; Kernel 6.1 LTS Base</p>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px]">
+        <p>&copy; <span id="yearSpan"></span> OctaviOS Contributors. Liquid Glass UI &bull; Free &amp; Open Source.</p>
+        <p class="font-mono">Engineered for GitHub Pages &bull; 60/120Hz Accelerated</p>
       </div>
-
     </div>
   </footer>
 
   <script>
-    // Initialize Lucide Icons
+    // Initialize Lucide icons
     lucide.createIcons();
     document.getElementById('yearSpan').textContent = new Date().getFullYear();
+
+    // Specular light cursor tracker (liquid sheen on cards)
+    document.querySelectorAll('.liquid-sheen').forEach(card => {
+      card.addEventListener('pointermove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--sheen-x', `${x}px`);
+        card.style.setProperty('--sheen-y', `${y}px`);
+        card.style.setProperty('--sheen-opacity', '1');
+      });
+      card.addEventListener('pointerleave', () => {
+        card.style.setProperty('--sheen-opacity', '0');
+      });
+    });
 
     // Clock update on virtual phone
     function updateClock() {
@@ -559,14 +633,12 @@
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
       const clockElem = document.getElementById('phoneClock');
-      if (clockElem) {
-        clockElem.textContent = `${hours}:${minutes}`;
-      }
+      if (clockElem) clockElem.textContent = `${hours}:${minutes}`;
     }
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Simulated Phone Hardware Screen State
+    // Phone simulator screens
     const screenBody = document.getElementById('screenBody');
     const screenPresets = {
       lock: `
@@ -575,18 +647,18 @@
           <div class="flex items-center gap-2.5 p-2 rounded-xl bg-white/5 border border-white/5">
             <i data-lucide="bell" class="w-4 h-4 text-apple-blue shrink-0"></i>
             <div class="truncate">
-              <span class="font-semibold text-white">Telegram</span> &bull; Octavi update 26.0 ready
+              <span class="font-semibold text-white">Telegram</span> &bull; OctaviOS 26 build released
             </div>
           </div>
           <div class="flex items-center gap-2.5 p-2 rounded-xl bg-white/5 border border-white/5">
-            <i data-lucide="shield" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+            <i data-lucide="shield" class="w-4 h-4 text-apple-emerald shrink-0"></i>
             <div class="truncate">
-              <span class="font-semibold text-white">Play Protect</span> &bull; All 142 apps verified
+              <span class="font-semibold text-white">Play Protect</span> &bull; 0 security threats
             </div>
           </div>
         </div>
         <div class="flex justify-between items-center text-[10px] font-mono text-white/50 pt-2 border-t border-white/5">
-          <span>Swipe up to open</span>
+          <span>Swipe up to unlock</span>
           <i data-lucide="lock" class="w-3 h-3 text-white/70"></i>
         </div>
       `,
@@ -595,7 +667,7 @@
           <div class="text-[10px] uppercase font-mono text-apple-purple">Octavi Lab Quick Settings</div>
           <div class="grid grid-cols-2 gap-2 text-[10px]">
             <div class="p-2 rounded-xl bg-apple-blue text-white font-semibold flex items-center justify-between">
-              <span>Monet Tint</span>
+              <span>Liquid Tint</span>
               <i data-lucide="check" class="w-3 h-3"></i>
             </div>
             <div class="p-2 rounded-xl bg-white/10 text-white/80 font-medium flex items-center justify-between">
@@ -603,35 +675,35 @@
               <i data-lucide="moon" class="w-3 h-3"></i>
             </div>
             <div class="p-2 rounded-xl bg-apple-purple text-white font-semibold flex items-center justify-between">
-              <span>CPU Perf</span>
+              <span>CPU Turbo</span>
               <i data-lucide="zap" class="w-3 h-3"></i>
             </div>
             <div class="p-2 rounded-xl bg-white/10 text-white/80 font-medium flex items-center justify-between">
               <span>Dolby Hi-Fi</span>
-              <i data-lucide="music" class="w-3 h-3"></i>
+              <i data-lucide="disc" class="w-3 h-3"></i>
             </div>
           </div>
         </div>
-        <div class="text-[9px] font-mono text-apple-textMuted text-center pt-2">8 tiles active &bull; 0 frames dropped</div>
+        <div class="text-[9px] font-mono text-apple-textMuted text-center pt-2">8 tiles active &bull; 0 frame drops</div>
       `,
       telemetry: `
         <div class="space-y-1.5 font-mono text-[10px]">
-          <div class="text-emerald-400 font-bold uppercase tracking-wider">Kernel Telemetry</div>
+          <div class="text-apple-emerald font-bold uppercase tracking-wider">Kernel Telemetry</div>
           <div class="flex justify-between text-white/80">
             <span>Core Governor</span>
             <span class="text-apple-blue">walt-sched</span>
           </div>
           <div class="flex justify-between text-white/80">
             <span>RAM Compression</span>
-            <span class="text-emerald-400">ZRAM (LZ4)</span>
+            <span class="text-apple-emerald">ZRAM (LZ4)</span>
           </div>
           <div class="flex justify-between text-white/80">
-            <span>Battery Standby</span>
-            <span class="text-apple-cyan">0.31%/h</span>
+            <span>Standby Drain</span>
+            <span class="text-apple-cyan">0.28%/h</span>
           </div>
           <div class="flex justify-between text-white/80">
             <span>Thermal State</span>
-            <span class="text-emerald-400">Cool (31.4°C)</span>
+            <span class="text-apple-emerald">Normal (30.8°C)</span>
           </div>
         </div>
         <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mt-1">
@@ -653,24 +725,21 @@
       screenBody.innerHTML = screenPresets[type];
       lucide.createIcons();
     };
-
-    // Default to lockscreen view
     switchScreen('lock');
 
-    // Dynamic Island interactive click animation
-    const island = document.getElementById('dynamicIsland');
-    island.addEventListener('click', () => {
-      showToast("Dynamic Island: Spatial audio stream active");
+    // Dynamic Island interaction
+    document.getElementById('dynamicIsland').addEventListener('click', () => {
+      showToast("Dynamic Island: Spatial liquid stream active");
     });
 
-    // Refresh rate slider interact
+    // Refresh rate slider
     const hzSlider = document.getElementById('hzSlider');
     const targetHzLabel = document.getElementById('targetHzLabel');
     hzSlider.addEventListener('input', (e) => {
       targetHzLabel.textContent = `${e.target.value} Hz Variable`;
     });
 
-    // Devices Catalog
+    // Device matrix catalog
     const deviceCatalog = [
       {
         name: "POCO F3 / Redmi K40 / Mi 11X",
@@ -684,8 +753,8 @@
         sha256: "9f83a48e718274a123bc454991b7852b855e3b0c44298fc1c149afbf4c8996fb",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/alioth/",
         changelog: [
-          "Merged October Android 14 Core Security Bulletin",
-          "Engineered Leica Camera Spatial Color grading profiles",
+          "Merged October Android Core Security Bulletin",
+          "Engineered Leica Camera Spatial Color grading",
           "Fixed 120Hz display refresh sleep latency",
           "Dolby Atmos binaural processing calibration"
         ]
@@ -720,7 +789,7 @@
         sha256: "4a28f804598d363b93478912ef57b1029c9a6234d8ef0816b328102d84792bce",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/vayu/",
         changelog: [
-          "Snapdragon 860 thermal dissipation governor overhaul",
+          "Snapdragon 860 thermal governor overhaul",
           "Biometric fingerprint wake response reduced to 110ms",
           "Dynamic 90Hz limiters for video streams"
         ]
@@ -737,7 +806,7 @@
         sha256: "a1b2c3d4e5f67890123456789abcdef0123456789abcdef0123456789abcdef0",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/guacamole/",
         changelog: [
-          "Motorized camera pop-up haptic feedback timings",
+          "Motorized camera pop-up haptic timing calibration",
           "Three-stage alert slider custom vibration mapping",
           "Ambient Horizon Light color sync"
         ]
@@ -756,7 +825,7 @@
         changelog: [
           "Tensor G2 energy scheduler profiling",
           "Integrated Google Camera 9.4 tuning",
-          "High brightness mode toggle for outdoor visibility"
+          "High brightness mode toggle for outdoor sunlight"
         ]
       },
       {
@@ -788,7 +857,6 @@
 
     function renderDeviceMatrix() {
       deviceGrid.innerHTML = '';
-      
       const filtered = deviceCatalog.filter(device => {
         const matchesOem = currentOem === 'all' || device.oem.toLowerCase() === currentOem.toLowerCase();
         const matchesTerm = device.name.toLowerCase().includes(currentFilterTerm.toLowerCase()) ||
@@ -803,7 +871,7 @@
         noMatchContainer.classList.add('hidden');
         filtered.forEach(device => {
           const card = document.createElement('div');
-          card.className = "rounded-[32px] bg-apple-card border border-apple-glassBorder hover:border-white/20 transition-all duration-300 p-7 flex flex-col justify-between group";
+          card.className = "liquid-card liquid-sheen p-7 flex flex-col justify-between group";
           card.innerHTML = `
             <div>
               <div class="flex items-center justify-between mb-3">
@@ -812,14 +880,11 @@
               </div>
 
               <h3 class="text-lg font-bold text-white group-hover:text-apple-blue transition">${device.name}</h3>
-
-              <div class="flex items-center gap-2 mt-2">
-                <span class="text-xs text-apple-textMuted">Curated by <strong class="text-white">${device.maintainer}</strong></span>
-              </div>
+              <p class="text-xs text-apple-textMuted mt-1">Maintained by <strong class="text-white">${device.maintainer}</strong></p>
 
               <div class="grid grid-cols-2 gap-3 py-4 my-4 border-y border-white/5 font-mono text-xs">
                 <div>
-                  <span class="text-apple-textMuted block text-[10px] uppercase">Architecture</span>
+                  <span class="text-apple-textMuted block text-[10px] uppercase">Edition</span>
                   <span class="text-white">${device.version}</span>
                 </div>
                 <div>
@@ -827,49 +892,63 @@
                   <span class="text-white">${device.android}</span>
                 </div>
                 <div>
-                  <span class="text-apple-textMuted block text-[10px] uppercase">Updated</span>
+                  <span class="text-apple-textMuted block text-[10px] uppercase">Date</span>
                   <span class="text-white">${device.date}</span>
                 </div>
                 <div>
-                  <span class="text-apple-textMuted block text-[10px] uppercase">Payload</span>
+                  <span class="text-apple-textMuted block text-[10px] uppercase">Package</span>
                   <span class="text-white">${device.size}</span>
                 </div>
               </div>
             </div>
 
-            <button onclick="openModal('${device.codename}')" class="w-full py-3 rounded-full bg-white/10 hover:bg-white text-white hover:text-black font-semibold text-xs tracking-tight transition duration-200 flex items-center justify-center gap-2">
-              <i data-lucide="arrow-down-circle" class="w-4 h-4"></i>
-              <span>Download Image Package</span>
+            <button onclick="openModal('${device.codename}')" class="w-full py-3 rounded-full liquid-capsule hover:bg-white text-white hover:text-black font-semibold text-xs tracking-tight transition duration-200 flex items-center justify-center gap-2">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              <span>Download Image</span>
             </button>
           `;
           deviceGrid.appendChild(card);
         });
       }
-
       lucide.createIcons();
+
+      // Bind cursor sheen on new cards
+      document.querySelectorAll('.liquid-sheen').forEach(card => {
+        card.addEventListener('pointermove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--sheen-x', `${x}px`);
+          card.style.setProperty('--sheen-y', `${y}px`);
+          card.style.setProperty('--sheen-opacity', '1');
+        });
+        card.addEventListener('pointerleave', () => {
+          card.style.setProperty('--sheen-opacity', '0');
+        });
+      });
     }
 
-    // Filter Chips Event
+    // Filter Chips
     oemChips.forEach(chip => {
       chip.addEventListener('click', () => {
         oemChips.forEach(c => {
           c.classList.remove('bg-white', 'text-black');
-          c.classList.add('liquid-glass', 'text-apple-textMuted');
+          c.classList.add('liquid-capsule', 'text-apple-textMuted');
         });
-        chip.classList.remove('liquid-glass', 'text-apple-textMuted');
+        chip.classList.remove('liquid-capsule', 'text-apple-textMuted');
         chip.classList.add('bg-white', 'text-black');
         currentOem = chip.getAttribute('data-oem');
         renderDeviceMatrix();
       });
     });
 
-    // Search input
+    // Search
     deviceSearchInput.addEventListener('input', (e) => {
       currentFilterTerm = e.target.value.trim();
       renderDeviceMatrix();
     });
 
-    // Modal Control
+    // Modal
     const modal = document.getElementById('deviceModal');
     const closeModal = document.getElementById('closeModal');
     const modalDeviceTitle = document.getElementById('modalDeviceTitle');
@@ -892,7 +971,7 @@
 
       modalChangelog.innerHTML = dev.changelog.map(log => `<li>${log}</li>`).join('');
       modal.classList.remove('hidden');
-    }
+    };
 
     function hideModal() {
       modal.classList.add('hidden');
@@ -903,7 +982,7 @@
       if (e.target === modal) hideModal();
     });
 
-    // Clipboard and Toast Utility
+    // Clipboard and toast
     function showToast(message) {
       const toast = document.getElementById('toast');
       const toastMsg = document.getElementById('toastMsg');
@@ -934,7 +1013,7 @@
       showToast("ADB sequence copied to clipboard");
     };
 
-    // Initial render
+    // Render initial grid
     renderDeviceMatrix();
   </script>
 </body>
