@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>OctaviOS v17 — Android 17 Expressive Experience</title>
-  <meta name="description" content="Official website for OctaviOS v17. Ultra-fluid, AOSP-based custom ROM built on Android 17 Material 3 Expressive architecture.">
+  <title>OctaviOS — Expressive Android Experience</title>
+  <meta name="description" content="Official website for OctaviOS. Ultra-fluid, AOSP-based custom ROM built on Material 3 Expressive architecture.">
 
   <!-- Favicon hook pointing to octavi_logo.png with circular vector fallback -->
   <link rel="icon" type="image/png" href="octavi_logo.png">
@@ -122,33 +122,6 @@
       transform: translateY(-2px);
     }
 
-    input[type=range] {
-      -webkit-appearance: none;
-      appearance: none;
-      height: 14px;
-      border-radius: 9999px;
-      background: rgba(148, 163, 184, 0.22);
-      outline: none;
-    }
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 28px;
-      height: 28px;
-      border-radius: 9999px;
-      background: var(--primary);
-      cursor: pointer;
-      box-shadow: 0 4px 14px var(--accent-glow);
-      border: 3px solid #FFFFFF;
-      transition: transform 0.12s ease;
-    }
-    .dark input[type=range]::-webkit-slider-thumb {
-      border: 3px solid #101622;
-    }
-    input[type=range]::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
-    }
-
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -215,7 +188,7 @@
         <!-- Primary CTA Pill -->
         <a href="#devices" class="px-3.5 sm:px-4 py-2 rounded-full font-bold text-xs uppercase tracking-wider theme-primary-bg theme-on-primary-text hover:opacity-95 shadow-md shadow-cyan-500/20 active:scale-95 transition-all flex items-center gap-1.5">
           <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
-          <span>Get v17</span>
+          <span>Get Builds</span>
         </a>
 
         <!-- Material 3 Overflow Menu Trigger (3 Dots / Hamburger) -->
@@ -347,12 +320,34 @@
           
           <div class="flex items-center justify-between pb-5 mb-5 border-b border-m3-outlineLight dark:border-m3-outlineDark">
             <div class="flex items-center gap-3">
+        <a href="#devices" class="px-7 py-3.5 rounded-m3-xl font-bold text-xs uppercase tracking-wider theme-primary-bg theme-on-primary-text hover:opacity-95 shadow-lg shadow-cyan-500/25 transition-all flex items-center gap-2">
+          <i data-lucide="smartphone" class="w-4 h-4"></i>
+          <span>Get Builds</span>
+        </a>
+        <a href="#quicksettings" class="px-7 py-3.5 rounded-m3-xl font-bold text-xs uppercase tracking-wider bg-m3-containerLight dark:bg-m3-containerDark text-slate-800 dark:text-slate-200 border border-m3-outlineLight dark:border-m3-outlineDark hover:border-slate-400 transition-all flex items-center gap-2 shadow-sm">
+    <!-- Android Quick Settings Panel & Display Controller -->
+    <section id="quicksettings" class="mb-24">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest theme-primary-text font-bold">Android Control Center</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Material You Quick Settings</h2>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400 max-w-sm">Tap the cards to toggle native states in real time.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Quick Settings Tile Grid (Left 2 cols) -->
+        <div class="lg:col-span-2 m3-surface rounded-m3-xl p-6 sm:p-7 bg-m3-containerLight dark:bg-m3-containerDark border border-m3-outlineLight dark:border-m3-outlineDark shadow-md">
+          
+          <div class="flex items-center justify-between pb-5 mb-5 border-b border-m3-outlineLight dark:border-m3-outlineDark">
+            <div class="flex items-center gap-3">
               <div class="w-8 h-8 rounded-full bg-m3-containerHighLight dark:bg-m3-containerHighDark flex items-center justify-center theme-primary-text">
                 <i data-lucide="sliders" class="w-4 h-4"></i>
               </div>
               <div>
                 <h3 class="font-bold text-slate-900 dark:text-white text-sm">System Tile Controller</h3>
-                <span class="text-[11px] text-slate-500 dark:text-slate-400 font-mono">Octavi Lab QS v17.0</span>
+                <span class="text-[11px] text-slate-500 dark:text-slate-400 font-mono">Octavi Lab QS</span>
               </div>
             </div>
             <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5">
@@ -362,7 +357,7 @@
           </div>
 
           <!-- M3 Expressive Pill Cards -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6" id="qsGrid">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="qsGrid">
             
             <button onclick="toggleTile(this)" class="qs-tile active flex items-center justify-between p-4 rounded-m3-lg theme-primary-bg theme-on-primary-text font-bold text-xs transition-all shadow-sm">
               <div class="flex items-center gap-3">
@@ -407,25 +402,6 @@
               </div>
               <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-black/20 font-bold">On</span>
             </button>
-          </div>
-
-          <!-- Display Refresh Rate Stepper -->
-          <div class="p-4 rounded-m3-lg bg-m3-containerHighLight dark:bg-m3-containerHighDark border border-m3-outlineLight dark:border-m3-outlineDark space-y-2.5">
-            <div class="flex justify-between items-center text-xs">
-              <div class="flex items-center gap-2 font-bold text-slate-900 dark:text-white">
-                <i data-lucide="gauge" class="w-4 h-4 theme-primary-text"></i>
-                <span>Adaptive LTPO Refresh Rate (1Hz - 144Hz)</span>
-              </div>
-              <span id="rateLabel" class="font-mono font-bold theme-primary-text text-sm">120 Hz</span>
-            </div>
-            <input type="range" id="rateSlider" min="1" max="144" value="120" class="w-full">
-            <div class="flex justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400 pt-0.5">
-              <span>1Hz (AOD)</span>
-              <span>60Hz</span>
-              <span>90Hz</span>
-              <span>120Hz</span>
-              <span>144Hz</span>
-            </div>
           </div>
         </div>
 
@@ -501,7 +477,7 @@
                   <span class="text-[11px] font-bold text-white">Octavi Lab Aero</span>
                   <span class="text-[9px] text-slate-400 ml-auto">Now</span>
                 </div>
-                <p class="text-[11px] text-slate-300 leading-snug">Android 17 Monet Engine synced with current wallpaper tones.</p>
+                <p class="text-[11px] text-slate-300 leading-snug">Monet Engine active and synced with system wallpaper tones.</p>
               </div>
             </div>
 
@@ -521,7 +497,7 @@
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 pb-5 border-b border-m3-outlineLight dark:border-m3-outlineDark">
         <div>
           <span class="text-xs font-mono uppercase tracking-widest theme-primary-text font-bold">Firmware Matrix</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Official v17 Builds</h2>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Official Production Builds</h2>
           <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Monthly security updates, A/B partition OTA support, and GApps/Vanilla builds.</p>
         </div>
 
@@ -573,7 +549,7 @@
         <div class="px-5 py-3.5 bg-m3-containerHighLight dark:bg-m3-containerHighDark border-b border-m3-outlineLight dark:border-m3-outlineDark flex items-center justify-between font-mono text-xs">
           <div class="flex items-center gap-2.5">
             <span class="w-2.5 h-2.5 rounded-full theme-primary-bg animate-pulse"></span>
-            <span class="text-slate-800 dark:text-slate-200 font-bold">Android Recovery v17.0 // adb_sideload</span>
+            <span class="text-slate-800 dark:text-slate-200 font-bold">Android Recovery // adb_sideload</span>
           </div>
           <button onclick="copyAllCommands()" class="theme-primary-text hover:underline flex items-center gap-1.5 font-bold">
             <i data-lucide="copy" class="w-3.5 h-3.5"></i>
@@ -600,8 +576,8 @@
           <div>
             <span class="text-slate-500 dark:text-slate-400"># 3. Select 'Apply update' -> 'Apply from ADB' and stream package</span>
             <div class="mt-1 text-slate-900 dark:text-white bg-m3-containerHighLight dark:bg-m3-containerHighDark p-3 rounded-m3-sm border border-m3-outlineLight dark:border-m3-outlineDark flex items-center justify-between">
-              <code>adb sideload OctaviOS-v17.0-OFFICIAL.zip</code>
-              <button onclick="copyCmd('adb sideload OctaviOS-v17.0-OFFICIAL.zip', this)" class="text-slate-400 hover:text-slate-900 dark:hover:text-white">
+              <code>adb sideload OctaviOS-OFFICIAL.zip</code>
+              <button onclick="copyCmd('adb sideload OctaviOS-OFFICIAL.zip', this)" class="text-slate-400 hover:text-slate-900 dark:hover:text-white">
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
               </button>
             </div>
@@ -693,9 +669,9 @@
         </div>
         <div>
           <span class="font-extrabold text-sm text-slate-900 dark:text-white block">
-            Octavi<span class="theme-primary-text">OS</span> v17
+            Octavi<span class="theme-primary-text">OS</span>
           </span>
-          <span class="text-[11px]">Material 3 Expressive Architecture &bull; AOSP 17</span>
+          <span class="text-[11px]">Material 3 Expressive Architecture &bull; AOSP Custom ROM</span>
         </div>
       </div>
 
@@ -781,14 +757,14 @@
         codename: "alioth",
         oem: "Xiaomi",
         maintainer: "Pranav",
-        version: "v17.0-Official",
+        version: "Official Release",
         size: "1.82 GB",
         date: "2026-10-04",
         sha256: "3f94a817bca890124e98f712ac98b15e4782bf6109dcba8912ef57b1029c9a62",
         downloadUrl: "https://sourceforge.net/projects/octavios/files/alioth/",
         changelog: [
-          "Android 17 QPR source sync",
-          "Fixed 120Hz LTPO flicker during AOD wake",
+          "AOSP upstream source sync",
+          "Fixed LTPO refresh behavior during AOD wake",
           "Leica Camera v5.2 integration",
           "Dolby Atmos spatial profile tuning"
         ]
@@ -798,7 +774,7 @@
         codename: "lemonadep",
         oem: "OnePlus",
         maintainer: "Gaurav",
-        version: "v17.0-Official",
+        version: "Official Release",
         size: "1.74 GB",
         date: "2026-10-03",
         sha256: "8e4129bcfe510928374a0198bc721498bfe19283746a510928374a0198bc7214",
@@ -814,7 +790,7 @@
         codename: "cheetah",
         oem: "Google",
         maintainer: "MatrixBuilds",
-        version: "v17.0-Official",
+        version: "Official Release",
         size: "1.91 GB",
         date: "2026-10-04",
         sha256: "99aabbccddeeff00112233445566778899aabbccddeeff001122334455667788",
@@ -830,7 +806,7 @@
         codename: "pong",
         oem: "Nothing",
         maintainer: "AeroDev",
-        version: "v17.0-Official",
+        version: "Official Release",
         size: "1.88 GB",
         date: "2026-10-02",
         sha256: "45a89b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a",
@@ -846,7 +822,7 @@
         codename: "vayu",
         oem: "Xiaomi",
         maintainer: "Akash",
-        version: "v17.0-Official",
+        version: "Official Release",
         size: "1.68 GB",
         date: "2026-09-30",
         sha256: "510928374a0198bc721498bfe19283746a510928374a0198bc721498bfe19283",
@@ -862,7 +838,7 @@
         codename: "sweet",
         oem: "Xiaomi",
         maintainer: "Madhav",
-        version: "v17.0-Official",
+        version: "Official Release",
         size: "1.71 GB",
         date: "2026-10-02",
         sha256: "7b10928374a0198bc721498bfe19283746a510928374a0198bc721498bfe1928",
@@ -974,14 +950,7 @@
       }
     };
 
-    // 7. Refresh Rate Slider
-    const rateSlider = document.getElementById('rateSlider');
-    const rateLabel = document.getElementById('rateLabel');
-    rateSlider.addEventListener('input', (e) => {
-      rateLabel.textContent = `${e.target.value} Hz`;
-    });
-
-    // 8. Phone Mockup Screen Switcher
+    // 7. Phone Mockup Screen Switcher
     const phoneViewCenter = document.getElementById('phoneViewCenter');
     window.setPhoneView = function(view) {
       document.querySelectorAll('.phone-tab').forEach(t => t.classList.remove('active', 'theme-primary-text'));
@@ -1004,7 +973,7 @@
               <span class="text-[11px] font-bold text-white">Octavi Lab Aero</span>
               <span class="text-[9px] text-slate-400 ml-auto">Now</span>
             </div>
-            <p class="text-[11px] text-slate-300 leading-snug">Android 17 Monet Engine synced with current wallpaper tones.</p>
+            <p class="text-[11px] text-slate-300 leading-snug">Monet Engine active and synced with system wallpaper tones.</p>
           </div>
         `;
       } else if (view === 'qs') {
@@ -1033,6 +1002,13 @@
               <div class="text-emerald-400">FPS: 120.0 (Jitter: 0.08ms)</div>
               <div>Vulkan 1.3 Driver: Active</div>
             </div>
+          </div>
+        `;
+      }
+      lucide.createIcons();
+    };
+
+    // 8. Modal Operations
           </div>
         `;
       }
@@ -1115,7 +1091,7 @@
     };
 
     window.copyAllCommands = function() {
-      const seq = `fastboot reboot recovery\nadb sideload OctaviOS-v17.0-OFFICIAL.zip\nadb reboot`;
+      const seq = `fastboot reboot recovery\nadb sideload OctaviOS-OFFICIAL.zip\nadb reboot`;
       copyToClipboard(seq);
       showToast("All commands copied");
     };
