@@ -29,6 +29,7 @@
             mono: ['JetBrains Mono', 'monospace'],
           },
           borderRadius: {
+            'm3-xs': '8px',
             'm3-sm': '14px',
             'm3-md': '20px',
             'm3-lg': '26px',
@@ -37,31 +38,32 @@
           },
           colors: {
             m3: {
-              surfaceLight: '#F3F6FB',
+              surfaceLight: '#F4F7FB',
               containerLight: '#FFFFFF',
-              containerHighLight: '#E8EDF5',
-              containerHighestLight: '#DDE4EE',
-              outlineLight: '#CAD3E0',
+              containerHighLight: '#E8EEF6',
+              containerHighestLight: '#DDE5F0',
+              outlineLight: '#CAD5E2',
 
               surfaceDark: '#080C14',
-              containerDark: '#0F1522',
-              containerHighDark: '#161F30',
-              containerHighestDark: '#1E2A40',
-              outlineDark: '#26344D',
+              containerDark: '#0E1524',
+              containerHighDark: '#151F33',
+              containerHighestDark: '#1D2A45',
+              outlineDark: '#263757',
             }
           },
           animation: {
-            'float-slow': 'floatSlow 20s ease-in-out infinite alternate',
-            'float-rev': 'floatRev 24s ease-in-out infinite alternate',
+            'float-slow': 'floatSlow 22s ease-in-out infinite alternate',
+            'float-rev': 'floatRev 26s ease-in-out infinite alternate',
+            'pulse-fast': 'pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
           },
           keyframes: {
             floatSlow: {
               '0%': { transform: 'translate3d(0, 0, 0) scale(1)' },
-              '100%': { transform: 'translate3d(40px, -30px, 0) scale(1.08)' }
+              '100%': { transform: 'translate3d(45px, -35px, 0) scale(1.08)' }
             },
             floatRev: {
               '0%': { transform: 'translate3d(0, 0, 0) scale(1)' },
-              '100%': { transform: 'translate3d(-50px, 40px, 0) scale(0.94)' }
+              '100%': { transform: 'translate3d(-55px, 45px, 0) scale(0.94)' }
             }
           }
         }
@@ -76,7 +78,8 @@
       --primary-container: #E0F2FE;
       --on-primary: #FFFFFF;
       --on-primary-container: #0369A1;
-      --accent-glow: rgba(2, 132, 199, 0.25);
+      --accent-glow: rgba(2, 132, 199, 0.28);
+      --screen-brightness: 1;
     }
 
     .dark {
@@ -85,13 +88,13 @@
       --primary-container: #0C4A6E;
       --on-primary: #082F49;
       --on-primary-container: #BAE6FD;
-      --accent-glow: rgba(56, 189, 248, 0.3);
+      --accent-glow: rgba(56, 189, 248, 0.32);
     }
 
     body {
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      transition: background-color 0.2s cubic-bezier(0.2, 0, 0, 1), color 0.2s cubic-bezier(0.2, 0, 0, 1);
+      transition: background-color 0.25s cubic-bezier(0.2, 0, 0, 1), color 0.25s cubic-bezier(0.2, 0, 0, 1);
     }
 
     .theme-primary-bg { background-color: var(--primary) !important; }
@@ -100,41 +103,78 @@
     .theme-primary-container { background-color: var(--primary-container) !important; }
     .theme-on-primary-text { color: var(--on-primary) !important; }
 
-    /* Solid elevation card physics without heavy backdrop blur */
+    /* Performance card elevation physics */
     .m3-card {
-      transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.18s cubic-bezier(0.2, 0, 0, 1);
+      transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1);
     }
     .m3-card:hover {
       transform: translateY(-2px);
     }
 
+    /* Smartphone Screen Viewport Filter */
+    #phoneScreenContent {
+      filter: brightness(var(--screen-brightness));
+      transition: filter 0.15s ease-out;
+    }
+
+    /* Custom range styling for Brightness Slider */
+    input[type=range].m3-range {
+      -webkit-appearance: none;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+      height: 28px;
+      outline: none;
+    }
+    input[type=range].m3-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--primary);
+      cursor: pointer;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    /* Audio Equalizer Bars */
+    .eq-bar {
+      width: 5px;
+      background: var(--primary);
+      border-radius: 9999px;
+      animation: eqBounce 1.2s ease-in-out infinite alternate;
+    }
+    @keyframes eqBounce {
+      0% { height: 15%; }
+      50% { height: 95%; }
+      100% { height: 35%; }
+    }
+
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 7px;
     }
     ::-webkit-scrollbar-track {
       background: transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background: rgba(100, 116, 139, 0.3);
+      background: rgba(100, 116, 139, 0.28);
       border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: rgba(100, 116, 139, 0.5);
+      background: rgba(100, 116, 139, 0.48);
     }
   </style>
 </head>
 
 <body class="bg-m3-surfaceLight dark:bg-m3-surfaceDark text-slate-800 dark:text-slate-100 font-sans selection:bg-sky-400 selection:text-black relative min-h-screen">
 
-  <!-- Ambient Fluid Canvas (Zero GPU lag, transform-gpu only) -->
+  <!-- Ambient Fluid Canvas (Zero GPU lag with transform-gpu) -->
   <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-    <div class="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-tr from-sky-400/20 via-cyan-300/15 to-blue-500/10 dark:from-sky-500/12 dark:via-cyan-600/10 dark:to-transparent blur-[80px] animate-float-slow transform-gpu"></div>
-    <div class="absolute top-[35%] -right-[15%] w-[65vw] h-[65vw] rounded-full bg-gradient-to-bl from-purple-400/18 via-indigo-300/12 to-teal-200/8 dark:from-purple-600/10 dark:via-indigo-800/8 dark:to-transparent blur-[90px] animate-float-rev transform-gpu"></div>
+    <div class="absolute -top-[15%] -left-[10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-tr from-sky-400/20 via-cyan-300/15 to-blue-500/10 dark:from-sky-500/12 dark:via-cyan-600/10 dark:to-transparent blur-[85px] animate-float-slow transform-gpu"></div>
+    <div class="absolute top-[35%] -right-[15%] w-[65vw] h-[65vw] rounded-full bg-gradient-to-bl from-purple-400/18 via-indigo-300/12 to-teal-200/8 dark:from-purple-600/10 dark:via-indigo-800/8 dark:to-transparent blur-[95px] animate-float-rev transform-gpu"></div>
     <!-- Fine dot-grid matrix texture -->
-    <div class="absolute inset-0 opacity-[0.2] dark:opacity-[0.08] bg-[radial-gradient(#0284c7_1.2px,transparent_1.2px)] [background-size:24px_24px]"></div>
+    <div class="absolute inset-0 opacity-[0.22] dark:opacity-[0.08] bg-[radial-gradient(#0284c7_1.2px,transparent_1.2px)] [background-size:24px_24px]"></div>
   </div>
 
-  <!-- Top App Bar -->
   <header class="sticky top-4 inset-x-0 z-40 max-w-5xl mx-auto px-4">
     <nav class="bg-m3-containerLight dark:bg-m3-containerDark border border-m3-outlineLight dark:border-m3-outlineDark rounded-m3-pill px-4 sm:px-5 py-2.5 flex items-center justify-between shadow-lg shadow-slate-900/5 dark:shadow-black/40 transition-all">
       
@@ -160,7 +200,10 @@
 
       <!-- Right Navigation Actions -->
       <div class="flex items-center gap-2 sm:gap-3">
-        <a href="#devices" class="hidden sm:inline-flex text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white px-3 py-1.5 transition-colors">
+        <a href="#simulator" class="hidden md:inline-flex text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white px-2.5 py-1.5 transition-colors">
+          Simulator
+        </a>
+        <a href="#devices" class="hidden sm:inline-flex text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white px-2.5 py-1.5 transition-colors">
           Devices
         </a>
 
@@ -184,7 +227,6 @@
     </nav>
   </header>
 
-  <!-- Material 3 Overflow Drawer Modal -->
   <div id="navDrawerOverlay" class="fixed inset-0 z-50 bg-black/50 hidden items-start justify-end p-3 sm:p-5 transition-opacity duration-200">
     <div id="navDrawerPanel" class="w-full sm:w-80 rounded-m3-xl bg-m3-containerLight dark:bg-m3-containerDark border border-m3-outlineLight dark:border-m3-outlineDark shadow-2xl p-5 space-y-5 text-left transform translate-y-3 opacity-0 transition-all duration-200">
       
@@ -192,7 +234,7 @@
       <div class="flex items-center justify-between pb-3 border-b border-m3-outlineLight dark:border-m3-outlineDark">
         <div class="flex items-center gap-2">
           <div class="w-2.5 h-2.5 rounded-full theme-primary-bg"></div>
-          <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-900 dark:text-white">System Settings</span>
+          <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-900 dark:text-white">System Controls</span>
         </div>
         <button id="closeDrawerBtn" class="p-1.5 rounded-full bg-m3-containerHighLight dark:bg-m3-containerHighDark text-slate-500 hover:text-slate-900 dark:hover:text-white">
           <i data-lucide="x" class="w-4 h-4"></i>
@@ -203,19 +245,19 @@
       <div class="p-3.5 rounded-m3-md bg-m3-containerHighLight dark:bg-m3-containerHighDark border border-m3-outlineLight dark:border-m3-outlineDark">
         <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold block mb-2.5">Monet Palette Accent</span>
         <div class="grid grid-cols-4 gap-2 text-center text-[10px] font-bold">
-          <button onclick="setMonetPalette('#0284C7', 'Cyan')" class="p-2 rounded-m3-sm bg-white dark:bg-slate-900 border border-m3-outlineLight dark:border-m3-outlineDark flex flex-col items-center gap-1.5 hover:scale-105 transition-transform">
+          <button onclick="setMonetPalette('#0284C7', 'Ocean Cyan')" class="p-2 rounded-m3-sm bg-white dark:bg-slate-900 border border-m3-outlineLight dark:border-m3-outlineDark flex flex-col items-center gap-1.5 hover:scale-105 transition-transform">
             <span class="w-4 h-4 rounded-full bg-[#0284C7] shadow-sm"></span>
             <span class="text-slate-700 dark:text-slate-300">Cyan</span>
           </button>
-          <button onclick="setMonetPalette('#65A30D', 'Lime')" class="p-2 rounded-m3-sm bg-white dark:bg-slate-900 border border-m3-outlineLight dark:border-m3-outlineDark flex flex-col items-center gap-1.5 hover:scale-105 transition-transform">
+          <button onclick="setMonetPalette('#65A30D', 'Lime Green')" class="p-2 rounded-m3-sm bg-white dark:bg-slate-900 border border-m3-outlineLight dark:border-m3-outlineDark flex flex-col items-center gap-1.5 hover:scale-105 transition-transform">
             <span class="w-4 h-4 rounded-full bg-[#65A30D] shadow-sm"></span>
             <span class="text-slate-700 dark:text-slate-300">Lime</span>
           </button>
-          <button onclick="setMonetPalette('#9333EA', 'Violet')" class="p-2 rounded-m3-sm bg-white dark:bg-slate-900 border border-m3-outlineLight dark:border-m3-outlineDark flex flex-col items-center gap-1.5 hover:scale-105 transition-transform">
+          <button onclick="setMonetPalette('#9333EA', 'Ultra Violet')" class="p-2 rounded-m3-sm bg-white dark:bg-slate-900 border border-m3-outlineLight dark:border-m3-outlineDark flex flex-col items-center gap-1.5 hover:scale-105 transition-transform">
             <span class="w-4 h-4 rounded-full bg-[#9333EA] shadow-sm"></span>
             <span class="text-slate-700 dark:text-slate-300">Violet</span>
           </button>
-          <button onclick="setMonetPalette('#E11D48', 'Rose')" class="p-2 rounded-m3-sm bg-white dark:bg-slate-900 border border-m3-outlineLight dark:border-m3-outlineDark flex flex-col items-center gap-1.5 hover:scale-105 transition-transform">
+          <button onclick="setMonetPalette('#E11D48', 'Sunset Rose')" class="p-2 rounded-m3-sm bg-white dark:bg-slate-900 border border-m3-outlineLight dark:border-m3-outlineDark flex flex-col items-center gap-1.5 hover:scale-105 transition-transform">
             <span class="w-4 h-4 rounded-full bg-[#E11D48] shadow-sm"></span>
             <span class="text-slate-700 dark:text-slate-300">Rose</span>
           </button>
@@ -224,13 +266,13 @@
 
       <!-- Quick Nav Links -->
       <div class="space-y-1 text-xs font-semibold">
+        <a href="#simulator" onclick="closeDrawer()" class="flex items-center gap-3 p-2.5 rounded-m3-md hover:bg-m3-containerHighLight dark:hover:bg-m3-containerHighDark text-slate-800 dark:text-slate-200 transition-colors">
+          <i data-lucide="smartphone" class="w-4 h-4 theme-primary-text"></i>
+          <span>Interactive Phone Simulator</span>
+        </a>
         <a href="#features" onclick="closeDrawer()" class="flex items-center gap-3 p-2.5 rounded-m3-md hover:bg-m3-containerHighLight dark:hover:bg-m3-containerHighDark text-slate-800 dark:text-slate-200 transition-colors">
           <i data-lucide="layers" class="w-4 h-4 theme-primary-text"></i>
-          <span>Core Features</span>
-        </a>
-        <a href="#glance" onclick="closeDrawer()" class="flex items-center gap-3 p-2.5 rounded-m3-md hover:bg-m3-containerHighLight dark:hover:bg-m3-containerHighDark text-slate-800 dark:text-slate-200 transition-colors">
-          <i data-lucide="smartphone" class="w-4 h-4 theme-primary-text"></i>
-          <span>Interactive Glance</span>
+          <span>Kernel & Core Features</span>
         </a>
         <a href="#devices" onclick="closeDrawer()" class="flex items-center gap-3 p-2.5 rounded-m3-md hover:bg-m3-containerHighLight dark:hover:bg-m3-containerHighDark text-slate-800 dark:text-slate-200 transition-colors">
           <i data-lucide="download" class="w-4 h-4 theme-primary-text"></i>
@@ -238,17 +280,17 @@
         </a>
         <a href="#recovery" onclick="closeDrawer()" class="flex items-center gap-3 p-2.5 rounded-m3-md hover:bg-m3-containerHighLight dark:hover:bg-m3-containerHighDark text-slate-800 dark:text-slate-200 transition-colors">
           <i data-lucide="terminal" class="w-4 h-4 theme-primary-text"></i>
-          <span>Recovery Flash Guide</span>
+          <span>Recovery Sideload Guide</span>
         </a>
       </div>
 
-      <!-- External Links -->
+      <!-- Community Links -->
       <div class="pt-3 border-t border-m3-outlineLight dark:border-m3-outlineDark grid grid-cols-2 gap-2 text-xs font-bold">
-        <a href="https://github.com/OctaviOS-Plus" target="_blank" class="p-2.5 rounded-m3-sm bg-m3-containerHighLight dark:bg-m3-containerHighDark flex items-center justify-center gap-1.5 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
+        <a href="https://github.com/octavi-os" target="_blank" class="p-2.5 rounded-m3-sm bg-m3-containerHighLight dark:bg-m3-containerHighDark flex items-center justify-center gap-1.5 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
           <i data-lucide="github" class="w-3.5 h-3.5"></i>
           <span>GitHub</span>
         </a>
-        <a href="https://t.me/OctaviOS" target="_blank" class="p-2.5 rounded-m3-sm bg-m3-containerHighLight dark:bg-m3-containerHighDark flex items-center justify-center gap-1.5 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
+        <a href="https://t.me/octavi_os" target="_blank" class="p-2.5 rounded-m3-sm bg-m3-containerHighLight dark:bg-m3-containerHighDark flex items-center justify-center gap-1.5 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
           <i data-lucide="send" class="w-3.5 h-3.5"></i>
           <span>Telegram</span>
         </a>
@@ -256,17 +298,15 @@
     </div>
   </div>
 
-  <!-- Hero Section -->
   <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-20 relative z-10">
     <div class="text-center max-w-3xl mx-auto mb-16">
-      
       <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.08] mb-6">
         Pure fluidity. <br>
         <span class="theme-primary-text">Zero compromise.</span>
       </h1>
 
       <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-medium leading-relaxed mb-8 max-w-2xl mx-auto">
-        An ultra-responsive AOSP custom ROM crafted around Material 3 Expressive surfaces. Optimized kernel dispatch, native Monet theming, and rock-solid system stability.
+        An ultra-responsive AOSP custom ROM crafted around Material 3 Expressive surfaces. Optimized kernel dispatch, native Monet dynamic theming, and rock-solid system stability.
       </p>
 
       <div class="flex flex-wrap items-center justify-center gap-3.5">
@@ -274,64 +314,413 @@
           <i data-lucide="download" class="w-4 h-4"></i>
           <span>Get Builds</span>
         </a>
-        <a href="#recovery" class="px-7 py-3.5 rounded-m3-pill font-bold text-xs uppercase tracking-wider bg-m3-containerLight dark:bg-m3-containerDark text-slate-800 dark:text-slate-200 border border-m3-outlineLight dark:border-m3-outlineDark hover:border-slate-400 transition-all flex items-center gap-2 shadow-sm">
-          <i data-lucide="terminal" class="w-4 h-4 theme-primary-text"></i>
-          <span>Installation Guide</span>
+        <a href="#simulator" class="px-7 py-3.5 rounded-m3-pill font-bold text-xs uppercase tracking-wider bg-m3-containerLight dark:bg-m3-containerDark text-slate-800 dark:text-slate-200 border border-m3-outlineLight dark:border-m3-outlineDark hover:border-slate-400 transition-all flex items-center gap-2 shadow-sm">
+          <i data-lucide="play" class="w-4 h-4 theme-primary-text"></i>
+          <span>Try Phone Simulator</span>
         </a>
       </div>
     </div>
 
-    <!-- Interactive Phone Glance Mockup -->
-    <section id="glance" class="mb-24">
-      <div class="relative max-w-sm mx-auto">
-        <div class="absolute -inset-4 bg-gradient-to-r from-sky-400/25 to-purple-400/25 rounded-[3.6rem] blur-2xl opacity-60"></div>
+    <section id="simulator" class="mb-28 scroll-mt-24">
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <span class="text-xs font-mono uppercase tracking-widest theme-primary-text font-bold">Interactive Hardware Preview</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Experience OctaviOS Live</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Interact with physical volume/power keys, pull the QS shade, tap apps, and explore ROM customization.</p>
+      </div>
 
-        <div class="relative rounded-[3.2rem] p-3 bg-slate-900 border-4 border-slate-700/60 shadow-2xl">
-          <div class="relative rounded-[2.6rem] overflow-hidden bg-slate-950 aspect-[9/19] text-white flex flex-col justify-between p-6 select-none shadow-inner border border-white/10">
-            
-            <!-- Dynamic Status Island Pill -->
-            <div id="dynamicIsland" class="mx-auto bg-black/90 border border-white/10 px-4 py-1.5 rounded-full flex items-center gap-2.5 shadow-md cursor-pointer hover:border-sky-400/50 transition-colors">
-              <div class="w-2 h-2 rounded-full theme-primary-bg animate-pulse"></div>
-              <span id="islandText" class="text-[10px] font-mono tracking-tight text-slate-200">Octavi Audio &bull; 96kHz Spatial</span>
+      <!-- Smartphone Hardware Frame Container -->
+      <div class="relative max-w-[340px] sm:max-w-[360px] mx-auto select-none">
+        
+        <!-- Ambient Underglow -->
+        <div class="absolute -inset-4 bg-gradient-to-r from-sky-400/25 via-cyan-400/20 to-purple-400/25 rounded-[4rem] blur-2xl opacity-70 pointer-events-none"></div>
+
+        <!-- PHYSICAL HARDWARE BUTTONS (Left and Right Rails) -->
+        <!-- Volume Rockers (Left Rail) -->
+        <div class="absolute -left-[14px] top-[140px] flex flex-col gap-3 z-30">
+          <button id="volUpBtn" aria-label="Volume Up" title="Volume Up" class="w-[10px] h-14 rounded-l-md bg-gradient-to-r from-slate-600 to-slate-400 active:scale-95 transition-transform hover:brightness-125 cursor-pointer shadow-md"></button>
+          <button id="volDownBtn" aria-label="Volume Down" title="Volume Down" class="w-[10px] h-14 rounded-l-md bg-gradient-to-r from-slate-600 to-slate-400 active:scale-95 transition-transform hover:brightness-125 cursor-pointer shadow-md"></button>
+        </div>
+
+        <!-- Power Button (Right Rail) -->
+        <div class="absolute -right-[14px] top-[170px] z-30">
+          <button id="powerKeyBtn" aria-label="Power Lock/Wake" title="Power Key (Sleep/Wake)" class="w-[10px] h-16 rounded-r-md bg-gradient-to-l from-slate-600 to-slate-400 active:scale-95 transition-transform hover:brightness-125 cursor-pointer shadow-md"></button>
+        </div>
+
+        <!-- Outer Phone Bezel Chassis -->
+        <div class="relative rounded-[3.6rem] p-3.5 bg-gradient-to-b from-slate-800 via-slate-900 to-black border-4 border-slate-700/70 shadow-[0_25px_60px_rgba(0,0,0,0.6)]">
+          
+          <!-- Inner Screen Bezel -->
+          <div class="relative rounded-[2.9rem] overflow-hidden bg-black aspect-[9/19.5] text-white flex flex-col justify-between shadow-inner border border-white/10 relative">
+
+            <!-- PHYSICAL POP-OUT VOLUME SLIDER HUD (Pops out inside screen) -->
+            <div id="volumeHud" class="absolute left-3 top-28 z-40 bg-slate-900/90 border border-white/20 rounded-2xl p-2 w-9 h-36 flex flex-col items-center justify-between shadow-2xl transition-all duration-200 transform -translate-x-12 opacity-0 pointer-events-none">
+              <i data-lucide="volume-2" class="w-4 h-4 text-sky-400"></i>
+              <div class="relative w-2 h-20 bg-white/20 rounded-full overflow-hidden flex flex-col justify-end">
+                <div id="volumeLevelBar" class="w-full bg-sky-400 rounded-full transition-all duration-100" style="height: 70%;"></div>
+              </div>
+              <span id="volumePercentText" class="text-[9px] font-mono text-slate-300">70%</span>
             </div>
 
-            <!-- Display Center Area -->
-            <div id="phoneViewCenter" class="my-auto space-y-4 text-center transition-all duration-300">
-              <div class="space-y-1">
-                <span class="text-[11px] uppercase font-bold tracking-widest text-slate-400">Monday, October 5</span>
-                <h3 class="text-6xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400">1:15</h3>
-                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-[10px] theme-primary-text font-medium">
-                  <i data-lucide="shield-check" class="w-3 h-3"></i>
-                  <span>SELinux Enforcing &bull; CTS Pass</span>
+            <!-- STATUS BAR (Top) -->
+            <div id="phoneStatusBar" class="pt-3 px-6 flex items-center justify-between text-[11px] font-medium z-30 select-none cursor-pointer" title="Tap to pull Quick Settings">
+              <!-- Live Clock -->
+              <span id="statusBarTime" class="font-bold tracking-tight text-white">10:42</span>
+              
+              <!-- Punch-hole Dynamic Island Pill -->
+              <div id="dynamicIsland" class="mx-auto bg-black border border-white/15 px-3 py-1 rounded-full flex items-center gap-2 shadow-sm cursor-pointer hover:border-sky-400 transition-colors">
+                <div class="w-2 h-2 rounded-full theme-primary-bg animate-pulse"></div>
+                <span id="islandStatusText" class="text-[9px] font-mono tracking-tight text-slate-200">Octavi Audio &bull; 96kHz</span>
+              </div>
+
+              <!-- Status Icons -->
+              <div class="flex items-center gap-1.5 text-slate-200">
+                <i data-lucide="wifi" class="w-3.5 h-3.5"></i>
+                <i data-lucide="signal" class="w-3.5 h-3.5"></i>
+                <div class="flex items-center gap-0.5">
+                  <span class="text-[9px] font-mono">92%</span>
+                  <i data-lucide="battery" class="w-3.5 h-3.5 text-emerald-400"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLEEP / SCREEN OFF BLACKOUT OVERLAY -->
+            <div id="screenOffOverlay" class="absolute inset-0 bg-black z-50 hidden flex-col items-center justify-center text-center p-6 cursor-pointer">
+              <div class="text-slate-600 mb-3 animate-pulse-fast">
+                <i data-lucide="power" class="w-8 h-8 mx-auto"></i>
+              </div>
+              <span class="text-[11px] font-mono text-slate-500 uppercase tracking-widest">Screen Sleeping</span>
+              <span class="text-[10px] text-slate-600 mt-1">Click Power Key or Tap Screen to Wake</span>
+            </div>
+
+            <!-- QUICK SETTINGS SHADE SLIDEOUT OVERLAY -->
+            <div id="quickSettingsPanel" class="absolute inset-x-0 top-0 bottom-10 bg-slate-950/95 backdrop-blur-md z-40 p-5 flex flex-col justify-between transform -translate-y-full transition-transform duration-300 ease-out border-b border-white/10">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
+                  <span id="qsClock" class="font-bold text-white text-base">10:42</span>
+                  <span class="text-[10px] uppercase tracking-wider text-emerald-400 flex items-center gap-1">
+                    <i data-lucide="shield-check" class="w-3 h-3"></i> SELinux Enforcing
+                  </span>
+                </div>
+
+                <!-- QS Tiles Grid -->
+                <div class="grid grid-cols-2 gap-2 text-left">
+                  <!-- Wi-Fi 7 Tile -->
+                  <button onclick="toggleTile(this, 'Wi-Fi 7 Max')" class="qs-tile p-3 rounded-2xl bg-white/10 text-white flex items-center gap-3 border border-white/10 transition-colors">
+                    <i data-lucide="wifi" class="w-4 h-4 text-sky-400"></i>
+                    <div>
+                      <div class="text-xs font-bold leading-none">Wi-Fi 7</div>
+                      <div class="text-[9px] text-slate-400 mt-1">Octavi-Mesh</div>
+                    </div>
+                  </button>
+
+                  <!-- Bluetooth Tile -->
+                  <button onclick="toggleTile(this, 'Bluetooth LDAC')" class="qs-tile p-3 rounded-2xl bg-white/10 text-white flex items-center gap-3 border border-white/10 transition-colors">
+                    <i data-lucide="bluetooth" class="w-4 h-4 text-sky-400"></i>
+                    <div>
+                      <div class="text-xs font-bold leading-none">Bluetooth</div>
+                      <div class="text-[9px] text-slate-400 mt-1">LDAC 990kbps</div>
+                    </div>
+                  </button>
+
+                  <!-- Flashlight Tile -->
+                  <button onclick="toggleTile(this, 'Flashlight')" class="qs-tile p-3 rounded-2xl bg-white/10 text-white flex items-center gap-3 border border-white/10 transition-colors">
+                    <i data-lucide="flashlight" class="w-4 h-4 text-slate-400"></i>
+                    <div>
+                      <div class="text-xs font-bold leading-none">Torch</div>
+                      <div class="text-[9px] text-slate-400 mt-1">Off</div>
+                    </div>
+                  </button>
+
+                  <!-- Airplane Tile -->
+                  <button onclick="toggleTile(this, 'Airplane Mode')" class="qs-tile p-3 rounded-2xl bg-white/10 text-white flex items-center gap-3 border border-white/10 transition-colors">
+                    <i data-lucide="plane" class="w-4 h-4 text-slate-400"></i>
+                    <div>
+                      <div class="text-xs font-bold leading-none">Airplane</div>
+                      <div class="text-[9px] text-slate-400 mt-1">Disabled</div>
+                    </div>
+                  </button>
+
+                  <!-- Dark Theme Tile -->
+                  <button onclick="togglePhoneDarkMode(this)" class="qs-tile p-3 rounded-2xl bg-white/10 text-white flex items-center gap-3 border border-white/10 transition-colors">
+                    <i data-lucide="moon" class="w-4 h-4 text-sky-400"></i>
+                    <div>
+                      <div class="text-xs font-bold leading-none">Dark Mode</div>
+                      <div class="text-[9px] text-slate-400 mt-1">System</div>
+                    </div>
+                  </button>
+
+                  <!-- Performance Governor Tile -->
+                  <button onclick="toggleGovernor(this)" class="qs-tile p-3 rounded-2xl bg-white/10 text-white flex items-center gap-3 border border-white/10 transition-colors">
+                    <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+                    <div>
+                      <div class="text-xs font-bold leading-none">Governor</div>
+                      <div id="govSubtext" class="text-[9px] text-slate-400 mt-1">Schedutil</div>
+                    </div>
+                  </button>
+                </div>
+
+                <!-- Brightness Slider -->
+                <div class="pt-2">
+                  <div class="flex items-center justify-between text-[10px] text-slate-400 mb-1 font-mono">
+                    <span class="flex items-center gap-1"><i data-lucide="sun" class="w-3 h-3"></i> Display Brightness</span>
+                    <span id="brightnessPercent">100%</span>
+                  </div>
+                  <input type="range" id="phoneBrightnessSlider" min="30" max="130" value="100" class="w-full m3-range">
                 </div>
               </div>
 
-              <div class="p-3 rounded-2xl bg-white/10 border border-white/10 text-left max-w-xs mx-auto">
-                <div class="flex items-center gap-2 mb-1">
-                  <div class="w-4 h-4 rounded-full theme-primary-bg flex items-center justify-center text-black text-[9px] font-bold">O</div>
-                  <span class="text-[11px] font-bold text-white">Octavi Lab Aero</span>
-                  <span class="text-[9px] text-slate-400 ml-auto">Now</span>
-                </div>
-                <p class="text-[11px] text-slate-300 leading-snug">Solid elevation surfaces active with zero dropped frames.</p>
-              </div>
+              <!-- Close Shade Button -->
+              <button onclick="toggleQuickSettings()" class="w-full py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-bold uppercase tracking-wider text-slate-200 transition-colors flex items-center justify-center gap-1.5">
+                <i data-lucide="chevron-up" class="w-4 h-4"></i>
+                <span>Close Quick Settings</span>
+              </button>
             </div>
 
-            <!-- View Switcher Tabs -->
-            <div class="pt-3 border-t border-white/10 flex items-center justify-around text-[10px] font-mono uppercase font-bold text-slate-400">
-              <button onclick="setPhoneView('lock')" class="phone-tab active theme-primary-text transition-colors" data-view="lock">Lock</button>
-              <button onclick="setPhoneView('qs')" class="phone-tab hover:text-white transition-colors" data-view="qs">Tiles</button>
-              <button onclick="setPhoneView('kernel')" class="phone-tab hover:text-white transition-colors" data-view="kernel">Telemetry</button>
+            <div id="phoneScreenContent" class="flex-1 flex flex-col justify-between px-4 py-3 relative overflow-hidden">
+
+              <!-- 1. LOCKSCREEN VIEW -->
+              <div id="viewLockscreen" class="phone-view flex flex-col justify-between h-full py-2 text-center animate-fadeIn">
+                <div class="space-y-1 mt-6">
+                  <span id="lockDateText" class="text-[11px] uppercase font-bold tracking-widest text-slate-300">Mon, Oct 5</span>
+                  <h3 id="lockBigClock" class="text-6xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-200 to-slate-400">10:42</h3>
+                  <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-[10px] font-medium text-sky-400">
+                    <i data-lucide="shield-check" class="w-3 h-3"></i>
+                    <span>SELinux Enforcing &bull; Play Integrity Pass</span>
+                  </div>
+                </div>
+
+                <!-- Lockscreen Notification Pill -->
+                <div class="p-3 rounded-2xl bg-white/10 border border-white/10 text-left max-w-[260px] mx-auto shadow-md">
+                  <div class="flex items-center gap-2 mb-1">
+                    <div class="w-4 h-4 rounded-full theme-primary-bg flex items-center justify-center text-black text-[9px] font-bold">O</div>
+                    <span class="text-[11px] font-bold text-white">Octavi Lab</span>
+                    <span class="text-[9px] text-slate-400 ml-auto">Now</span>
+                  </div>
+                  <p class="text-[10px] text-slate-300 leading-snug">Tap fingerprint sensor below to unlock home launcher.</p>
+                </div>
+
+                <!-- Interactive Ultrasonic Fingerprint Scanner -->
+                <div class="mb-4">
+                  <button id="fingerprintBtn" aria-label="Scan Fingerprint" class="w-14 h-14 rounded-full bg-white/10 border border-white/20 hover:border-sky-400 flex items-center justify-center mx-auto text-sky-400 hover:scale-105 active:scale-95 transition-all shadow-[0_0_15px_rgba(56,189,248,0.25)]">
+                    <i data-lucide="fingerprint" class="w-8 h-8"></i>
+                  </button>
+                  <span class="text-[9px] font-mono text-slate-400 block mt-2">TAP TO UNLOCK</span>
+                </div>
+              </div>
+
+              <!-- 2. HOME LAUNCHER VIEW -->
+              <div id="viewHome" class="phone-view hidden flex-col justify-between h-full py-2">
+                <!-- Clock Widget with Dynamic Monet Accent -->
+                <div class="p-3 rounded-3xl bg-white/10 border border-white/10 text-left mt-2">
+                  <div class="flex items-baseline justify-between">
+                    <h4 id="homeWidgetClock" class="text-3xl font-black text-white">10:42</h4>
+                    <span class="text-[10px] font-bold text-sky-400 uppercase">26°C Sunny</span>
+                  </div>
+                  <div class="text-[10px] text-slate-300 mt-1">OctaviOS Fluid Launcher &bull; 120Hz LTPO</div>
+                </div>
+
+                <!-- Google / AOSP Search Pill -->
+                <div class="p-2.5 rounded-full bg-white/10 border border-white/10 flex items-center justify-between text-xs text-slate-400 px-4 my-auto">
+                  <span class="text-[11px]">Search apps & web...</span>
+                  <i data-lucide="mic" class="w-3.5 h-3.5 text-sky-400"></i>
+                </div>
+
+                <!-- 4 Interactive App Icons -->
+                <div class="grid grid-cols-4 gap-2 text-center mb-2">
+                  <!-- App 1: Octavi Lab Settings -->
+                  <button onclick="launchApp('lab')" class="flex flex-col items-center gap-1 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-500 to-cyan-400 flex items-center justify-center text-black font-bold group-hover:scale-105 active:scale-95 transition-transform shadow-md">
+                      <i data-lucide="sliders" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-[9px] font-medium text-slate-200">Octavi Lab</span>
+                  </button>
+
+                  <!-- App 2: Audio Core Equalizer -->
+                  <button onclick="launchApp('audio')" class="flex flex-col items-center gap-1 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-purple-500 to-indigo-500 flex items-center justify-center text-white font-bold group-hover:scale-105 active:scale-95 transition-transform shadow-md">
+                      <i data-lucide="headphones" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-[9px] font-medium text-slate-200">Audio Core</span>
+                  </button>
+
+                  <!-- App 3: Telemetry / Benchmark -->
+                  <button onclick="launchApp('benchmark')" class="flex flex-col items-center gap-1 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-black font-bold group-hover:scale-105 active:scale-95 transition-transform shadow-md">
+                      <i data-lucide="cpu" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-[9px] font-medium text-slate-200">Telemetry</span>
+                  </button>
+
+                  <!-- App 4: Camera Viewfinder -->
+                  <button onclick="launchApp('camera')" class="flex flex-col items-center gap-1 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-rose-500 to-amber-500 flex items-center justify-center text-white font-bold group-hover:scale-105 active:scale-95 transition-transform shadow-md">
+                      <i data-lucide="camera" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-[9px] font-medium text-slate-200">Camera</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 3. APP: OCTAVI LAB SETTINGS -->
+              <div id="viewAppLab" class="phone-view hidden flex-col justify-between h-full py-1 text-left">
+                <div class="space-y-3 overflow-y-auto pr-1">
+                  <div class="flex items-center justify-between pb-2 border-b border-white/10">
+                    <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                      <i data-lucide="sliders" class="w-3.5 h-3.5 text-sky-400"></i> Octavi Lab Settings
+                    </span>
+                    <button onclick="returnHome()" class="text-[10px] text-sky-400 font-bold">Done</button>
+                  </div>
+
+                  <!-- Setting: Monet Palette in Simulator -->
+                  <div class="p-2.5 rounded-2xl bg-white/10 space-y-1.5">
+                    <span class="text-[10px] font-mono uppercase text-slate-300 block font-bold">Dynamic Monet Accent</span>
+                    <div class="grid grid-cols-4 gap-1.5 text-center text-[9px]">
+                      <button onclick="setMonetPalette('#0284C7', 'Cyan')" class="py-1 rounded-lg bg-sky-500/30 text-sky-300 font-bold">Cyan</button>
+                      <button onclick="setMonetPalette('#65A30D', 'Lime')" class="py-1 rounded-lg bg-lime-500/30 text-lime-300 font-bold">Lime</button>
+                      <button onclick="setMonetPalette('#9333EA', 'Violet')" class="py-1 rounded-lg bg-purple-500/30 text-purple-300 font-bold">Violet</button>
+                      <button onclick="setMonetPalette('#E11D48', 'Rose')" class="py-1 rounded-lg bg-rose-500/30 text-rose-300 font-bold">Rose</button>
+                    </div>
+                  </div>
+
+                  <!-- Setting: Spoofing & Integrity -->
+                  <div class="p-2.5 rounded-2xl bg-white/10 flex items-center justify-between text-[11px]">
+                    <div>
+                      <div class="font-bold text-white">Play Integrity Fix</div>
+                      <div class="text-[9px] text-emerald-400">MEETS_STRONG_INTEGRITY</div>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-[9px]">Active</span>
+                  </div>
+
+                  <!-- Setting: Network Traffic Indicator -->
+                  <div class="p-2.5 rounded-2xl bg-white/10 flex items-center justify-between text-[11px]">
+                    <div>
+                      <div class="font-bold text-white">Statusbar Traffic Monitor</div>
+                      <div class="text-[9px] text-slate-400">0.00 KB/s Dynamic Display</div>
+                    </div>
+                    <input type="checkbox" checked class="accent-sky-400 w-4 h-4">
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4. APP: AUDIO CORE EQUALIZER -->
+              <div id="viewAppAudio" class="phone-view hidden flex-col justify-between h-full py-1 text-left">
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between pb-2 border-b border-white/10">
+                    <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                      <i data-lucide="headphones" class="w-3.5 h-3.5 text-purple-400"></i> Octavi Spatial Audio Core
+                    </span>
+                    <button onclick="returnHome()" class="text-[10px] text-sky-400 font-bold">Done</button>
+                  </div>
+
+                  <!-- Equalizer Visualizer -->
+                  <div class="p-3 rounded-2xl bg-black/60 border border-white/10 h-28 flex items-end justify-around px-4">
+                    <div class="eq-bar" style="animation-delay: 0.1s;"></div>
+                    <div class="eq-bar" style="animation-delay: 0.3s;"></div>
+                    <div class="eq-bar" style="animation-delay: 0.15s;"></div>
+                    <div class="eq-bar" style="animation-delay: 0.4s;"></div>
+                    <div class="eq-bar" style="animation-delay: 0.25s;"></div>
+                    <div class="eq-bar" style="animation-delay: 0.05s;"></div>
+                    <div class="eq-bar" style="animation-delay: 0.35s;"></div>
+                    <div class="eq-bar" style="animation-delay: 0.2s;"></div>
+                  </div>
+
+                  <div class="p-2.5 rounded-2xl bg-white/10 space-y-2 text-xs">
+                    <div class="flex items-center justify-between">
+                      <span class="text-white font-bold">Dolby Atmos Spatializer</span>
+                      <button id="spatialToggleBtn" onclick="toggleSpatialAudio()" class="px-2.5 py-1 rounded-full bg-purple-500 text-white font-mono text-[9px] font-bold">Enabled</button>
+                    </div>
+                    <div class="text-[10px] text-slate-400 font-mono">Sample Rate: 96,000 Hz &bull; 24-bit Direct PCM</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5. APP: TELEMETRY BENCHMARK -->
+              <div id="viewAppBenchmark" class="phone-view hidden flex-col justify-between h-full py-1 text-left font-mono text-[10px]">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between pb-1 border-b border-white/10">
+                    <span class="text-xs font-bold text-emerald-400 font-sans flex items-center gap-1.5">
+                      <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Telemetry Gauge
+                    </span>
+                    <button onclick="returnHome()" class="text-[10px] text-sky-400 font-bold font-sans">Done</button>
+                  </div>
+
+                  <div class="p-2.5 rounded-2xl bg-black/70 border border-white/10 space-y-1.5 text-slate-300">
+                    <div class="flex justify-between">
+                      <span class="text-slate-500">Kernel:</span>
+                      <span class="text-white">Linux 6.1.75-OctaviCore</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-slate-500">Scheduler:</span>
+                      <span class="text-emerald-400 font-bold">ENERGY_AWARE_SCHED</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-slate-500">Target Refresh:</span>
+                      <span class="text-sky-400 font-bold">120.0 FPS Sync</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-slate-500">Frame Jitter:</span>
+                      <span class="text-emerald-400 font-bold">&lt; 0.08ms</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-slate-500">Thermal:</span>
+                      <span>33.4°C [Optimal]</span>
+                    </div>
+                  </div>
+
+                  <div class="p-2 rounded-xl bg-white/10 text-center font-sans text-xs font-bold text-white">
+                    SurfaceFlinger: Zero Skipped Frames
+                  </div>
+                </div>
+              </div>
+
+              <!-- 6. APP: CAMERA VIEWFINDER -->
+              <div id="viewAppCamera" class="phone-view hidden flex-col justify-between h-full py-1 text-center">
+                <div class="flex items-center justify-between pb-1 border-b border-white/10 text-xs">
+                  <span class="text-[11px] font-bold text-white">Octavi Leica Engine</span>
+                  <button onclick="returnHome()" class="text-[10px] text-sky-400 font-bold">Exit</button>
+                </div>
+
+                <!-- Simulated Camera Viewport -->
+                <div id="cameraViewport" class="relative my-auto h-36 rounded-2xl bg-gradient-to-tr from-slate-900 to-slate-800 border border-white/20 overflow-hidden flex items-center justify-center">
+                  <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                  <!-- Camera Reticle -->
+                  <div class="w-12 h-12 border border-yellow-400/80 rounded-lg flex items-center justify-center animate-pulse">
+                    <div class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></div>
+                  </div>
+                  <span class="absolute bottom-2 left-2 font-mono text-[9px] text-slate-300">50MP &bull; f/1.8 &bull; OIS</span>
+                </div>
+
+                <!-- Shutter Trigger -->
+                <div class="flex items-center justify-center pb-2">
+                  <button id="shutterBtn" onclick="takePhoto()" class="w-12 h-12 rounded-full border-2 border-white p-1 flex items-center justify-center hover:scale-105 active:scale-90 transition-transform">
+                    <div class="w-full h-full bg-white rounded-full"></div>
+                  </button>
+                </div>
+              </div>
+
             </div>
+
+            <!-- INTERACTIVE ANDROID GESTURE NAVIGATION PILL (Bottom) -->
+            <div class="pb-2 pt-1 flex items-center justify-center z-30 select-none">
+              <button id="navGesturePill" onclick="returnHome()" aria-label="Home Navigation Pill" title="Tap to return Home / Swipe Up" class="w-24 h-1.5 rounded-full bg-white/50 hover:bg-white active:scale-95 transition-all cursor-pointer"></button>
+            </div>
+
           </div>
+        </div>
+
+        <!-- Simulator Instructions Underneath Frame -->
+        <div class="flex items-center justify-center gap-4 text-xs font-mono text-slate-500 dark:text-slate-400 mt-4">
+          <span class="flex items-center gap-1"><i data-lucide="sliders" class="w-3.5 h-3.5 theme-primary-text"></i> Click Side Buttons</span>
+          <span class="flex items-center gap-1"><i data-lucide="mouse-pointer" class="w-3.5 h-3.5 theme-primary-text"></i> Tap Status Bar for QS</span>
         </div>
       </div>
     </section>
 
-    <!-- Core Features Bento Grid -->
     <section id="features" class="mb-24">
       <div class="text-center max-w-xl mx-auto mb-12">
         <span class="text-xs font-mono uppercase tracking-widest theme-primary-text font-bold">Built for Performance</span>
         <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Architecture Highlights</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Custom system optimizations developed directly on top of AOSP master sources.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -403,7 +792,6 @@
       </div>
     </section>
 
-    <!-- Supported Device Matrix -->
     <section id="devices" class="mb-24">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 pb-5 border-b border-m3-outlineLight dark:border-m3-outlineDark">
         <div>
@@ -444,7 +832,6 @@
       </div>
     </section>
 
-    <!-- Android Recovery Terminal Wiki -->
     <section id="recovery" class="mb-20">
       <div class="max-w-xl mb-6">
         <span class="text-xs font-mono uppercase tracking-widest theme-primary-text font-bold">Platform Tools</span>
@@ -505,7 +892,6 @@
     </section>
   </main>
 
-  <!-- Verification Download Modal -->
   <div id="deviceModal" class="fixed inset-0 z-50 bg-black/60 hidden items-center justify-center p-4">
     <div class="m3-card rounded-m3-xl max-w-md w-full p-6 bg-m3-containerLight dark:bg-m3-containerDark border border-m3-outlineLight dark:border-m3-outlineDark space-y-4 text-left shadow-2xl">
       <div class="flex items-center justify-between pb-3 border-b border-m3-outlineLight dark:border-m3-outlineDark">
@@ -557,7 +943,6 @@
     <span id="toastMessage">Action performed</span>
   </div>
 
-  <!-- Footer -->
   <footer class="border-t border-m3-outlineLight dark:border-m3-outlineDark py-10 text-slate-500 dark:text-slate-400 text-xs relative z-10 bg-m3-containerLight dark:bg-m3-containerDark">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-5">
       
@@ -579,11 +964,11 @@
       </div>
 
       <div class="flex items-center gap-6 font-semibold">
-        <a href="https://github.com/OctaviOS-Plus" target="_blank" class="hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1">
+        <a href="https://github.com/octavi-os" target="_blank" class="hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1">
           <i data-lucide="github" class="w-3.5 h-3.5"></i>
           <span>GitHub</span>
         </a>
-        <a href="https://t.me/OctaviOS" target="_blank" class="hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1">
+        <a href="https://t.me/octavi_os" target="_blank" class="hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1">
           <i data-lucide="send" class="w-3.5 h-3.5"></i>
           <span>Telegram</span>
         </a>
@@ -598,7 +983,7 @@
     // Initialize Lucide Icons
     lucide.createIcons();
 
-    // 1. Theme Engine: Default to Light Mode
+    // 1. Theme Engine: Default to Light Mode with LocalStorage
     const themeToggleBtn = document.getElementById('themeToggleBtn');
     const htmlElement = document.documentElement;
 
@@ -623,10 +1008,11 @@
       lucide.createIcons();
     });
 
-    // 2. Monet Color Engine
+    // 2. Monet Color Engine (Dynamic accent modulation)
     function setMonetPalette(hex, name) {
       document.documentElement.style.setProperty('--primary', hex);
       document.documentElement.style.setProperty('--accent-glow', hex + '44');
+      vibrate(10);
       showToast(`Applied ${name} Palette`);
     }
 
@@ -660,7 +1046,208 @@
       if (e.target === navDrawerOverlay) closeDrawer();
     });
 
-    // 4. Device Dataset
+    // 4. Smartphone Real-Time Clock Sync
+    function updatePhoneClocks() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const timeStr = `${hours}:${minutes}`;
+
+      const statusBarTime = document.getElementById('statusBarTime');
+      const lockBigClock = document.getElementById('lockBigClock');
+      const homeWidgetClock = document.getElementById('homeWidgetClock');
+      const qsClock = document.getElementById('qsClock');
+
+      if (statusBarTime) statusBarTime.textContent = timeStr;
+      if (lockBigClock) lockBigClock.textContent = timeStr;
+      if (homeWidgetClock) homeWidgetClock.textContent = timeStr;
+      if (qsClock) qsClock.textContent = timeStr;
+    }
+    setInterval(updatePhoneClocks, 1000);
+    updatePhoneClocks();
+
+    // Haptic vibration helper
+    function vibrate(ms) {
+      if ('vibrate' in navigator) {
+        try { navigator.vibrate(ms); } catch (e) {}
+      }
+    }
+
+    // 5. Smartphone Hardware Buttons & Screen Logic
+    const powerKeyBtn = document.getElementById('powerKeyBtn');
+    const screenOffOverlay = document.getElementById('screenOffOverlay');
+    let isScreenSleeping = false;
+
+    function togglePower() {
+      vibrate(15);
+      isScreenSleeping = !isScreenSleeping;
+      if (isScreenSleeping) {
+        screenOffOverlay.classList.remove('hidden');
+        screenOffOverlay.classList.add('flex');
+      } else {
+        screenOffOverlay.classList.add('hidden');
+        screenOffOverlay.classList.remove('flex');
+      }
+    }
+    powerKeyBtn.addEventListener('click', togglePower);
+    screenOffOverlay.addEventListener('click', togglePower);
+
+    // Volume Rockers with Visual HUD
+    const volUpBtn = document.getElementById('volUpBtn');
+    const volDownBtn = document.getElementById('volDownBtn');
+    const volumeHud = document.getElementById('volumeHud');
+    const volumeLevelBar = document.getElementById('volumeLevelBar');
+    const volumePercentText = document.getElementById('volumePercentText');
+    let currentVolume = 70;
+    let volumeTimeout = null;
+
+    function triggerVolumeChange(delta) {
+      vibrate(8);
+      currentVolume = Math.min(100, Math.max(0, currentVolume + delta));
+      volumeLevelBar.style.height = `${currentVolume}%`;
+      volumePercentText.textContent = `${currentVolume}%`;
+
+      volumeHud.classList.remove('-translate-x-12', 'opacity-0', 'pointer-events-none');
+      volumeHud.classList.add('translate-x-0', 'opacity-100');
+
+      clearTimeout(volumeTimeout);
+      volumeTimeout = setTimeout(() => {
+        volumeHud.classList.add('-translate-x-12', 'opacity-0', 'pointer-events-none');
+        volumeHud.classList.remove('translate-x-0', 'opacity-100');
+      }, 1600);
+    }
+
+    volUpBtn.addEventListener('click', () => triggerVolumeChange(10));
+    volDownBtn.addEventListener('click', () => triggerVolumeChange(-10));
+
+    // 6. Navigation and View Controller
+    const viewLockscreen = document.getElementById('viewLockscreen');
+    const viewHome = document.getElementById('viewHome');
+    const viewAppLab = document.getElementById('viewAppLab');
+    const viewAppAudio = document.getElementById('viewAppAudio');
+    const viewAppBenchmark = document.getElementById('viewAppBenchmark');
+    const viewAppCamera = document.getElementById('viewAppCamera');
+    const fingerprintBtn = document.getElementById('fingerprintBtn');
+
+    function switchPhoneView(viewElement) {
+      [viewLockscreen, viewHome, viewAppLab, viewAppAudio, viewAppBenchmark, viewAppCamera].forEach(v => {
+        v.classList.add('hidden');
+        v.classList.remove('flex');
+      });
+      viewElement.classList.remove('hidden');
+      viewElement.classList.add('flex');
+    }
+
+    fingerprintBtn.addEventListener('click', () => {
+      vibrate(30);
+      fingerprintBtn.classList.add('scale-90', 'border-emerald-400');
+      setTimeout(() => {
+        fingerprintBtn.classList.remove('scale-90', 'border-emerald-400');
+        switchPhoneView(viewHome);
+        showToast("Phone Unlocked");
+      }, 180);
+    });
+
+    window.returnHome = function() {
+      vibrate(10);
+      switchPhoneView(viewHome);
+    };
+
+    window.launchApp = function(appName) {
+      vibrate(15);
+      if (appName === 'lab') switchPhoneView(viewAppLab);
+      if (appName === 'audio') switchPhoneView(viewAppAudio);
+      if (appName === 'benchmark') switchPhoneView(viewAppBenchmark);
+      if (appName === 'camera') switchPhoneView(viewAppCamera);
+      lucide.createIcons();
+    };
+
+    // Camera Shutter Animation
+    window.takePhoto = function() {
+      vibrate(40);
+      const cam = document.getElementById('cameraViewport');
+      cam.classList.add('brightness-200');
+      setTimeout(() => {
+        cam.classList.remove('brightness-200');
+        showToast("Captured 50MP RAW Frame");
+      }, 100);
+    };
+
+    // Audio Spatializer Toggle
+    window.toggleSpatialAudio = function() {
+      vibrate(10);
+      const btn = document.getElementById('spatialToggleBtn');
+      const islandText = document.getElementById('islandStatusText');
+      if (btn.textContent === 'Enabled') {
+        btn.textContent = 'Disabled';
+        btn.className = 'px-2.5 py-1 rounded-full bg-white/20 text-slate-300 font-mono text-[9px] font-bold';
+        islandText.textContent = "Audio &bull; Standard Direct";
+      } else {
+        btn.textContent = 'Enabled';
+        btn.className = 'px-2.5 py-1 rounded-full bg-purple-500 text-white font-mono text-[9px] font-bold';
+        islandText.textContent = "Octavi Audio &bull; 96kHz";
+      }
+    };
+
+    // 7. Quick Settings Shade Controller
+    const phoneStatusBar = document.getElementById('phoneStatusBar');
+    const quickSettingsPanel = document.getElementById('quickSettingsPanel');
+    let isQsOpen = false;
+
+    function toggleQuickSettings() {
+      vibrate(15);
+      isQsOpen = !isQsOpen;
+      if (isQsOpen) {
+        quickSettingsPanel.classList.remove('-translate-y-full');
+        quickSettingsPanel.classList.add('translate-y-0');
+      } else {
+        quickSettingsPanel.classList.remove('translate-y-0');
+        quickSettingsPanel.classList.add('-translate-y-full');
+      }
+    }
+    phoneStatusBar.addEventListener('click', toggleQuickSettings);
+
+    window.toggleTile = function(btn, tileName) {
+      vibrate(10);
+      const isActive = btn.classList.contains('bg-sky-500');
+      if (isActive) {
+        btn.classList.remove('bg-sky-500', 'text-black');
+        btn.classList.add('bg-white/10', 'text-white');
+        const icon = btn.querySelector('svg');
+        if (icon) icon.classList.remove('text-black');
+        showToast(`${tileName} Off`);
+      } else {
+        btn.classList.remove('bg-white/10', 'text-white');
+        btn.classList.add('bg-sky-500', 'text-black');
+        const icon = btn.querySelector('svg');
+        if (icon) icon.classList.add('text-black');
+        showToast(`${tileName} On`);
+      }
+    };
+
+    window.togglePhoneDarkMode = function(btn) {
+      themeToggleBtn.click();
+    };
+
+    const governors = ['Schedutil', 'Performance', 'PowerSave'];
+    let govIndex = 0;
+    window.toggleGovernor = function(btn) {
+      vibrate(15);
+      govIndex = (govIndex + 1) % governors.length;
+      document.getElementById('govSubtext').textContent = governors[govIndex];
+      showToast(`CPU Governor: ${governors[govIndex]}`);
+    };
+
+    // Brightness Slider Simulator
+    const phoneBrightnessSlider = document.getElementById('phoneBrightnessSlider');
+    const brightnessPercent = document.getElementById('brightnessPercent');
+    phoneBrightnessSlider.addEventListener('input', (e) => {
+      const val = e.target.value;
+      brightnessPercent.textContent = `${Math.round((val / 130) * 100)}%`;
+      document.documentElement.style.setProperty('--screen-brightness', (val / 100).toString());
+    });
+
+    // 8. Device Dataset & Matrix Logic
     const devices = [
       {
         name: "POCO F3 / Redmi K40 / Mi 11X",
@@ -691,7 +1278,6 @@
       }
     ];
 
-    // 5. Render Device Matrix
     const deviceGrid = document.getElementById('deviceGrid');
     const deviceSearchInput = document.getElementById('deviceSearchInput');
     const noDeviceState = document.getElementById('noDeviceState');
@@ -757,78 +1343,7 @@
       });
     });
 
-    // 6. Phone Screen Switcher
-    const phoneViewCenter = document.getElementById('phoneViewCenter');
-    window.setPhoneView = function(view) {
-      document.querySelectorAll('.phone-tab').forEach(t => t.classList.remove('active', 'theme-primary-text'));
-      const activeTab = document.querySelector(`.phone-tab[data-view="${view}"]`);
-      if (activeTab) activeTab.classList.add('active', 'theme-primary-text');
-
-      if (view === 'lock') {
-        phoneViewCenter.innerHTML = `
-          <div class="space-y-1">
-            <span class="text-[11px] uppercase font-bold tracking-widest text-slate-400">Monday, October 5</span>
-            <h3 class="text-6xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400">1:15</h3>
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-[10px] theme-primary-text font-medium">
-              <i data-lucide="shield-check" class="w-3 h-3"></i>
-              <span>SELinux Enforcing &bull; CTS Pass</span>
-            </div>
-          </div>
-          <div class="p-3 rounded-2xl bg-white/10 border border-white/10 text-left max-w-xs mx-auto">
-            <div class="flex items-center gap-2 mb-1">
-              <div class="w-4 h-4 rounded-full theme-primary-bg flex items-center justify-center text-black text-[9px] font-bold">O</div>
-              <span class="text-[11px] font-bold text-white">Octavi Lab Aero</span>
-              <span class="text-[9px] text-slate-400 ml-auto">Now</span>
-            </div>
-            <p class="text-[11px] text-slate-300 leading-snug">Solid elevation surfaces active with zero dropped frames.</p>
-          </div>
-        `;
-      } else if (view === 'qs') {
-        phoneViewCenter.innerHTML = `
-          <div class="space-y-2.5 max-w-xs mx-auto text-left">
-            <span class="text-[10px] font-mono uppercase tracking-widest theme-primary-text font-bold">Quick Tiles Live</span>
-            <div class="grid grid-cols-2 gap-2 text-xs font-bold">
-              <div class="p-2.5 rounded-xl theme-primary-bg theme-on-primary-text">
-                <i data-lucide="wifi" class="w-4 h-4 mb-1"></i>
-                <div class="text-[11px]">Wi-Fi 7 Max</div>
-              </div>
-              <div class="p-2.5 rounded-xl bg-white/10 border border-white/10 text-white">
-                <i data-lucide="bluetooth" class="w-4 h-4 mb-1 theme-primary-text"></i>
-                <div class="text-[11px]">LDAC 990k</div>
-              </div>
-            </div>
-          </div>
-        `;
-      } else if (view === 'kernel') {
-        phoneViewCenter.innerHTML = `
-          <div class="space-y-2 max-w-xs mx-auto text-left font-mono text-[10px]">
-            <span class="theme-primary-text font-bold block">Kernel Thread Telemetry</span>
-            <div class="p-2.5 rounded-xl bg-black/70 border border-white/10 text-slate-300 space-y-1">
-              <div>CPU0-3: 1420MHz [Schedutil]</div>
-              <div>CPU4-7: 3190MHz [Performance]</div>
-              <div class="text-emerald-400">FPS: 120.0 (Jitter: &lt; 0.1ms)</div>
-              <div>SurfaceFlinger: Sync Lock</div>
-            </div>
-          </div>
-        `;
-      }
-      lucide.createIcons();
-    };
-
-    // Dynamic Island status toggle
-    const dynamicIsland = document.getElementById('dynamicIsland');
-    const islandText = document.getElementById('islandText');
-    let isIslandActive = false;
-    dynamicIsland.addEventListener('click', () => {
-      isIslandActive = !isIslandActive;
-      if (isIslandActive) {
-        islandText.textContent = "Hi-Res DAC • 192kHz Bit-Perfect";
-      } else {
-        islandText.textContent = "Octavi Audio • 96kHz Spatial";
-      }
-    });
-
-    // 7. Download Modal Handlers
+    // 9. Download Modal Handlers
     const deviceModal = document.getElementById('deviceModal');
     const modalDeviceTitle = document.getElementById('modalDeviceTitle');
     const modalShaText = document.getElementById('modalShaText');
@@ -860,7 +1375,7 @@
       if (e.target === deviceModal) closeDeviceModal();
     });
 
-    // 8. Clipboard & Toast Helpers
+    // 10. Clipboard & Toast Helpers
     function showToast(message) {
       const toast = document.getElementById('toast');
       document.getElementById('toastMessage').textContent = message;
@@ -895,7 +1410,7 @@
       showToast("All commands copied");
     };
 
-    // Initial render call
+    // Initial matrix render
     renderDeviceMatrix();
   </script>
 </body>
